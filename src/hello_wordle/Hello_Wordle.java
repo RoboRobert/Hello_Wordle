@@ -15,7 +15,7 @@ public class Hello_Wordle {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        System.out.println("Hello Wordle!");
+        System.out.println("Hello Worldle!");
     }
     
 }
