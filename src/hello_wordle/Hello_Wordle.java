@@ -5,7 +5,7 @@
 package hello_wordle;
 
 /**
- *
+ * The main class of our project
  * @author nathan
  */
 public class Hello_Wordle {
@@ -14,7 +14,7 @@ public class Hello_Wordle {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        // TODO code for main game loop
         System.out.println("Hello Worldle!");
     }
     
