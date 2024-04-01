@@ -4,6 +4,7 @@
  */
 package hello_wordle;
 
+import gui.Menu;
 /**
  *
  * @author nathan
@@ -15,7 +16,10 @@ public class Hello_Wordle {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        System.out.println("Hello Wordle!");
+        Menu main_menu = new Menu(null, false);
+        
+        main_menu.setVisible(true);
+        
     }
     
 }
