@@ -15,7 +15,24 @@ public class GameGUI extends javax.swing.JFrame{
      */
     public GameGUI(java.awt.Frame parent, boolean modal) {
         initComponents();
+        
+        int guessCount = 0;
+         /**
+          * initializes arrays containing rows of guess labels 
+          * sets visibility of these rows to false
+          */
+        guessRow1 = new javax.swing.JLabel[]{jLabel3, jLabel4, jLabel5, jLabel6, jLabel7, jLabel8};
+        guessRow2 = new javax.swing.JLabel[]{jLabel9, jLabel10, jLabel11, jLabel12, jLabel13, jLabel14};
+        guessVisibility(false, guessRow1);
+        guessVisibility(false, guessRow2);
     }
+    // This sets the visibility of an array of JLabels
+    private void guessVisibility(boolean isVisible, javax.swing.JLabel[] labels) {
+    for (javax.swing.JLabel label : labels) {
+        label.setVisible(isVisible);
+        }
+    }
+        
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -155,7 +172,23 @@ public class GameGUI extends javax.swing.JFrame{
         // TODO add your handling code here: 
         //This inserts the guess
         String guess = (String) jComboBox1.getSelectedItem();
-        jLabel3.setText(guess);
+        
+        /**
+         * checks current count of guesses and implements a row of guess information and increments guessCount
+         * if guessCount is 1, disables the guess button 
+         */
+        
+        switch (guessCount) {
+            case 0: jLabel3.setText(guess);
+                    guessVisibility(true, guessRow1);
+                    guessCount++;
+                    break;
+            case 1: jLabel9.setText(guess);
+                    guessVisibility(true, guessRow2);
+                    guessCount++;
+                    jButton1.setEnabled(false);
+                    break;
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -220,4 +253,7 @@ public class GameGUI extends javax.swing.JFrame{
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+    javax.swing.JLabel[] guessRow1;
+    javax.swing.JLabel[] guessRow2;
+    int guessCount;
 }
