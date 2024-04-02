@@ -8,6 +8,7 @@ import gui.Menu;
 /**
  *
  * @author nathan
+ * Entrypoint for the Hello Wordle application
  */
 public class Hello_Wordle {
 
