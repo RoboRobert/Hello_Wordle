@@ -18,6 +18,8 @@ public class Hello_Wordle {
      */
     public static void main(String[] args) {
         //    Variable to store the model of the game state.
+        GameData model = new GameData();
+        
         Menu main_menu = new Menu(null, true);
         
         main_menu.setVisible(true);

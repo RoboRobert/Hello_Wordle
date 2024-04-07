@@ -39,22 +39,4 @@ public class GameData {
         
         return;
     }
-    
-    public void addToList(String input) {
-        guesses_list.add(input);
-    }
-    
-    public void addGuess() {
-        num_guesses++;
-    }
-    
-//    public void setList()
-    
-    public ArrayList<String> getGuessList() {
-        return guesses_list;
-    }
-    
-    public long getNumGuesses() {
-        return num_guesses;
-    }
 }

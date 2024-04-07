@@ -79,8 +79,8 @@ public class JsonTest {
     public static void main(String[] args) {
         GameData test_data = new GameData();
         
-        test_data.addToList("test guess");
-        test_data.addGuess();
+        test_data.guesses_list.add("test guess");
+        test_data.num_guesses++;
         
         store_data(test_data);
         
