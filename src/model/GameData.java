@@ -16,11 +16,28 @@ public class GameData {
     public ArrayList<String> guesses_list;
 
     /**
-     * Default constructor
+     * Unparameterized Constructor
      */
     public GameData() {
         num_guesses = 0;
         guesses_list = new ArrayList<String>();
+    }
+    
+    /**
+     * Method to print all of the game state cleanly
+     */
+    public void print_data() {
+        
+        System.out.println("Number of guesses: " + num_guesses);
+        
+        int current_guess = 1;
+        for(String guess : guesses_list) {
+            
+            System.out.println("Guess #" + current_guess + ": " + guess);
+            current_guess++;
+        }
+        
+        return;
     }
     
     public void addToList(String input) {

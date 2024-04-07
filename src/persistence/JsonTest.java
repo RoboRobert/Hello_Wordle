@@ -86,6 +86,7 @@ public class JsonTest {
         
         GameData new_data = load_data();
         
-        System.out.println("testing object \n" + new_data.getNumGuesses());
+        System.out.println("testing object \n");
+        new_data.print_data();
     }
 }
