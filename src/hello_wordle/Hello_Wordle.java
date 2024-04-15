@@ -4,12 +4,12 @@
  */
 package hello_wordle;
 
-import gui.Menu;
+import gui.GameFrame;
 import persistence.JsonTest;
 import model.GameData;
 
 /**
- * This class is the controller for the game. It loads from persistence, updates the model from user input, and uses the model to inform the GUI.
+ * This class is the entrypoint for the game.
  * @author nathan
  */
 public class Hello_Wordle {
@@ -17,10 +17,8 @@ public class Hello_Wordle {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        //    Variable to store the model of the game state.
-        GameData model = new GameData();
         
-        Menu main_menu = new Menu(null, true);
+        GameFrame main_menu = new GameFrame();
         
         main_menu.setVisible(true);
     }
