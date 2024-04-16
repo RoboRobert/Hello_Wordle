@@ -17,9 +17,14 @@ public class Hello_Wordle {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+//        Main JFrame for the game
         GameFrame main_menu = new GameFrame();
         
+//          These lines center the frame
+//        main_menu.pack();
+        main_menu.setLocationRelativeTo(null);
+
+//        Then set the whole frame to be visible
         main_menu.setVisible(true);
     }
     
