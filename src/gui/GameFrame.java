@@ -6,10 +6,15 @@ package gui;
 
 import java.util.ArrayList;
 import javax.swing.JLabel;
+import model.Guess;
+import model.GuessHandler;
 
 /**
- * This class will serve as both the view and controller of the game in one.
- * @author theau
+ * This class will serve as both the view and controller of the game in one. It will use the model to process its inputs, then it will display the model to the screen
+ * @author annalise
+ * @author thomas
+ * @author patrick
+ * @author nathan
  */
 public class GameFrame extends javax.swing.JFrame {
     //    Global variables used for guesses
@@ -23,17 +28,24 @@ public class GameFrame extends javax.swing.JFrame {
     ArrayList<JLabel[]> guesses_arr;
     int guessCount;
     
+    Guess correctGuess;
+    
     /**
      * Creates new GameFrame 
      */
     public GameFrame() {
         initComponents();
         
+        //        Set the correct guess
+        correctGuess = new Guess("C++", "STATIC", "OO", "HIGH", 1985);
+
+        
         guessCount = 0;
+        
          /**
           * initializes arrays containing rows of guess labels 
           * sets visibility of these rows to false
-          * Then adds each array to an arraylist of arrays
+          * Then adds each array to an ArrayList of arrays
           */
         guesses_arr = new ArrayList<JLabel[]>();
         
@@ -75,12 +87,60 @@ public class GameFrame extends javax.swing.JFrame {
     }
     
     /**
-     * Handles setting the text of your guess as well as its typing, paradigm, level, test and year
+     * Handles setting name, typing, paradigm, level, test and year of a guess
      */
-    private void setGuess(JLabel[] guessRow, String guess) {
-        guessRow[0].setText(guess);
+    private void setGuess(JLabel[] guessRow, Guess guess) {
+        guessRow[0].setText(guess.name); 
+        guessRow[1].setText(guess.typing);
+        guessRow[2].setText(guess.paradigm);
+        guessRow[3].setText(guess.level);
+        guessRow[4].setText("test");
+        String yearString = Integer.toString(guess.year);
+        guessRow[5].setText(yearString);
     }
     
+    /**
+     * Handles setting the colors of rows based on the input guess and the correct guess.
+     */
+    private void setColors(JLabel[] guessRow, Guess guess) {
+        guessRow[0].setBackground(GuessHandler.matchName(correctGuess.name, guess.name));
+        guessRow[1].setBackground(GuessHandler.matchTyping(correctGuess.typing, guess.typing));
+        guessRow[2].setBackground(GuessHandler.matchParadigm(correctGuess.paradigm, guess.paradigm));
+        guessRow[3].setBackground(GuessHandler.matchLevel(correctGuess.level, guess.level));
+//      Skip 4 for now because I don't know what to do with it
+        guessRow[5].setBackground(GuessHandler.matchYear(correctGuess.year, guess.year));
+    }
+    
+    
+    /**
+     * Sets the gamePanel view to visible
+     */
+    private void selectGameView() {
+        //Change to game view
+        gamePanel.setVisible(true);
+        menuPanel.setVisible(false);
+        this.pack();
+    }
+    
+    /**
+     * Sets the main menu view to visible
+     */
+    private void selectMainView() {
+        //Switch to the main menu
+        winPanel.setVisible(false);
+        menuPanel.setVisible(true);
+        this.pack();
+    }
+    
+    /**
+     * Sets the win menu view to visible
+     */
+    private void selectWinView() {
+        //Change to the win menu
+        winPanel.setVisible(true);
+        gamePanel.setVisible(false);
+        this.pack();
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -206,6 +266,11 @@ public class GameFrame extends javax.swing.JFrame {
         jComboBox1.setBackground(new java.awt.Color(102, 102, 102));
         jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "html", "Python", "C++", "Java" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         guessButton.setBackground(new java.awt.Color(102, 102, 102));
         guessButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -290,7 +355,7 @@ public class GameFrame extends javax.swing.JFrame {
         guess0.setOpaque(true);
         testPanel.add(guess0);
 
-        typing0.setBackground(new java.awt.Color(218, 205, 56));
+        typing0.setBackground(new java.awt.Color(51, 51, 51));
         typing0.setForeground(new java.awt.Color(255, 255, 255));
         typing0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         typing0.setText("typing0");
@@ -306,7 +371,7 @@ public class GameFrame extends javax.swing.JFrame {
         paradigm0.setOpaque(true);
         testPanel.add(paradigm0);
 
-        level0.setBackground(new java.awt.Color(0, 153, 0));
+        level0.setBackground(new java.awt.Color(51, 51, 51));
         level0.setForeground(new java.awt.Color(255, 255, 255));
         level0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         level0.setText("level0");
@@ -362,7 +427,7 @@ public class GameFrame extends javax.swing.JFrame {
         level1.setOpaque(true);
         testPanel.add(level1);
 
-        test1.setBackground(new java.awt.Color(218, 205, 56));
+        test1.setBackground(new java.awt.Color(51, 51, 51));
         test1.setForeground(new java.awt.Color(255, 255, 255));
         test1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         test1.setText("test1");
@@ -386,7 +451,7 @@ public class GameFrame extends javax.swing.JFrame {
         guess2.setOpaque(true);
         testPanel.add(guess2);
 
-        typing2.setBackground(new java.awt.Color(0, 153, 0));
+        typing2.setBackground(new java.awt.Color(51, 51, 51));
         typing2.setForeground(new java.awt.Color(255, 255, 255));
         typing2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         typing2.setText("typing2");
@@ -418,7 +483,7 @@ public class GameFrame extends javax.swing.JFrame {
         test2.setOpaque(true);
         testPanel.add(test2);
 
-        year2.setBackground(new java.awt.Color(0, 153, 0));
+        year2.setBackground(new java.awt.Color(51, 51, 51));
         year2.setForeground(new java.awt.Color(255, 255, 255));
         year2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         year2.setText("year2");
@@ -442,7 +507,7 @@ public class GameFrame extends javax.swing.JFrame {
         typing3.setOpaque(true);
         testPanel.add(typing3);
 
-        paradigm3.setBackground(new java.awt.Color(0, 153, 0));
+        paradigm3.setBackground(new java.awt.Color(51, 51, 51));
         paradigm3.setForeground(new java.awt.Color(255, 255, 255));
         paradigm3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         paradigm3.setText("paradigm3");
@@ -450,7 +515,7 @@ public class GameFrame extends javax.swing.JFrame {
         paradigm3.setOpaque(true);
         testPanel.add(paradigm3);
 
-        level3.setBackground(new java.awt.Color(218, 205, 56));
+        level3.setBackground(new java.awt.Color(51, 51, 51));
         level3.setForeground(new java.awt.Color(255, 255, 255));
         level3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         level3.setText("level3");
@@ -498,7 +563,7 @@ public class GameFrame extends javax.swing.JFrame {
         paradigm4.setOpaque(true);
         testPanel.add(paradigm4);
 
-        level4.setBackground(new java.awt.Color(0, 153, 0));
+        level4.setBackground(new java.awt.Color(51, 51, 51));
         level4.setForeground(new java.awt.Color(255, 255, 255));
         level4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         level4.setText("level4");
@@ -530,7 +595,7 @@ public class GameFrame extends javax.swing.JFrame {
         guess5.setOpaque(true);
         testPanel.add(guess5);
 
-        typing5.setBackground(new java.awt.Color(0, 153, 0));
+        typing5.setBackground(new java.awt.Color(51, 51, 51));
         typing5.setForeground(new java.awt.Color(255, 255, 255));
         typing5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         typing5.setText("typing5");
@@ -538,7 +603,7 @@ public class GameFrame extends javax.swing.JFrame {
         typing5.setOpaque(true);
         testPanel.add(typing5);
 
-        paradigm5.setBackground(new java.awt.Color(218, 205, 56));
+        paradigm5.setBackground(new java.awt.Color(51, 51, 51));
         paradigm5.setForeground(new java.awt.Color(255, 255, 255));
         paradigm5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         paradigm5.setText("paradigm5");
@@ -695,10 +760,8 @@ public class GameFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
-        //Change to game view
-        gamePanel.setVisible(true);
-        menuPanel.setVisible(false);
-        this.pack();
+//        Select the game view
+        selectGameView();
     }//GEN-LAST:event_startButtonActionPerformed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
@@ -707,10 +770,8 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_exitButtonActionPerformed
 
     private void mainMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainMenuButtonActionPerformed
-        //Switch to the main menu
-        winPanel.setVisible(false);
-        menuPanel.setVisible(true);
-        this.pack();
+//        Select the main menu
+        selectMainView();
     }//GEN-LAST:event_mainMenuButtonActionPerformed
 
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
@@ -719,18 +780,26 @@ public class GameFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_quitButtonActionPerformed
 
     private void winButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_winButtonActionPerformed
-        //Change to the win menu
-        winPanel.setVisible(true);
-        gamePanel.setVisible(false);
-        this.pack();
+//        Select the win menu
+        selectWinView();
     }//GEN-LAST:event_winButtonActionPerformed
 
+    /**
+     * This function activates when the user inputs a guess. It  will update the model with the data, then update the view with the model's output
+     */
     private void guessButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessButtonActionPerformed
         //this part should call the guessing method
         String guess = (String) jComboBox1.getSelectedItem();
+        
+//        Gets the full Guess data from GuessHandler
+//        NOTE: CURRENTLY ONLY RETURNS DATA FOR JAVA, fix soon :)
+        Guess userGuess = GuessHandler.getGuess(guess);
 
-        //        Sets the guess string appropriately based on the user's input
-        setGuess(guesses_arr.get(guessCount), guess);
+//        Sets the guess strings appropriately based on the user's input
+        setGuess(guesses_arr.get(guessCount), userGuess);
+
+//        Sets the colors appropriately based on correct guesses
+        setColors(guesses_arr.get(guessCount), userGuess);
 
         //        Makes the next guess row visible.
         guessVisibility(true, guesses_arr.get(guessCount));
@@ -744,6 +813,10 @@ public class GameFrame extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_guessButtonActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -776,17 +849,6 @@ public class GameFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 GameFrame gui = new GameFrame();
-//                //          These lines center the frame
-//                gui.pack();
-//                gui.setLocationRelativeTo(null);
-//
-//        //        These make the main menu the only visible panel
-//                gui.gamePanel.setVisible(false);
-//                gui.winPanel.setVisible(false);
-//                gui.menuPanel.setVisible(true);
-//
-//        //        Then set the whole frame to be visible
-//                gui.setVisible(true);
             }
         });
     }

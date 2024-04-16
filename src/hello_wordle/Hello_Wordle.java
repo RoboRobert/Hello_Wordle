@@ -5,6 +5,7 @@
 package hello_wordle;
 
 import gui.GameFrame;
+import java.awt.Color;
 import persistence.JsonTest;
 import model.GameData;
 
@@ -23,5 +24,4 @@ public class Hello_Wordle {
 //        Then set the frame to be visible
         main_menu.setVisible(true);
     }
-    
 }

@@ -17,7 +17,7 @@ import org.json.simple.parser.JSONParser;
 
 
 /**
- *
+ * The purpose of this class is to provide functions to parse JSON data from persistent files
  * @author nathan
  */
 public class JsonTest {
