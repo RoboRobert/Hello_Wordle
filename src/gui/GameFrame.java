@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JLabel;
 
 /**
- *
+ * This class will serve as both the view and controller of the game in one.
  * @author theau
  */
 public class GameFrame extends javax.swing.JFrame {
@@ -59,6 +59,10 @@ public class GameFrame extends javax.swing.JFrame {
         gamePanel.setVisible(false);
         winPanel.setVisible(false);
         menuPanel.setVisible(true);
+        
+        //        Make sure the size takes from the preferred size, then move to the middle of the screen
+        this.pack();
+        this.setLocationRelativeTo(null);
     }
     
      /** 
@@ -177,31 +181,27 @@ public class GameFrame extends javax.swing.JFrame {
         menuPanel.setLayout(menuPanelLayout);
         menuPanelLayout.setHorizontalGroup(
             menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menuPanelLayout.createSequentialGroup()
-                .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(menuPanelLayout.createSequentialGroup()
-                        .addGap(251, 251, 251)
-                        .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(promptLabel1)))
-                    .addGroup(menuPanelLayout.createSequentialGroup()
-                        .addGap(302, 302, 302)
-                        .addComponent(exitButton)))
-                .addContainerGap(254, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuPanelLayout.createSequentialGroup()
+                .addContainerGap(452, Short.MAX_VALUE)
+                .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(exitButton)
+                    .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(promptLabel1))
+                .addGap(447, 447, 447))
         );
         menuPanelLayout.setVerticalGroup(
             menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuPanelLayout.createSequentialGroup()
-                .addGap(48, 48, 48)
+                .addGap(273, 273, 273)
                 .addComponent(promptLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addContainerGap(318, Short.MAX_VALUE))
         );
 
-        gamePanel.setBackground(new java.awt.Color(102, 102, 102));
+        gamePanel.setBackground(new java.awt.Color(51, 51, 51));
 
         jComboBox1.setBackground(new java.awt.Color(102, 102, 102));
         jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
@@ -232,10 +232,9 @@ public class GameFrame extends javax.swing.JFrame {
         promptLabel.setText("Hello Wordle");
 
         testPanel.setBackground(new java.awt.Color(51, 51, 51));
-        testPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         testPanel.setLayout(new java.awt.GridLayout(8, 6, 4, 4));
 
-        guess.setBackground(new java.awt.Color(51, 51, 51));
+        guess.setBackground(new java.awt.Color(153, 153, 153));
         guess.setForeground(new java.awt.Color(255, 255, 255));
         guess.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         guess.setText("Guess");
@@ -243,7 +242,7 @@ public class GameFrame extends javax.swing.JFrame {
         guess.setOpaque(true);
         testPanel.add(guess);
 
-        typing.setBackground(new java.awt.Color(51, 51, 51));
+        typing.setBackground(new java.awt.Color(153, 153, 153));
         typing.setForeground(new java.awt.Color(255, 255, 255));
         typing.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         typing.setText("Typing");
@@ -251,7 +250,7 @@ public class GameFrame extends javax.swing.JFrame {
         typing.setOpaque(true);
         testPanel.add(typing);
 
-        paradigm.setBackground(new java.awt.Color(51, 51, 51));
+        paradigm.setBackground(new java.awt.Color(153, 153, 153));
         paradigm.setForeground(new java.awt.Color(255, 255, 255));
         paradigm.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         paradigm.setText("Paradigm");
@@ -259,7 +258,7 @@ public class GameFrame extends javax.swing.JFrame {
         paradigm.setOpaque(true);
         testPanel.add(paradigm);
 
-        level.setBackground(new java.awt.Color(51, 51, 51));
+        level.setBackground(new java.awt.Color(153, 153, 153));
         level.setForeground(new java.awt.Color(255, 255, 255));
         level.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         level.setText("High/Low Level");
@@ -267,7 +266,7 @@ public class GameFrame extends javax.swing.JFrame {
         level.setOpaque(true);
         testPanel.add(level);
 
-        test.setBackground(new java.awt.Color(51, 51, 51));
+        test.setBackground(new java.awt.Color(153, 153, 153));
         test.setForeground(new java.awt.Color(255, 255, 255));
         test.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         test.setText("test");
@@ -275,7 +274,7 @@ public class GameFrame extends javax.swing.JFrame {
         test.setOpaque(true);
         testPanel.add(test);
 
-        yearCreated.setBackground(new java.awt.Color(51, 51, 51));
+        yearCreated.setBackground(new java.awt.Color(153, 153, 153));
         yearCreated.setForeground(new java.awt.Color(255, 255, 255));
         yearCreated.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         yearCreated.setText("Year Created");
@@ -291,7 +290,7 @@ public class GameFrame extends javax.swing.JFrame {
         guess0.setOpaque(true);
         testPanel.add(guess0);
 
-        typing0.setBackground(new java.awt.Color(51, 51, 51));
+        typing0.setBackground(new java.awt.Color(218, 205, 56));
         typing0.setForeground(new java.awt.Color(255, 255, 255));
         typing0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         typing0.setText("typing0");
@@ -307,7 +306,7 @@ public class GameFrame extends javax.swing.JFrame {
         paradigm0.setOpaque(true);
         testPanel.add(paradigm0);
 
-        level0.setBackground(new java.awt.Color(51, 51, 51));
+        level0.setBackground(new java.awt.Color(0, 153, 0));
         level0.setForeground(new java.awt.Color(255, 255, 255));
         level0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         level0.setText("level0");
@@ -363,7 +362,7 @@ public class GameFrame extends javax.swing.JFrame {
         level1.setOpaque(true);
         testPanel.add(level1);
 
-        test1.setBackground(new java.awt.Color(51, 51, 51));
+        test1.setBackground(new java.awt.Color(218, 205, 56));
         test1.setForeground(new java.awt.Color(255, 255, 255));
         test1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         test1.setText("test1");
@@ -387,7 +386,7 @@ public class GameFrame extends javax.swing.JFrame {
         guess2.setOpaque(true);
         testPanel.add(guess2);
 
-        typing2.setBackground(new java.awt.Color(51, 51, 51));
+        typing2.setBackground(new java.awt.Color(0, 153, 0));
         typing2.setForeground(new java.awt.Color(255, 255, 255));
         typing2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         typing2.setText("typing2");
@@ -419,7 +418,7 @@ public class GameFrame extends javax.swing.JFrame {
         test2.setOpaque(true);
         testPanel.add(test2);
 
-        year2.setBackground(new java.awt.Color(51, 51, 51));
+        year2.setBackground(new java.awt.Color(0, 153, 0));
         year2.setForeground(new java.awt.Color(255, 255, 255));
         year2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         year2.setText("year2");
@@ -443,7 +442,7 @@ public class GameFrame extends javax.swing.JFrame {
         typing3.setOpaque(true);
         testPanel.add(typing3);
 
-        paradigm3.setBackground(new java.awt.Color(51, 51, 51));
+        paradigm3.setBackground(new java.awt.Color(0, 153, 0));
         paradigm3.setForeground(new java.awt.Color(255, 255, 255));
         paradigm3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         paradigm3.setText("paradigm3");
@@ -451,7 +450,7 @@ public class GameFrame extends javax.swing.JFrame {
         paradigm3.setOpaque(true);
         testPanel.add(paradigm3);
 
-        level3.setBackground(new java.awt.Color(51, 51, 51));
+        level3.setBackground(new java.awt.Color(218, 205, 56));
         level3.setForeground(new java.awt.Color(255, 255, 255));
         level3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         level3.setText("level3");
@@ -499,7 +498,7 @@ public class GameFrame extends javax.swing.JFrame {
         paradigm4.setOpaque(true);
         testPanel.add(paradigm4);
 
-        level4.setBackground(new java.awt.Color(51, 51, 51));
+        level4.setBackground(new java.awt.Color(0, 153, 0));
         level4.setForeground(new java.awt.Color(255, 255, 255));
         level4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         level4.setText("level4");
@@ -531,7 +530,7 @@ public class GameFrame extends javax.swing.JFrame {
         guess5.setOpaque(true);
         testPanel.add(guess5);
 
-        typing5.setBackground(new java.awt.Color(51, 51, 51));
+        typing5.setBackground(new java.awt.Color(0, 153, 0));
         typing5.setForeground(new java.awt.Color(255, 255, 255));
         typing5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         typing5.setText("typing5");
@@ -539,7 +538,7 @@ public class GameFrame extends javax.swing.JFrame {
         typing5.setOpaque(true);
         testPanel.add(typing5);
 
-        paradigm5.setBackground(new java.awt.Color(51, 51, 51));
+        paradigm5.setBackground(new java.awt.Color(218, 205, 56));
         paradigm5.setForeground(new java.awt.Color(255, 255, 255));
         paradigm5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         paradigm5.setText("paradigm5");
@@ -645,24 +644,24 @@ public class GameFrame extends javax.swing.JFrame {
         winPanel.setLayout(winPanelLayout);
         winPanelLayout.setHorizontalGroup(
             winPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(winPanelLayout.createSequentialGroup()
-                .addGap(455, 455, 455)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, winPanelLayout.createSequentialGroup()
+                .addContainerGap(475, Short.MAX_VALUE)
                 .addGroup(winPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(quitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mainMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(winLabel))
-                .addContainerGap(493, Short.MAX_VALUE))
+                .addGap(473, 473, 473))
         );
         winPanelLayout.setVerticalGroup(
             winPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(winPanelLayout.createSequentialGroup()
-                .addGap(252, 252, 252)
+                .addGap(254, 254, 254)
                 .addComponent(winLabel)
                 .addGap(29, 29, 29)
                 .addComponent(mainMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addComponent(quitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(320, Short.MAX_VALUE))
+                .addContainerGap(318, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -690,6 +689,8 @@ public class GameFrame extends javax.swing.JFrame {
                     .addComponent(winPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
+        getAccessibleContext().setAccessibleDescription("Hi Mr. Rochowiak o7");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -697,6 +698,7 @@ public class GameFrame extends javax.swing.JFrame {
         //Change to game view
         gamePanel.setVisible(true);
         menuPanel.setVisible(false);
+        this.pack();
     }//GEN-LAST:event_startButtonActionPerformed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
@@ -708,6 +710,7 @@ public class GameFrame extends javax.swing.JFrame {
         //Switch to the main menu
         winPanel.setVisible(false);
         menuPanel.setVisible(true);
+        this.pack();
     }//GEN-LAST:event_mainMenuButtonActionPerformed
 
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
@@ -719,6 +722,7 @@ public class GameFrame extends javax.swing.JFrame {
         //Change to the win menu
         winPanel.setVisible(true);
         gamePanel.setVisible(false);
+        this.pack();
     }//GEN-LAST:event_winButtonActionPerformed
 
     private void guessButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessButtonActionPerformed
