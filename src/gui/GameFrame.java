@@ -35,7 +35,8 @@ public class GameFrame extends javax.swing.JFrame {
           * sets visibility of these rows to false
           * Then adds each array to an arraylist of arrays
           */
-         guesses_arr = new ArrayList<JLabel[]>();
+        guesses_arr = new ArrayList<JLabel[]>();
+        
         guessRow0 = new javax.swing.JLabel[]{guess0, typing0, paradigm0, level0, test0, year0};
         guesses_arr.add(guessRow0);
         guessRow1 = new javax.swing.JLabel[]{guess1, typing1, paradigm1, level1, test1, year1};
@@ -49,7 +50,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessRow5 = new javax.swing.JLabel[]{guess5, typing5, paradigm5, level5, test5, year5};
         guesses_arr.add(guessRow5);
            
-//        Sets all the guess arrays to be invisible to start
+
         for(javax.swing.JLabel[] guessRow : guesses_arr) {
             guessVisibility(false, guessRow);
         }
@@ -131,8 +132,52 @@ public class GameFrame extends javax.swing.JFrame {
         winLabel = new javax.swing.JLabel();
         mainMenuButton = new javax.swing.JButton();
         quitButton = new javax.swing.JButton();
+        testPanel = new javax.swing.JPanel();
+        guess9 = new javax.swing.JLabel();
+        test6 = new javax.swing.JLabel();
+        year6 = new javax.swing.JLabel();
+        guess6 = new javax.swing.JLabel();
+        typing6 = new javax.swing.JLabel();
+        paradigm6 = new javax.swing.JLabel();
+        level6 = new javax.swing.JLabel();
+        test7 = new javax.swing.JLabel();
+        year7 = new javax.swing.JLabel();
+        guess7 = new javax.swing.JLabel();
+        typing7 = new javax.swing.JLabel();
+        paradigm7 = new javax.swing.JLabel();
+        level7 = new javax.swing.JLabel();
+        guess8 = new javax.swing.JLabel();
+        typing8 = new javax.swing.JLabel();
+        paradigm8 = new javax.swing.JLabel();
+        paradigm9 = new javax.swing.JLabel();
+        level8 = new javax.swing.JLabel();
+        guess10 = new javax.swing.JLabel();
+        test8 = new javax.swing.JLabel();
+        typing9 = new javax.swing.JLabel();
+        year8 = new javax.swing.JLabel();
+        paradigm10 = new javax.swing.JLabel();
+        guess11 = new javax.swing.JLabel();
+        level9 = new javax.swing.JLabel();
+        typing10 = new javax.swing.JLabel();
+        test9 = new javax.swing.JLabel();
+        paradigm11 = new javax.swing.JLabel();
+        year9 = new javax.swing.JLabel();
+        level10 = new javax.swing.JLabel();
+        test10 = new javax.swing.JLabel();
+        year10 = new javax.swing.JLabel();
+        test11 = new javax.swing.JLabel();
+        year11 = new javax.swing.JLabel();
+        level11 = new javax.swing.JLabel();
+        test12 = new javax.swing.JLabel();
+        yearCreated1 = new javax.swing.JLabel();
+        typing11 = new javax.swing.JLabel();
+        guess12 = new javax.swing.JLabel();
+        typing12 = new javax.swing.JLabel();
+        paradigm12 = new javax.swing.JLabel();
+        level12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Hello Wordle");
 
         startButton.setText("Classic");
         startButton.setRolloverEnabled(false);
@@ -158,7 +203,7 @@ public class GameFrame extends javax.swing.JFrame {
         menuPanelLayout.setHorizontalGroup(
             menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuPanelLayout.createSequentialGroup()
-                .addContainerGap(326, Short.MAX_VALUE)
+                .addContainerGap(353, Short.MAX_VALUE)
                 .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(titleLabel)
                     .addComponent(exitButton)
@@ -170,12 +215,14 @@ public class GameFrame extends javax.swing.JFrame {
             .addGroup(menuPanelLayout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addComponent(titleLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
                 .addComponent(startButton)
                 .addGap(18, 18, 18)
-                .addComponent(exitButton, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
+                .addComponent(exitButton, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
                 .addGap(81, 81, 81))
         );
+
+        gamePanel.setBackground(new java.awt.Color(153, 153, 153));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "html", "Python", "C++", "Java" }));
 
@@ -289,120 +336,117 @@ public class GameFrame extends javax.swing.JFrame {
             .addGroup(gamePanelLayout.createSequentialGroup()
                 .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(gamePanelLayout.createSequentialGroup()
-                        .addGap(158, 158, 158)
                         .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(gamePanelLayout.createSequentialGroup()
-                                .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(gamePanelLayout.createSequentialGroup()
-                                        .addComponent(guess0)
-                                        .addGap(27, 27, 27)
-                                        .addComponent(typing0)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(paradigm0)
-                                        .addGap(28, 28, 28)
-                                        .addComponent(level0))
-                                    .addGroup(gamePanelLayout.createSequentialGroup()
-                                        .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(gamePanelLayout.createSequentialGroup()
-                                                .addComponent(guess, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(96, 96, 96)
-                                                .addComponent(paradigm))
-                                            .addGroup(gamePanelLayout.createSequentialGroup()
-                                                .addGap(63, 63, 63)
-                                                .addComponent(typing)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(level))
-                                    .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(gamePanelLayout.createSequentialGroup()
-                                            .addComponent(guess2)
-                                            .addGap(27, 27, 27)
-                                            .addComponent(typing2)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(paradigm2)
-                                            .addGap(28, 28, 28)
-                                            .addComponent(level2))
-                                        .addGroup(gamePanelLayout.createSequentialGroup()
-                                            .addComponent(guess1)
-                                            .addGap(27, 27, 27)
-                                            .addComponent(typing1)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(paradigm1)
-                                            .addGap(28, 28, 28)
-                                            .addComponent(level1))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                                .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(gamePanelLayout.createSequentialGroup()
-                                        .addComponent(test0)
-                                        .addGap(28, 28, 28)
-                                        .addComponent(year0))
-                                    .addGroup(gamePanelLayout.createSequentialGroup()
-                                        .addComponent(test1)
-                                        .addGap(28, 28, 28)
-                                        .addComponent(year1))
-                                    .addGroup(gamePanelLayout.createSequentialGroup()
-                                        .addComponent(test)
-                                        .addGap(34, 34, 34)
-                                        .addComponent(yearCreated))))
-                            .addGroup(gamePanelLayout.createSequentialGroup()
+                                .addGap(158, 158, 158)
                                 .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(gamePanelLayout.createSequentialGroup()
                                             .addComponent(guess3)
                                             .addGap(27, 27, 27)
-                                            .addComponent(typing3)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(paradigm3)
-                                            .addGap(28, 28, 28)
-                                            .addComponent(level3))
+                                            .addComponent(typing3))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gamePanelLayout.createSequentialGroup()
-                                            .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(guess4)
+                                                .addComponent(guess5, javax.swing.GroupLayout.Alignment.TRAILING))
+                                            .addGap(27, 27, 27)
+                                            .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addGroup(gamePanelLayout.createSequentialGroup()
-                                                    .addComponent(guess4)
-                                                    .addGap(27, 27, 27)
-                                                    .addComponent(typing4)
-                                                    .addGap(18, 18, 18)
-                                                    .addComponent(paradigm4)
-                                                    .addGap(28, 28, 28)
-                                                    .addComponent(level4)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(test4))
-                                                .addGroup(gamePanelLayout.createSequentialGroup()
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(test3)))
-                                            .addGap(28, 28, 28)
-                                            .addComponent(year3)))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gamePanelLayout.createSequentialGroup()
-                                        .addComponent(guess5)
-                                        .addGap(27, 27, 27)
-                                        .addComponent(typing5)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(paradigm5)
-                                        .addGap(28, 28, 28)
-                                        .addComponent(level5)
-                                        .addGap(82, 82, 82)
+                                                    .addComponent(typing5)
+                                                    .addGap(215, 215, 215)
+                                                    .addComponent(test5)
+                                                    .addGap(112, 112, 112))
+                                                .addComponent(typing4))))
+                                    .addGroup(gamePanelLayout.createSequentialGroup()
                                         .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(gamePanelLayout.createSequentialGroup()
-                                                .addComponent(test5)
-                                                .addGap(28, 28, 28)
-                                                .addComponent(year5))
+                                                .addComponent(guess2)
+                                                .addGap(27, 27, 27)
+                                                .addComponent(typing2))
                                             .addGroup(gamePanelLayout.createSequentialGroup()
-                                                .addGap(53, 53, 53)
-                                                .addComponent(year4)))))
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(gamePanelLayout.createSequentialGroup()
-                        .addGap(304, 304, 304)
-                        .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(promptLabel)
+                                                .addComponent(guess1)
+                                                .addGap(27, 27, 27)
+                                                .addComponent(typing1))
+                                            .addGroup(gamePanelLayout.createSequentialGroup()
+                                                .addComponent(guess0)
+                                                .addGap(27, 27, 27)
+                                                .addComponent(typing0)
+                                                .addGap(30, 30, 30)
+                                                .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(gamePanelLayout.createSequentialGroup()
+                                                        .addComponent(paradigm0)
+                                                        .addGap(28, 28, 28)
+                                                        .addComponent(level0))
+                                                    .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addGroup(gamePanelLayout.createSequentialGroup()
+                                                            .addComponent(paradigm2)
+                                                            .addGap(28, 28, 28)
+                                                            .addComponent(level2))
+                                                        .addGroup(gamePanelLayout.createSequentialGroup()
+                                                            .addComponent(paradigm1)
+                                                            .addGap(28, 28, 28)
+                                                            .addComponent(level1)))
+                                                    .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addGroup(gamePanelLayout.createSequentialGroup()
+                                                                .addComponent(paradigm3)
+                                                                .addGap(28, 28, 28)
+                                                                .addComponent(level3))
+                                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gamePanelLayout.createSequentialGroup()
+                                                                .addComponent(paradigm4)
+                                                                .addGap(28, 28, 28)
+                                                                .addComponent(level4)))
+                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gamePanelLayout.createSequentialGroup()
+                                                            .addComponent(paradigm5)
+                                                            .addGap(28, 28, 28)
+                                                            .addComponent(level5)))))
+                                            .addGroup(gamePanelLayout.createSequentialGroup()
+                                                .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(gamePanelLayout.createSequentialGroup()
+                                                        .addComponent(guess, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGap(96, 96, 96)
+                                                        .addComponent(paradigm))
+                                                    .addGroup(gamePanelLayout.createSequentialGroup()
+                                                        .addGap(63, 63, 63)
+                                                        .addComponent(typing)))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(level)))
+                                        .addGap(39, 39, 39)
+                                        .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(test1)
+                                            .addComponent(test2)
+                                            .addComponent(test0)
+                                            .addComponent(test))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(yearCreated))))
                             .addGroup(gamePanelLayout.createSequentialGroup()
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(guessButton)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                                .addGap(304, 304, 304)
+                                .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(promptLabel)
+                                    .addGroup(gamePanelLayout.createSequentialGroup()
+                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(guessButton)))))
+                        .addGap(10, 10, 10))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gamePanelLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(test2)
-                        .addGap(28, 28, 28)
-                        .addComponent(year2)
+                        .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(gamePanelLayout.createSequentialGroup()
+                                .addGap(476, 476, 476)
+                                .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(test4)
+                                    .addComponent(test3))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(year3)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(year5)
+                                        .addComponent(year4))))
+                            .addGroup(gamePanelLayout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(year0)
+                                    .addComponent(year1)
+                                    .addComponent(year2))))
                         .addGap(39, 39, 39)))
                 .addGap(87, 87, 87)
                 .addComponent(winButton)
@@ -433,24 +477,24 @@ public class GameFrame extends javax.swing.JFrame {
                     .addComponent(typing0)
                     .addComponent(paradigm0)
                     .addComponent(level0)
-                    .addComponent(test0)
-                    .addComponent(year0))
+                    .addComponent(year0)
+                    .addComponent(test0))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guess1)
                     .addComponent(typing1)
                     .addComponent(paradigm1)
                     .addComponent(level1)
-                    .addComponent(test1)
-                    .addComponent(year1))
+                    .addComponent(year1)
+                    .addComponent(test1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guess2)
                     .addComponent(typing2)
                     .addComponent(paradigm2)
                     .addComponent(level2)
-                    .addComponent(test2)
-                    .addComponent(year2))
+                    .addComponent(year2)
+                    .addComponent(test2))
                 .addGap(18, 18, 18)
                 .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guess3)
@@ -459,7 +503,7 @@ public class GameFrame extends javax.swing.JFrame {
                     .addComponent(level3)
                     .addComponent(test3)
                     .addComponent(year3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guess4)
                     .addComponent(typing4)
@@ -510,7 +554,7 @@ public class GameFrame extends javax.swing.JFrame {
                     .addComponent(quitButton)
                     .addComponent(mainMenuButton)
                     .addComponent(winLabel))
-                .addContainerGap(350, Short.MAX_VALUE))
+                .addContainerGap(377, Short.MAX_VALUE))
         );
         winPanelLayout.setVerticalGroup(
             winPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -521,8 +565,137 @@ public class GameFrame extends javax.swing.JFrame {
                 .addComponent(mainMenuButton)
                 .addGap(18, 18, 18)
                 .addComponent(quitButton)
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addContainerGap(152, Short.MAX_VALUE))
         );
+
+        testPanel.setLayout(new java.awt.GridLayout(7, 6));
+
+        guess9.setText("Guess");
+        testPanel.add(guess9);
+
+        test6.setText("test0");
+        testPanel.add(test6);
+
+        year6.setText("year0");
+        testPanel.add(year6);
+
+        guess6.setText("guess4");
+        testPanel.add(guess6);
+
+        typing6.setText("typing4");
+        testPanel.add(typing6);
+
+        paradigm6.setText("paradigm4");
+        testPanel.add(paradigm6);
+
+        level6.setText("level4");
+        testPanel.add(level6);
+
+        test7.setText("test4");
+        testPanel.add(test7);
+
+        year7.setText("year4");
+        testPanel.add(year7);
+
+        guess7.setText("guess5");
+        testPanel.add(guess7);
+
+        typing7.setText("typing5");
+        testPanel.add(typing7);
+
+        paradigm7.setText("paradigm5");
+        testPanel.add(paradigm7);
+
+        level7.setText("level5");
+        testPanel.add(level7);
+
+        guess8.setText("guess2");
+        testPanel.add(guess8);
+
+        typing8.setText("typing2");
+        testPanel.add(typing8);
+
+        paradigm8.setText("Paradigm");
+        testPanel.add(paradigm8);
+
+        paradigm9.setText("paradigm2");
+        testPanel.add(paradigm9);
+
+        level8.setText("level2");
+        testPanel.add(level8);
+
+        guess10.setText("guess1");
+        testPanel.add(guess10);
+
+        test8.setText("test2");
+        testPanel.add(test8);
+
+        typing9.setText("typing1");
+        testPanel.add(typing9);
+
+        year8.setText("year2");
+        testPanel.add(year8);
+
+        paradigm10.setText("paradigm1");
+        testPanel.add(paradigm10);
+
+        guess11.setText("guess3");
+        testPanel.add(guess11);
+
+        level9.setText("level1");
+        testPanel.add(level9);
+
+        typing10.setText("typing3");
+        testPanel.add(typing10);
+
+        test9.setText("test1");
+        testPanel.add(test9);
+
+        paradigm11.setText("paradigm3");
+        testPanel.add(paradigm11);
+
+        year9.setText("year1");
+        testPanel.add(year9);
+
+        level10.setText("level3");
+        testPanel.add(level10);
+
+        test10.setText("test3");
+        testPanel.add(test10);
+
+        year10.setText("year3");
+        testPanel.add(year10);
+
+        test11.setText("test5");
+        testPanel.add(test11);
+
+        year11.setText("year5");
+        testPanel.add(year11);
+
+        level11.setText("High/Low Level");
+        testPanel.add(level11);
+
+        test12.setText("test");
+        testPanel.add(test12);
+
+        yearCreated1.setText("Year Created");
+        testPanel.add(yearCreated1);
+
+        typing11.setBackground(new java.awt.Color(153, 0, 51));
+        typing11.setText("Typing");
+        testPanel.add(typing11);
+
+        guess12.setText("guess0");
+        testPanel.add(guess12);
+
+        typing12.setText("typing0");
+        testPanel.add(typing12);
+
+        paradigm12.setText("paradigm0");
+        testPanel.add(paradigm12);
+
+        level12.setText("level0");
+        testPanel.add(level12);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -535,6 +708,11 @@ public class GameFrame extends javax.swing.JFrame {
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(winPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(testPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -542,11 +720,16 @@ public class GameFrame extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addComponent(gamePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
+                    .addGap(12, 12, 12)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(winPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(testPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
@@ -631,9 +814,11 @@ public class GameFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 GameFrame gui = new GameFrame();
-                gui.setVisible(true);
+                
                 gui.gamePanel.setVisible(false);
                 gui.winPanel.setVisible(false);
+                gui.menuPanel.setVisible(false);
+                gui.testPanel.setVisible(true);
             }
         });
     }
@@ -644,55 +829,98 @@ public class GameFrame extends javax.swing.JFrame {
     private javax.swing.JLabel guess;
     private javax.swing.JLabel guess0;
     private javax.swing.JLabel guess1;
+    private javax.swing.JLabel guess10;
+    private javax.swing.JLabel guess11;
+    private javax.swing.JLabel guess12;
     private javax.swing.JLabel guess2;
     private javax.swing.JLabel guess3;
     private javax.swing.JLabel guess4;
     private javax.swing.JLabel guess5;
+    private javax.swing.JLabel guess6;
+    private javax.swing.JLabel guess7;
+    private javax.swing.JLabel guess8;
+    private javax.swing.JLabel guess9;
     private javax.swing.JButton guessButton;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel level;
     private javax.swing.JLabel level0;
     private javax.swing.JLabel level1;
+    private javax.swing.JLabel level10;
+    private javax.swing.JLabel level11;
+    private javax.swing.JLabel level12;
     private javax.swing.JLabel level2;
     private javax.swing.JLabel level3;
     private javax.swing.JLabel level4;
     private javax.swing.JLabel level5;
+    private javax.swing.JLabel level6;
+    private javax.swing.JLabel level7;
+    private javax.swing.JLabel level8;
+    private javax.swing.JLabel level9;
     private javax.swing.JButton mainMenuButton;
     private javax.swing.JPanel menuPanel;
     private javax.swing.JLabel paradigm;
     private javax.swing.JLabel paradigm0;
     private javax.swing.JLabel paradigm1;
+    private javax.swing.JLabel paradigm10;
+    private javax.swing.JLabel paradigm11;
+    private javax.swing.JLabel paradigm12;
     private javax.swing.JLabel paradigm2;
     private javax.swing.JLabel paradigm3;
     private javax.swing.JLabel paradigm4;
     private javax.swing.JLabel paradigm5;
+    private javax.swing.JLabel paradigm6;
+    private javax.swing.JLabel paradigm7;
+    private javax.swing.JLabel paradigm8;
+    private javax.swing.JLabel paradigm9;
     private javax.swing.JLabel promptLabel;
     private javax.swing.JButton quitButton;
     private javax.swing.JButton startButton;
     private javax.swing.JLabel test;
     private javax.swing.JLabel test0;
     private javax.swing.JLabel test1;
+    private javax.swing.JLabel test10;
+    private javax.swing.JLabel test11;
+    private javax.swing.JLabel test12;
     private javax.swing.JLabel test2;
     private javax.swing.JLabel test3;
     private javax.swing.JLabel test4;
     private javax.swing.JLabel test5;
+    private javax.swing.JLabel test6;
+    private javax.swing.JLabel test7;
+    private javax.swing.JLabel test8;
+    private javax.swing.JLabel test9;
+    private javax.swing.JPanel testPanel;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JLabel typing;
     private javax.swing.JLabel typing0;
     private javax.swing.JLabel typing1;
+    private javax.swing.JLabel typing10;
+    private javax.swing.JLabel typing11;
+    private javax.swing.JLabel typing12;
     private javax.swing.JLabel typing2;
     private javax.swing.JLabel typing3;
     private javax.swing.JLabel typing4;
     private javax.swing.JLabel typing5;
+    private javax.swing.JLabel typing6;
+    private javax.swing.JLabel typing7;
+    private javax.swing.JLabel typing8;
+    private javax.swing.JLabel typing9;
     private javax.swing.JButton winButton;
     private javax.swing.JLabel winLabel;
     private javax.swing.JPanel winPanel;
     private javax.swing.JLabel year0;
     private javax.swing.JLabel year1;
+    private javax.swing.JLabel year10;
+    private javax.swing.JLabel year11;
     private javax.swing.JLabel year2;
     private javax.swing.JLabel year3;
     private javax.swing.JLabel year4;
     private javax.swing.JLabel year5;
+    private javax.swing.JLabel year6;
+    private javax.swing.JLabel year7;
+    private javax.swing.JLabel year8;
+    private javax.swing.JLabel year9;
     private javax.swing.JLabel yearCreated;
+    private javax.swing.JLabel yearCreated1;
     // End of variables declaration//GEN-END:variables
 }

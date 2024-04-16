@@ -3,6 +3,7 @@
 <Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="title" type="java.lang.String" value="Hello Wordle"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -33,6 +34,13 @@
                   <Component id="winPanel" max="32767" attributes="0"/>
               </Group>
           </Group>
+          <Group type="103" rootIndex="3" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Component id="testPanel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              </Group>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -41,13 +49,20 @@
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <Component id="gamePanel" max="32767" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               </Group>
           </Group>
           <Group type="103" rootIndex="2" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="winPanel" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+          <Group type="103" rootIndex="3" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Component id="testPanel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -60,7 +75,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="326" max="32767" attributes="0"/>
+                  <EmptySpace pref="353" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="2" attributes="0">
                       <Component id="titleLabel" alignment="2" min="-2" max="-2" attributes="0"/>
                       <Component id="exitButton" alignment="2" min="-2" max="-2" attributes="0"/>
@@ -75,10 +90,10 @@
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                   <Component id="titleLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="127" max="32767" attributes="0"/>
+                  <EmptySpace pref="125" max="32767" attributes="0"/>
                   <Component id="startButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="exitButton" pref="69" max="32767" attributes="0"/>
+                  <Component id="exitButton" pref="68" max="32767" attributes="0"/>
                   <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -114,158 +129,169 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="gamePanel">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="99" green="99" red="99" type="rgb"/>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="158" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="guess0" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                                          <Component id="typing0" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="paradigm0" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                          <Component id="level0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="guess" min="-2" pref="37" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
-                                                  <Component id="paradigm" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <EmptySpace min="63" pref="63" max="-2" attributes="0"/>
-                                                  <Component id="typing" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="level" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Component id="guess2" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                                              <Component id="typing2" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="paradigm2" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                              <Component id="level2" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" attributes="0">
-                                              <Component id="guess1" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                                              <Component id="typing1" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="paradigm1" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                              <Component id="level1" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace pref="39" max="32767" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="test0" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                          <Component id="year0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <Component id="test1" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                          <Component id="year1" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <Component id="test" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                                          <Component id="yearCreated" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
-                              <Group type="102" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="158" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="103" alignment="0" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="guess3" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                                               <Component id="typing3" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="paradigm3" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                              <Component id="level3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="1" attributes="0">
-                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                  <Group type="102" attributes="0">
-                                                      <Component id="guess4" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                                                      <Component id="typing4" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                      <Component id="paradigm4" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                                      <Component id="level4" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace max="32767" attributes="0"/>
-                                                      <Component id="test4" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" attributes="0">
-                                                      <EmptySpace pref="318" max="-2" attributes="0"/>
-                                                      <Component id="test3" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="guess4" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="guess5" alignment="1" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                              <Component id="year3" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="27" pref="27" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="typing5" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="215" max="-2" attributes="0"/>
+                                                      <Component id="test5" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Component id="typing4" min="-2" max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
                                       </Group>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Component id="guess5" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                                          <Component id="typing5" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="paradigm5" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                          <Component id="level5" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" attributes="0">
-                                                  <Component id="test5" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                                  <Component id="year5" min="-2" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="guess2" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                                                  <Component id="typing2" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <Group type="102" attributes="0">
-                                                  <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-                                                  <Component id="year4" min="-2" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="guess1" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                                                  <Component id="typing1" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="guess0" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                                                  <Component id="typing0" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Component id="paradigm0" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                                                          <Component id="level0" min="-2" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                                          <Group type="102" alignment="1" attributes="0">
+                                                              <Component id="paradigm2" min="-2" max="-2" attributes="0"/>
+                                                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                                                              <Component id="level2" min="-2" max="-2" attributes="0"/>
+                                                          </Group>
+                                                          <Group type="102" alignment="1" attributes="0">
+                                                              <Component id="paradigm1" min="-2" max="-2" attributes="0"/>
+                                                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                                                              <Component id="level1" min="-2" max="-2" attributes="0"/>
+                                                          </Group>
+                                                      </Group>
+                                                      <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                                                          <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                                                              <Group type="102" alignment="0" attributes="0">
+                                                                  <Component id="paradigm3" min="-2" max="-2" attributes="0"/>
+                                                                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                                                                  <Component id="level3" min="-2" max="-2" attributes="0"/>
+                                                              </Group>
+                                                              <Group type="102" alignment="1" attributes="0">
+                                                                  <Component id="paradigm4" min="-2" max="-2" attributes="0"/>
+                                                                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                                                                  <Component id="level4" min="-2" max="-2" attributes="0"/>
+                                                              </Group>
+                                                          </Group>
+                                                          <Group type="102" alignment="1" attributes="0">
+                                                              <Component id="paradigm5" min="-2" max="-2" attributes="0"/>
+                                                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                                                              <Component id="level5" min="-2" max="-2" attributes="0"/>
+                                                          </Group>
+                                                      </Group>
+                                                  </Group>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Component id="guess" min="-2" pref="37" max="-2" attributes="0"/>
+                                                          <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
+                                                          <Component id="paradigm" min="-2" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <EmptySpace min="63" pref="63" max="-2" attributes="0"/>
+                                                          <Component id="typing" min="-2" max="-2" attributes="0"/>
+                                                      </Group>
+                                                  </Group>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Component id="level" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
+                                          <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="test1" min="-2" max="-2" attributes="0"/>
+                                              <Component id="test2" min="-2" max="-2" attributes="0"/>
+                                              <Component id="test0" alignment="1" min="-2" max="-2" attributes="0"/>
+                                              <Component id="test" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="yearCreated" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="304" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="promptLabel" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="guessButton" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
                           </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="304" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="promptLabel" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="guessButton" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="test2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                          <Component id="year2" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="476" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="test4" min="-2" max="-2" attributes="0"/>
+                                      <Component id="test3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="year3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                          <Component id="year5" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="year4" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="year0" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="year1" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="year2" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
                           <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -304,8 +330,8 @@
                       <Component id="typing0" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="paradigm0" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="level0" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="test0" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="year0" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="test0" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -313,8 +339,8 @@
                       <Component id="typing1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="paradigm1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="level1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="test1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="year1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="test1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -322,8 +348,8 @@
                       <Component id="typing2" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="paradigm2" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="level2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="test2" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="year2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="test2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -334,7 +360,7 @@
                       <Component id="test3" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="year3" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="15" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="guess4" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="typing4" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -627,7 +653,7 @@
                       <Component id="mainMenuButton" alignment="2" min="-2" max="-2" attributes="0"/>
                       <Component id="winLabel" alignment="2" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="350" max="32767" attributes="0"/>
+                  <EmptySpace pref="377" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -640,7 +666,7 @@
                   <Component id="mainMenuButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="quitButton" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="155" max="32767" attributes="0"/>
+                  <EmptySpace pref="152" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -671,6 +697,228 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="quitButtonActionPerformed"/>
           </Events>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="testPanel">
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
+        <Property name="columns" type="int" value="6"/>
+        <Property name="rows" type="int" value="7"/>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="guess9">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Guess"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="test6">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="test0"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="year6">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="year0"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="guess6">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="guess4"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="typing6">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="typing4"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="paradigm6">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="paradigm4"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="level6">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="level4"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="test7">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="test4"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="year7">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="year4"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="guess7">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="guess5"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="typing7">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="typing5"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="paradigm7">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="paradigm5"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="level7">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="level5"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="guess8">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="guess2"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="typing8">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="typing2"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="paradigm8">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Paradigm"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="paradigm9">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="paradigm2"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="level8">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="level2"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="guess10">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="guess1"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="test8">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="test2"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="typing9">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="typing1"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="year8">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="year2"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="paradigm10">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="paradigm1"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="guess11">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="guess3"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="level9">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="level1"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="typing10">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="typing3"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="test9">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="test1"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="paradigm11">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="paradigm3"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="year9">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="year1"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="level10">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="level3"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="test10">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="test3"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="year10">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="year3"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="test11">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="test5"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="year11">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="year5"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="level11">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="High/Low Level"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="test12">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="test"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="yearCreated1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Year Created"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="typing11">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="0" red="99" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Typing"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="guess12">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="guess0"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="typing12">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="typing0"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="paradigm12">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="paradigm0"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="level12">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="level0"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
