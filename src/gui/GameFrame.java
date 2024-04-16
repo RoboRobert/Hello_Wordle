@@ -77,9 +77,9 @@ public class GameFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         menuPanel = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        startButton = new javax.swing.JButton();
+        exitButton = new javax.swing.JButton();
+        titleLabel = new javax.swing.JLabel();
         gamePanel = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
         guessButton = new javax.swing.JButton();
@@ -128,30 +128,30 @@ public class GameFrame extends javax.swing.JFrame {
         test5 = new javax.swing.JLabel();
         year5 = new javax.swing.JLabel();
         winPanel = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        winLabel = new javax.swing.JLabel();
+        mainMenuButton = new javax.swing.JButton();
+        quitButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Classic");
-        jButton1.setRolloverEnabled(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        startButton.setText("Classic");
+        startButton.setRolloverEnabled(false);
+        startButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                startButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Exit");
-        jButton2.setRolloverEnabled(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        exitButton.setText("Exit");
+        exitButton.setRolloverEnabled(false);
+        exitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                exitButtonActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("Hello Wordle");
+        titleLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        titleLabel.setText("Hello Wordle");
 
         javax.swing.GroupLayout menuPanelLayout = new javax.swing.GroupLayout(menuPanel);
         menuPanel.setLayout(menuPanelLayout);
@@ -160,20 +160,20 @@ public class GameFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuPanelLayout.createSequentialGroup()
                 .addContainerGap(326, Short.MAX_VALUE)
                 .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(titleLabel)
+                    .addComponent(exitButton)
+                    .addComponent(startButton))
                 .addGap(321, 321, 321))
         );
         menuPanelLayout.setVerticalGroup(
             menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuPanelLayout.createSequentialGroup()
                 .addGap(42, 42, 42)
-                .addComponent(jLabel1)
+                .addComponent(titleLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(startButton)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
+                .addComponent(exitButton, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
                 .addGap(81, 81, 81))
         );
 
@@ -481,22 +481,22 @@ public class GameFrame extends javax.swing.JFrame {
 
         jComboBox1.getAccessibleContext().setAccessibleDescription("");
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel10.setText("You Win!");
+        winLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        winLabel.setText("You Win!");
 
-        jButton5.setText("Main Menu");
-        jButton5.setRolloverEnabled(false);
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        mainMenuButton.setText("Main Menu");
+        mainMenuButton.setRolloverEnabled(false);
+        mainMenuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                mainMenuButtonActionPerformed(evt);
             }
         });
 
-        jButton6.setText("Quit");
-        jButton6.setRolloverEnabled(false);
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        quitButton.setText("Quit");
+        quitButton.setRolloverEnabled(false);
+        quitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                quitButtonActionPerformed(evt);
             }
         });
 
@@ -507,20 +507,20 @@ public class GameFrame extends javax.swing.JFrame {
             .addGroup(winPanelLayout.createSequentialGroup()
                 .addGap(334, 334, 334)
                 .addGroup(winPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jButton6)
-                    .addComponent(jButton5)
-                    .addComponent(jLabel10))
+                    .addComponent(quitButton)
+                    .addComponent(mainMenuButton)
+                    .addComponent(winLabel))
                 .addContainerGap(350, Short.MAX_VALUE))
         );
         winPanelLayout.setVerticalGroup(
             winPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(winPanelLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addComponent(jLabel10)
+                .addComponent(winLabel)
                 .addGap(100, 100, 100)
-                .addComponent(jButton5)
+                .addComponent(mainMenuButton)
                 .addGap(18, 18, 18)
-                .addComponent(jButton6)
+                .addComponent(quitButton)
                 .addContainerGap(155, Short.MAX_VALUE))
         );
 
@@ -552,39 +552,35 @@ public class GameFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        //Change to second JPanel
+    private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
+        //Change to game view
         gamePanel.setVisible(true);
         menuPanel.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_startButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
+//        This button also exits the program
         System.exit(0);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_exitButtonActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-        //Switch to Jpanel 1
+    private void mainMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainMenuButtonActionPerformed
+        //Switch to the main menu
         winPanel.setVisible(false);
         menuPanel.setVisible(true);
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_mainMenuButtonActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+    private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
+//        Quit the program
         System.exit(0);
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_quitButtonActionPerformed
 
     private void winButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_winButtonActionPerformed
-        // TODO add your handling code here:
-        //Change to JPanel3
+        //Change to the win menu
         winPanel.setVisible(true);
         gamePanel.setVisible(false);
     }//GEN-LAST:event_winButtonActionPerformed
 
     private void guessButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessButtonActionPerformed
-        // TODO add your handling code here:
         //this part should call the guessing method
         String guess = (String) jComboBox1.getSelectedItem();
 
@@ -643,6 +639,7 @@ public class GameFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton exitButton;
     private javax.swing.JPanel gamePanel;
     private javax.swing.JLabel guess;
     private javax.swing.JLabel guess0;
@@ -652,13 +649,7 @@ public class GameFrame extends javax.swing.JFrame {
     private javax.swing.JLabel guess4;
     private javax.swing.JLabel guess5;
     private javax.swing.JButton guessButton;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel level;
     private javax.swing.JLabel level0;
     private javax.swing.JLabel level1;
@@ -666,6 +657,7 @@ public class GameFrame extends javax.swing.JFrame {
     private javax.swing.JLabel level3;
     private javax.swing.JLabel level4;
     private javax.swing.JLabel level5;
+    private javax.swing.JButton mainMenuButton;
     private javax.swing.JPanel menuPanel;
     private javax.swing.JLabel paradigm;
     private javax.swing.JLabel paradigm0;
@@ -675,6 +667,8 @@ public class GameFrame extends javax.swing.JFrame {
     private javax.swing.JLabel paradigm4;
     private javax.swing.JLabel paradigm5;
     private javax.swing.JLabel promptLabel;
+    private javax.swing.JButton quitButton;
+    private javax.swing.JButton startButton;
     private javax.swing.JLabel test;
     private javax.swing.JLabel test0;
     private javax.swing.JLabel test1;
@@ -682,6 +676,7 @@ public class GameFrame extends javax.swing.JFrame {
     private javax.swing.JLabel test3;
     private javax.swing.JLabel test4;
     private javax.swing.JLabel test5;
+    private javax.swing.JLabel titleLabel;
     private javax.swing.JLabel typing;
     private javax.swing.JLabel typing0;
     private javax.swing.JLabel typing1;
@@ -690,6 +685,7 @@ public class GameFrame extends javax.swing.JFrame {
     private javax.swing.JLabel typing4;
     private javax.swing.JLabel typing5;
     private javax.swing.JButton winButton;
+    private javax.swing.JLabel winLabel;
     private javax.swing.JPanel winPanel;
     private javax.swing.JLabel year0;
     private javax.swing.JLabel year1;
