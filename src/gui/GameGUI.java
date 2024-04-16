@@ -9,13 +9,15 @@ package gui;
  * @author tmorr
  */
 public class GameGUI extends javax.swing.JFrame{
-//    Global variables used for guesses
+//    Global variables used for organizing the guess rows
     javax.swing.JLabel[] guessRow1;
     javax.swing.JLabel[] guessRow2;
     javax.swing.JLabel[] guessRow3;
     javax.swing.JLabel[] guessRow4;
     javax.swing.JLabel[] guessRow5;
     javax.swing.JLabel[] guessRow6;
+    
+//    Current number of guesses
     int guessCount;
     /**
      * Creates new form GameGUI
@@ -28,7 +30,7 @@ public class GameGUI extends javax.swing.JFrame{
           * sets visibility of these rows to false
           */
         guessRow1 = new javax.swing.JLabel[]{typing0,  };
-        guessRow2 = new javax.swing.JLabel[]{jLabel9, jLabel10, jLabel11, jLabel12, jLabel13, jLabel14};
+//        guessRow2 = new javax.swing.JLabel[]{jLabel9, jLabel10, jLabel11, jLabel12, jLabel13, jLabel14};
         guessVisibility(false, guessRow1);
         guessVisibility(false, guessRow2);
         guessVisibility(false, guessRow3);
@@ -247,8 +249,8 @@ public class GameGUI extends javax.swing.JFrame{
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        Winmenu winm = new Winmenu(this, false);  
-        winm.setVisible(true);
+//        Winmenu winm = new Winmenu(this, false);  
+//        winm.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
