@@ -31,7 +31,7 @@ public class JSONHandler {
         JSONArray guesses_array = new JSONArray();
         
 //        Puts the previous correct guess into the data object
-        data_object.put("correct_guess", data.correct_guess);
+        data_object.put("correct_guess", data.correct_guess.name);
         
 //        Loops through each guesse in guesses_list and adds it to an object to store in the guesses_array
         for(Guess guess : data.guesses_list) {
@@ -106,7 +106,7 @@ public class JSONHandler {
             }
             
 //            Read the previous correct guess from the stored data
-            return_data.correct_guess = jsonObject.get("correct_guess").toString();
+            return_data.correct_guess.name = jsonObject.get("correct_guess").toString();
             
 //            Close the input file
             input_file.close();
@@ -144,7 +144,7 @@ public class JSONHandler {
     public static void main(String[] args) {
         GameData test_data = new GameData();
         
-        test_data.correct_guess = "C++";
+        test_data.correct_guess = new Guess("C++", "STATIC", "OO", "HIGH", 1995);
         
         test_data.guesses_list.add(new Guess("Java", "STATIC", "OO", "HIGH", 1995));
         

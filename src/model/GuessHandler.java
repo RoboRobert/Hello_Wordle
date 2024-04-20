@@ -22,9 +22,9 @@ public class GuessHandler {
      * Randomly picks a possible programming language from the database
      * @return Returns a String representing the name of the guess generated
      */
-    public static String generateGuess() {
+    public static Guess generateGuess() {
 //        TODO Add implementation
-        return "";
+        return new Guess();
     }
     
     
