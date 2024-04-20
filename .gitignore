@@ -1,3 +1,5 @@
-/build/
-/nbproject/private/
+build/
+nbproject/private/
 manifest.mf
+
+dist/
