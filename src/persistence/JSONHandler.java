@@ -6,9 +6,9 @@ package persistence;
 
 import java.io.File;
 import model.GameData;
-
 import java.io.FileReader;
 import java.io.FileWriter;
+import jdk.jfr.DataAmount;
 import model.Guess;
 import org.json.simple.*;
 import org.json.simple.parser.JSONParser;
@@ -24,11 +24,14 @@ public class JSONHandler {
      * Stores the game state out into a JSON file
      * @param data is a GameData object, representing the game state as an array of Guesses
      */
-    public static void store_data(GameData data) {
+    public static void store_game(GameData data) {
 //        Creates a JSON object to store all the data in
         JSONObject data_object = new JSONObject();
 //        Creates a JSON array to store the Guess objects in
         JSONArray guesses_array = new JSONArray();
+        
+//        Puts the previous correct guess into the data object
+        data_object.put("correct_guess", data.correct_guess);
         
 //        Loops through each guesse in guesses_list and adds it to an object to store in the guesses_array
         for(Guess guess : data.guesses_list) {
@@ -63,7 +66,7 @@ public class JSONHandler {
      * Used to load the JSON persistence file into a GameData object for use as the model
      * @return a GameData object for use as the model
      */
-    public static GameData load_data() {
+    public static GameData load_game() {
         GameData return_data = new GameData();
         
 //      user.home is the base of the path as specified in class
@@ -102,6 +105,9 @@ public class JSONHandler {
                 return_data.guesses_list.add(current_guess);
             }
             
+//            Read the previous correct guess from the stored data
+            return_data.correct_guess = jsonObject.get("correct_guess").toString();
+            
 //            Close the input file
             input_file.close();
             
@@ -114,17 +120,37 @@ public class JSONHandler {
     }
     
     /**
+     * Function used to check if there is data to load
+     * @return a boolean based on whether there is persistent data to load or not
+     */
+    public static boolean canLoad() {
+//      user.home is the base of the path as specified in class
+        String path = System.getProperty("user.home") + File.separator + "HelloWordleData.json";
+        
+//        If the file doesn't exist or has no data, return false.
+        File jsonInput = new File(path);
+        if(!jsonInput.isFile() || jsonInput.length() < 10) { 
+            return false;
+        }
+        
+//        If all checks pass, then return true.
+        return true;
+    }
+    
+    /**
      * This main is just used for testing the JSON behavior
      * @param args 
      */
     public static void main(String[] args) {
         GameData test_data = new GameData();
         
+        test_data.correct_guess = "C++";
+        
         test_data.guesses_list.add(new Guess("Java", "STATIC", "OO", "HIGH", 1995));
         
-        store_data(test_data);
+        store_game(test_data);
         
-        GameData new_data = load_data();
+        GameData new_data = load_game();
         
         System.out.println("Testing object: \n");
         new_data.print_data();
