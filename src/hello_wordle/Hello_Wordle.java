@@ -6,7 +6,7 @@ package hello_wordle;
 
 import gui.GameFrame;
 import java.awt.Color;
-import persistence.JsonTest;
+import persistence.JSONHandler;
 import model.GameData;
 
 /**

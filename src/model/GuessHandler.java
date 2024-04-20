@@ -29,7 +29,7 @@ public class GuessHandler {
     
     
     /**
-     * Returns the Guess object that corresponds to the name queried
+     * Returns the Guess object that corresponds to the name queried (currently only returns java)
      * @param name
      * @return 
      */
