@@ -15,9 +15,9 @@ public class GuessHandler {
      * These are the colors for incorrect, correct and close guesses
      */
 //    Feel free to play with these colors if you think they can be improved
-    private static Color MY_GRAY = new Color(51,51,51);
-    private static Color MY_GREEN = new Color(0, 153, 0);
-    private static Color MY_YELLOW = new Color(218, 205, 56);
+    private static final Color MY_GRAY = new Color(51,51,51);
+    private static final Color MY_GREEN = new Color(0, 153, 0);
+    private static final Color MY_YELLOW = new Color(218, 205, 56);
     /**
      * Randomly picks a possible programming language from the database
      * @return Returns a String representing the name of the guess generated

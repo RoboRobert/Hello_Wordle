@@ -4,6 +4,7 @@
  */
 package gui;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 import model.GameData;
@@ -18,6 +19,9 @@ import model.GuessHandler;
  * @author nathan
  */
 public class GameFrame extends javax.swing.JFrame {
+//    Variable used for resetting color back to default
+    private static final Color MY_GRAY = new Color(51,51,51);
+    
     //    Global variables used for guesses
     javax.swing.JLabel[] guessRow0;
     javax.swing.JLabel[] guessRow1;
@@ -27,7 +31,6 @@ public class GameFrame extends javax.swing.JFrame {
     javax.swing.JLabel[] guessRow5;
     
     ArrayList<JLabel[]> guesses_arr;
-    int guessCount;
     
     GameData gameState;
     
@@ -39,8 +42,6 @@ public class GameFrame extends javax.swing.JFrame {
         
 //        Create a default game state.
         gameState = new GameData(new Guess("Java", "STATIC", "OO", "HIGH", 1995), new ArrayList<Guess>());
-
-        guessCount = 0;
         
          /**
           * initializes arrays containing rows of guess labels 
@@ -62,11 +63,6 @@ public class GameFrame extends javax.swing.JFrame {
         guessRow5 = new javax.swing.JLabel[]{guess5, typing5, paradigm5, level5, test5, year5};
         guesses_arr.add(guessRow5);
         
-//        Set all the guess rows to be invisible at the start
-//        for(javax.swing.JLabel[] guessRow : guesses_arr) {
-//            guessVisibility(false, guessRow);
-//        }
-        
 //        Makes the main menu the only visible panel at the start
         gamePanel.setVisible(false);
         winPanel.setVisible(false);
@@ -82,20 +78,49 @@ public class GameFrame extends javax.swing.JFrame {
      * This function syncs the game view with the stored gameState
      */
     private void syncGame() {
+        for(int i = 0; i < 6; i++) {
+//            If we're within the bounds of the current user's guesses, then set the row based on that.
+            if(i < gameState.guesses_list.size()) {
+//                Sets the guess text for the current row
+                setGuess(guesses_arr.get(i), gameState.guesses_list.get(i));
+//                Sets the colors for the current row
+                setColors(guesses_arr.get(i), gameState.guesses_list.get(i));
+            }
+            
+//            Otherwise, the row must be reset to default state.
+            else {
+                resetRow(guesses_arr.get(i));
+            }
+        }
+    }
+    
+//    Resets the game state, then calls syncGame()
+    private void resetGame() {
+//        Create a default game state.
+        gameState = new GameData(new Guess("Java", "STATIC", "OO", "HIGH", 1995), new ArrayList<Guess>());
         
+//        Set the guessButton to be enabled
+        guessButton.setEnabled(true);
+        
+//        Then sync the game with the default game state, effectively resetting it
+        syncGame();
     }
     
      /** 
-      * This sets the visibility of an array of JLabels
+      * This resets a row to default state
       */
-//    private void guessVisibility(boolean isVisible, javax.swing.JLabel[] labels) {
-//        for (javax.swing.JLabel label : labels) {
-//            label.setVisible(isVisible);
-//        }
-//    }
+    private void resetRow(javax.swing.JLabel[] guess_row) {
+        for(JLabel label : guess_row) {
+//            Reset the text
+            label.setText("");
+            
+//            Reset the color
+            label.setBackground(MY_GRAY);
+        }
+    }
     
     /**
-     * Handles setting name, typing, paradigm, level, test and year of a guess
+     * Handles setting name, typing, paradigm, level, test and year of a guess row
      */
     private void setGuess(JLabel[] guessRow, Guess guess) {
         guessRow[0].setText(guess.name); 
@@ -744,6 +769,9 @@ public class GameFrame extends javax.swing.JFrame {
     private void mainMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainMenuButtonActionPerformed
 //        Select the main menu
         selectMainView();
+        
+//        Reset the game for another play
+        resetGame();
     }//GEN-LAST:event_mainMenuButtonActionPerformed
 
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
@@ -764,26 +792,19 @@ public class GameFrame extends javax.swing.JFrame {
         String guess = (String) jComboBox1.getSelectedItem();
         
 //        Gets the full Guess data from GuessHandler
-//        NOTE: CURRENTLY ONLY RETURNS DATA FOR JAVA, fix soon :)
+//        NOTE: CURRENTLY ONLY RETURNS JAVA, fix soon :)
         Guess userGuess = GuessHandler.getGuess(guess);
+        
+//        Add the user's guess to the game state 
+        gameState.guesses_list.add(userGuess);
+        
+//        Then sync the view with the game model
+        syncGame();
 
-//        Sets the guess strings appropriately based on the user's input
-        setGuess(guesses_arr.get(guessCount), userGuess);
-
-//        Sets the colors appropriately based on correct guesses
-        setColors(guesses_arr.get(guessCount), userGuess);
-
-        //        Makes the next guess row visible.
-//        guessVisibility(true, guesses_arr.get(guessCount));
-
-        //        Adds 1 to the guesscount
-        guessCount+=1;
-
-        //        If there have been 6 guesses, then make the guess button unclickable.
-        if(guessCount > 5) {
+//        If there have been 6 guesses, then make the guess button unclickable.
+        if(gameState.guesses_list.size() > 5) {
             guessButton.setEnabled(false);
         }
-
     }//GEN-LAST:event_guessButtonActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
