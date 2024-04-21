@@ -82,9 +82,9 @@ public class GameFrame extends javax.swing.JFrame {
 //            If we're within the bounds of the current user's guesses, then set the row based on that.
             if(i < gameState.guesses_list.size()) {
 //                Sets the guess text for the current row
-                setGuess(guesses_arr.get(i), gameState.guesses_list.get(i));
+                setRowText(guesses_arr.get(i), gameState.guesses_list.get(i));
 //                Sets the colors for the current row
-                setColors(guesses_arr.get(i), gameState.guesses_list.get(i));
+                setRowColors(guesses_arr.get(i), gameState.guesses_list.get(i));
             }
             
 //            Otherwise, the row must be reset to default state.
@@ -122,7 +122,7 @@ public class GameFrame extends javax.swing.JFrame {
     /**
      * Handles setting name, typing, paradigm, level, test and year of a guess row
      */
-    private void setGuess(JLabel[] guessRow, Guess guess) {
+    private void setRowText(JLabel[] guessRow, Guess guess) {
         guessRow[0].setText(guess.name); 
         guessRow[1].setText(guess.typing);
         guessRow[2].setText(guess.paradigm);
@@ -135,7 +135,7 @@ public class GameFrame extends javax.swing.JFrame {
     /**
      * Handles setting the colors of rows based on the input guess and the correct guess.
      */
-    private void setColors(JLabel[] guessRow, Guess guess) {
+    private void setRowColors(JLabel[] guessRow, Guess guess) {
         guessRow[0].setBackground(GuessHandler.matchName(gameState.correct_guess.name, guess.name));
         guessRow[1].setBackground(GuessHandler.matchTyping(gameState.correct_guess.typing, guess.typing));
         guessRow[2].setBackground(GuessHandler.matchParadigm(gameState.correct_guess.paradigm, guess.paradigm));
