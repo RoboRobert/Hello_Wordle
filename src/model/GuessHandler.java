@@ -35,9 +35,15 @@ public class GuessHandler {
      */
     public static Guess getGuess(String name) {
 //        TODO Add implementation
-        Guess returnGuess = new Guess("Java", "STATIC", "OBJECT ORIENTED", "HIGH", 1995);
+//      Grabs a matching guess object from the language array
+        Guess returnGuess = LanguageArray.fetchLanguage(name);
 
         return returnGuess;
+    }    
+    
+    public static boolean matchGuess(Guess guess1, Guess guess2){
+        // returns whether two guess objects match
+        return guess1.getName().equals(guess2.getName());
     }
     
     /**
@@ -45,6 +51,7 @@ public class GuessHandler {
      * @return Returns a Color used to change the color of the name guess slot
      */
     public static Color matchName(String name1, String name2) {
+       
         if(name1 == name2)
             return MY_GREEN;
         

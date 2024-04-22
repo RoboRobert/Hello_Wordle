@@ -39,10 +39,24 @@ public class LanguageArray
     private static final Guess TypeScript = new Guess("TYPESCRIPT", "STATIC", "OBJECT ORIENTED", "HIGH", 2012);
     private static final Guess VisualBasic = new Guess("VISUAL BASIC", "STATIC", "OBJECT ORIENTED", "HIGH", 1991);
 
-    private Guess[] languageArray = {Assembly, C, CSharp, CPlusPlus, Fortran, Go, Java, JavaScript, Matlab, Pascal, Perl, Prolog, Ruby, Rust, Scala, SQL, Swift, TypeScript, VisualBasic};
+    private static Guess[] languageArray = {Assembly, C, CSharp, CPlusPlus, Fortran, Go, Java, JavaScript, Matlab, Pascal, Perl, Prolog, Python, Ruby, Rust, Scala, SQL, Swift, TypeScript, VisualBasic};
 
-    public Guess[] getLanguages()
+    public static Guess[] getLanguages()
     {
         return languageArray;
+    }
+    
+    public static Guess fetchLanguage(String searchName) {
+        
+        // searches language array for an object with a matching name
+        Guess[] guesses = getLanguages();
+        searchName = searchName.toUpperCase();
+        
+         for (Guess guess : guesses) {
+            if (guess.getName().equals(searchName)) {
+                return guess;
+            }
+        }
+        return null;
     }
 }
