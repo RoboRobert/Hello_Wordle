@@ -66,11 +66,24 @@ public class GuessHandler {
      * 
      * @return Returns a Color used to change the color of the paradigm guess slot
      */
-    public static Color matchParadigm(int paradigm1, int paradigm2) {
+    public static Color matchParadigm(int paradigm1, int paradigm2) 
+    {
         if(paradigm1 == paradigm2)
+        {
             return MY_GREEN;
-        
-        return MY_GRAY;
+        }
+        else if(paradigm1 <= 3 && paradigm2 <=3)
+        {
+            return MY_YELLOW;
+        }
+        else if(paradigm1 >= 4 && paradigm2 >= 4)
+        {
+            return MY_YELLOW;
+        }
+        else
+        {
+            return MY_GRAY;
+        }
     }
     
     /**
