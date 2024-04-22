@@ -37,7 +37,7 @@ public class GameFrame extends javax.swing.JFrame {
         initComponents();
         
         //        Set the correct guess to C++ as a default for now
-        correctGuess = new Guess("C++", "STATIC", "OO", "HIGH", 1985);
+        correctGuess = new Guess("C++", "STATIC", "OBJECT ORIENTED", "HIGH", 1985);
 
         
         guessCount = 0;
@@ -90,12 +90,12 @@ public class GameFrame extends javax.swing.JFrame {
      * Handles setting name, typing, paradigm, level, test and year of a guess
      */
     private void setGuess(JLabel[] guessRow, Guess guess) {
-        guessRow[0].setText(guess.name); 
-        guessRow[1].setText(guess.typing);
-        guessRow[2].setText(guess.paradigm);
-        guessRow[3].setText(guess.level);
+        guessRow[0].setText(guess.getName()); 
+        guessRow[1].setText(guess.getTyping());
+        guessRow[2].setText(guess.getParadigmName());
+        guessRow[3].setText(guess.getLevel());
         guessRow[4].setText("test");
-        String yearString = Integer.toString(guess.year);
+        String yearString = Integer.toString(guess.getYear());
         guessRow[5].setText(yearString);
     }
     
@@ -103,12 +103,12 @@ public class GameFrame extends javax.swing.JFrame {
      * Handles setting the colors of rows based on the input guess and the correct guess.
      */
     private void setColors(JLabel[] guessRow, Guess guess) {
-        guessRow[0].setBackground(GuessHandler.matchName(correctGuess.name, guess.name));
-        guessRow[1].setBackground(GuessHandler.matchTyping(correctGuess.typing, guess.typing));
-        guessRow[2].setBackground(GuessHandler.matchParadigm(correctGuess.paradigm, guess.paradigm));
-        guessRow[3].setBackground(GuessHandler.matchLevel(correctGuess.level, guess.level));
+        guessRow[0].setBackground(GuessHandler.matchName(correctGuess.getName(), guess.getName()));
+        guessRow[1].setBackground(GuessHandler.matchTyping(correctGuess.getTyping(), guess.getTyping()));
+        guessRow[2].setBackground(GuessHandler.matchParadigm(correctGuess.getParadigmID(), guess.getParadigmID()));
+        guessRow[3].setBackground(GuessHandler.matchLevel(correctGuess.getLevel(), guess.getLevel()));
 //      Skip 4 for now because I don't know what to do with it
-        guessRow[5].setBackground(GuessHandler.matchYear(correctGuess.year, guess.year));
+        guessRow[5].setBackground(GuessHandler.matchYear(correctGuess.getYear(), guess.getYear()));
     }
     
     
