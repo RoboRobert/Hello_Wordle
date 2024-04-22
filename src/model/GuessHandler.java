@@ -35,7 +35,7 @@ public class GuessHandler {
      */
     public static Guess getGuess(String name) {
 //        TODO Add implementation
-        Guess returnGuess = new Guess("Java", "STATIC", "OO", "HIGH", 1995);
+        Guess returnGuess = new Guess("Java", "STATIC", 3, "HIGH", 1995);
 
         return returnGuess;
     }
@@ -66,7 +66,7 @@ public class GuessHandler {
      * 
      * @return Returns a Color used to change the color of the paradigm guess slot
      */
-    public static Color matchParadigm(String paradigm1, String paradigm2) {
+    public static Color matchParadigm(int paradigm1, int paradigm2) {
         if(paradigm1 == paradigm2)
             return MY_GREEN;
         
@@ -87,11 +87,12 @@ public class GuessHandler {
     /**
      * 
      * @return Returns a Color used to change the color of the year guess slot
+     * Updated 4/20/24 to have it show yellow instead of default gray when incorrect year
      */
     public static Color matchYear(int year1, int year2) {
         if(year1 == year2)
             return MY_GREEN;
         
-        return MY_GRAY;
+        return MY_YELLOW;
     }
 }
