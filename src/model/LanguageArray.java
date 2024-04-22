@@ -18,26 +18,26 @@ public class LanguageArray
     * 5 = Logic
     */
     
-    private ChoiceData Assembly = new ChoiceData("ASSEMBLY", "STATIC", 1, "LOW", 1949);
-    private ChoiceData C = new ChoiceData("C", "STATIC", 1, "INTERMEDIATE", 1972);
-    private ChoiceData CSharp = new ChoiceData("C#", "STATIC", 2, "HIGH", 2001);
-    private ChoiceData CPlusPlus = new ChoiceData("C++", "STATIC", 1, "INTERMEDIATE", 1985);
-    private ChoiceData Fortran = new ChoiceData("FORTRAN", "STATIC", 2, "HIGH", 1957);
-    private ChoiceData Go = new ChoiceData("GO", "STATIC", 1, "HIGH", 2012);
-    private ChoiceData Java = new ChoiceData("JAVA", "STATIC", 3, "HIGH", 1995);
-    private ChoiceData JavaScript = new ChoiceData("JAVASCRIPT", "DYNAMIC", 3, "HIGH", 1995);
-    private ChoiceData Matlab = new ChoiceData("MATLAB", "DYNAMIC", 4, "HIGH", 1984);
-    private ChoiceData Pascal = new ChoiceData("PASCAL", "STATIC", 1, "HIGH", 1970);
-    private ChoiceData Perl = new ChoiceData("PERL", "DYNAMIC", 4, "HIGH", 1987);
-    private ChoiceData Prolog = new ChoiceData("PROLOG", "DYNAMIC", 5, "HIGH", 1972);
-    private ChoiceData Python = new ChoiceData("PYTHON", "DYNAMIC", 4, "HIGH", 1991);
-    private ChoiceData Ruby = new ChoiceData("RUBY", "DYNAMIC", 4, "HIGH", 1995);
-    private ChoiceData Rust = new ChoiceData("RUST", "STATIC", 4, "LOW", 2010);
-    private ChoiceData Scala = new ChoiceData("SCALA", "STATIC", 4, "HIGH", 2004);
-    private ChoiceData SQL = new ChoiceData("SQL", "STATIC", 5, "HIGH", 1974);
-    private ChoiceData Swift = new ChoiceData("SWIFT", "STATIC", 4, "HIGH", 2014);
-    private ChoiceData TypeScript = new ChoiceData("TYPESCRIPT", "STATIC", 4, "HIGH", 2012);
-    private ChoiceData VisualBasic = new ChoiceData("VISUAL BASIC", "STATIC", 2, "HIGH", 1991);
+    private static final Guess Assembly = new Guess("ASSEMBLY", "STATIC", 1, "LOW", 1949);
+    private static final Guess C = new Guess("C", "STATIC", 1, "INTERMEDIATE", 1972);
+    private static final Guess CSharp = new Guess("C#", "STATIC", 2, "HIGH", 2001);
+    private static final Guess CPlusPlus = new Guess("C++", "STATIC", 1, "INTERMEDIATE", 1985);
+    private static final Guess Fortran = new Guess("FORTRAN", "STATIC", 2, "HIGH", 1957);
+    private static final Guess Go = new Guess("GO", "STATIC", 1, "HIGH", 2012);
+    private static final Guess Java = new Guess("JAVA", "STATIC", 3, "HIGH", 1995);
+    private static final Guess JavaScript = new Guess("JAVASCRIPT", "DYNAMIC", 3, "HIGH", 1995);
+    private static final Guess Matlab = new Guess("MATLAB", "DYNAMIC", 4, "HIGH", 1984);
+    private static final Guess Pascal = new Guess("PASCAL", "STATIC", 1, "HIGH", 1970);
+    private static final Guess Perl = new Guess("PERL", "DYNAMIC", 4, "HIGH", 1987);
+    private static final Guess Prolog = new Guess("PROLOG", "DYNAMIC", 5, "HIGH", 1972);
+    private static final Guess Python = new Guess("PYTHON", "DYNAMIC", 4, "HIGH", 1991);
+    private static final Guess Ruby = new Guess("RUBY", "DYNAMIC", 4, "HIGH", 1995);
+    private static final Guess Rust = new Guess("RUST", "STATIC", 4, "LOW", 2010);
+    private static final Guess Scala = new Guess("SCALA", "STATIC", 4, "HIGH", 2004);
+    private static final Guess SQL = new Guess("SQL", "STATIC", 5, "HIGH", 1974);
+    private static final Guess Swift = new Guess("SWIFT", "STATIC", 4, "HIGH", 2014);
+    private static final Guess TypeScript = new Guess("TYPESCRIPT", "STATIC", 4, "HIGH", 2012);
+    private static final Guess VisualBasic = new Guess("VISUAL BASIC", "STATIC", 2, "HIGH", 1991);
 
     private ChoiceData[] languageArray = {Assembly, C, CSharp, CPlusPlus, Fortran, Go, Java, JavaScript, Matlab, Pascal, Perl, Prolog, Ruby, Rust, Scala, SQL, Swift, TypeScript, VisualBasic};
 
