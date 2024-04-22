@@ -15,6 +15,7 @@ public class Guess {
     private String typing;
     private int paradigmID; // 1 = procedural, 2 = structured, 3 = object oriented, 4 = functional, 5 = logic
     private String paradigmName;
+    private String level;
     private int year; 
     
     /**
