@@ -4,8 +4,10 @@
  */
 package gui;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JLabel;
+import model.GameData;
 import model.Guess;
 import model.GuessHandler;
 
@@ -17,6 +19,9 @@ import model.GuessHandler;
  * @author nathan
  */
 public class GameFrame extends javax.swing.JFrame {
+//    Variable used for resetting color back to default
+    private static final Color MY_GRAY = new Color(51,51,51);
+    
     //    Global variables used for guesses
     javax.swing.JLabel[] guessRow0;
     javax.swing.JLabel[] guessRow1;
@@ -26,9 +31,10 @@ public class GameFrame extends javax.swing.JFrame {
     javax.swing.JLabel[] guessRow5;
     
     ArrayList<JLabel[]> guesses_arr;
-    int guessCount;
     
-    static Guess correctGuess;
+
+    GameData gameState;
+
     
     /**
      * Creates new GameFrame 
@@ -36,11 +42,10 @@ public class GameFrame extends javax.swing.JFrame {
     public GameFrame() {
         initComponents();
         
-        //        Set the correct guess to C++ as a default for now
-        correctGuess = GuessHandler.getGuess("C++");
 
-        
-        guessCount = 0;
+//        Create a default game state.
+        gameState = new GameData(new Guess("Java", "STATIC", "OO", "HIGH", 1995), new ArrayList<Guess>());
+
         
          /**
           * initializes arrays containing rows of guess labels 
@@ -62,11 +67,6 @@ public class GameFrame extends javax.swing.JFrame {
         guessRow5 = new javax.swing.JLabel[]{guess5, typing5, paradigm5, level5, test5, year5};
         guesses_arr.add(guessRow5);
         
-//        Set all the guess rows to be invisible at the start
-        for(javax.swing.JLabel[] guessRow : guesses_arr) {
-            guessVisibility(false, guessRow);
-        }
-        
 //        Makes the main menu the only visible panel at the start
         gamePanel.setVisible(false);
         winPanel.setVisible(false);
@@ -77,23 +77,62 @@ public class GameFrame extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
     
+    
+    /**
+     * This function syncs the game view with the stored gameState
+     */
+    private void syncGame() {
+        for(int i = 0; i < 6; i++) {
+//            If we're within the bounds of the current user's guesses, then set the row based on that.
+            if(i < gameState.guesses_list.size()) {
+//                Sets the guess text for the current row
+                setRowText(guesses_arr.get(i), gameState.guesses_list.get(i));
+//                Sets the colors for the current row
+                setRowColors(guesses_arr.get(i), gameState.guesses_list.get(i));
+            }
+            
+//            Otherwise, the row must be reset to default state.
+            else {
+                resetRow(guesses_arr.get(i));
+            }
+        }
+    }
+    
+//    Resets the game state, then calls syncGame()
+    private void resetGame() {
+//        Create a default game state.
+        gameState = new GameData(new Guess("Java", "STATIC", "OO", "HIGH", 1995), new ArrayList<Guess>());
+        
+//        Set the guessButton to be enabled
+        guessButton.setEnabled(true);
+        
+//        Then sync the game with the default game state, effectively resetting it
+        syncGame();
+    }
+    
      /** 
-      * This sets the visibility of an array of JLabels
+      * This resets a row to default state
       */
-    private void guessVisibility(boolean isVisible, javax.swing.JLabel[] labels) {
-        for (javax.swing.JLabel label : labels) {
-            label.setVisible(isVisible);
+    private void resetRow(javax.swing.JLabel[] guess_row) {
+        for(JLabel label : guess_row) {
+//            Reset the text
+            label.setText("");
+            
+//            Reset the color
+            label.setBackground(MY_GRAY);
         }
     }
     
     /**
-     * Handles setting name, typing, paradigm, level, test and year of a guess
+     * Handles setting name, typing, paradigm, level, test and year of a guess row
      */
+
     private void setGuess(JLabel[] guessRow, Guess guess) {
         guessRow[0].setText(guess.getName()); 
         guessRow[1].setText(guess.getTyping());
         guessRow[2].setText(guess.getParadigmName());
         guessRow[3].setText(guess.getLevel());
+
         guessRow[4].setText("test");
         String yearString = Integer.toString(guess.getYear());
         guessRow[5].setText(yearString);
@@ -102,6 +141,7 @@ public class GameFrame extends javax.swing.JFrame {
     /**
      * Handles setting the colors of rows based on the input guess and the correct guess.
      */
+
     private void setColors(JLabel[] guessRow, Guess guess) {
         guessRow[0].setBackground(GuessHandler.matchName(correctGuess.getName(), guess.getName()));
         guessRow[1].setBackground(GuessHandler.matchTyping(correctGuess.getTyping(), guess.getTyping()));
@@ -109,6 +149,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessRow[3].setBackground(GuessHandler.matchLevel(correctGuess.getLevel(), guess.getLevel()));
 //      Skip 4 for now because I don't know what to do with it
         guessRow[5].setBackground(GuessHandler.matchYear(correctGuess.getYear(), guess.getYear()));
+
     }
     
     
@@ -160,7 +201,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessButton = new javax.swing.JButton();
         winButton = new javax.swing.JButton();
         promptLabel = new javax.swing.JLabel();
-        testPanel = new javax.swing.JPanel();
+        guessPanel = new javax.swing.JPanel();
         guess = new javax.swing.JLabel();
         typing = new javax.swing.JLabel();
         paradigm = new javax.swing.JLabel();
@@ -296,8 +337,8 @@ public class GameFrame extends javax.swing.JFrame {
         promptLabel.setForeground(new java.awt.Color(255, 255, 255));
         promptLabel.setText("Hello Wordle");
 
-        testPanel.setBackground(new java.awt.Color(51, 51, 51));
-        testPanel.setLayout(new java.awt.GridLayout(8, 6, 4, 4));
+        guessPanel.setBackground(new java.awt.Color(51, 51, 51));
+        guessPanel.setLayout(new java.awt.GridLayout(8, 6, 4, 4));
 
         guess.setBackground(new java.awt.Color(153, 153, 153));
         guess.setForeground(new java.awt.Color(255, 255, 255));
@@ -305,7 +346,7 @@ public class GameFrame extends javax.swing.JFrame {
         guess.setText("Guess");
         guess.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         guess.setOpaque(true);
-        testPanel.add(guess);
+        guessPanel.add(guess);
 
         typing.setBackground(new java.awt.Color(153, 153, 153));
         typing.setForeground(new java.awt.Color(255, 255, 255));
@@ -313,7 +354,7 @@ public class GameFrame extends javax.swing.JFrame {
         typing.setText("Typing");
         typing.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         typing.setOpaque(true);
-        testPanel.add(typing);
+        guessPanel.add(typing);
 
         paradigm.setBackground(new java.awt.Color(153, 153, 153));
         paradigm.setForeground(new java.awt.Color(255, 255, 255));
@@ -321,7 +362,7 @@ public class GameFrame extends javax.swing.JFrame {
         paradigm.setText("Paradigm");
         paradigm.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         paradigm.setOpaque(true);
-        testPanel.add(paradigm);
+        guessPanel.add(paradigm);
 
         level.setBackground(new java.awt.Color(153, 153, 153));
         level.setForeground(new java.awt.Color(255, 255, 255));
@@ -329,7 +370,7 @@ public class GameFrame extends javax.swing.JFrame {
         level.setText("High/Low Level");
         level.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         level.setOpaque(true);
-        testPanel.add(level);
+        guessPanel.add(level);
 
         test.setBackground(new java.awt.Color(153, 153, 153));
         test.setForeground(new java.awt.Color(255, 255, 255));
@@ -337,7 +378,7 @@ public class GameFrame extends javax.swing.JFrame {
         test.setText("test");
         test.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         test.setOpaque(true);
-        testPanel.add(test);
+        guessPanel.add(test);
 
         yearCreated.setBackground(new java.awt.Color(153, 153, 153));
         yearCreated.setForeground(new java.awt.Color(255, 255, 255));
@@ -345,295 +386,259 @@ public class GameFrame extends javax.swing.JFrame {
         yearCreated.setText("Year Created");
         yearCreated.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         yearCreated.setOpaque(true);
-        testPanel.add(yearCreated);
+        guessPanel.add(yearCreated);
 
         guess0.setBackground(new java.awt.Color(51, 51, 51));
         guess0.setForeground(new java.awt.Color(255, 255, 255));
         guess0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        guess0.setText("guess0");
         guess0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         guess0.setOpaque(true);
-        testPanel.add(guess0);
+        guessPanel.add(guess0);
 
         typing0.setBackground(new java.awt.Color(51, 51, 51));
         typing0.setForeground(new java.awt.Color(255, 255, 255));
         typing0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        typing0.setText("typing0");
         typing0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         typing0.setOpaque(true);
-        testPanel.add(typing0);
+        guessPanel.add(typing0);
 
         paradigm0.setBackground(new java.awt.Color(51, 51, 51));
         paradigm0.setForeground(new java.awt.Color(255, 255, 255));
         paradigm0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        paradigm0.setText("paradigm0");
         paradigm0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         paradigm0.setOpaque(true);
-        testPanel.add(paradigm0);
+        guessPanel.add(paradigm0);
 
         level0.setBackground(new java.awt.Color(51, 51, 51));
         level0.setForeground(new java.awt.Color(255, 255, 255));
         level0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        level0.setText("level0");
         level0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         level0.setOpaque(true);
-        testPanel.add(level0);
+        guessPanel.add(level0);
 
         test0.setBackground(new java.awt.Color(51, 51, 51));
         test0.setForeground(new java.awt.Color(255, 255, 255));
         test0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        test0.setText("test0");
         test0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         test0.setOpaque(true);
-        testPanel.add(test0);
+        guessPanel.add(test0);
 
         year0.setBackground(new java.awt.Color(51, 51, 51));
         year0.setForeground(new java.awt.Color(255, 255, 255));
         year0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        year0.setText("year0");
         year0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         year0.setOpaque(true);
-        testPanel.add(year0);
+        guessPanel.add(year0);
 
         guess1.setBackground(new java.awt.Color(51, 51, 51));
         guess1.setForeground(new java.awt.Color(255, 255, 255));
         guess1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        guess1.setText("guess1");
         guess1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         guess1.setOpaque(true);
-        testPanel.add(guess1);
+        guessPanel.add(guess1);
 
         typing1.setBackground(new java.awt.Color(51, 51, 51));
         typing1.setForeground(new java.awt.Color(255, 255, 255));
         typing1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        typing1.setText("typing1");
         typing1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         typing1.setOpaque(true);
-        testPanel.add(typing1);
+        guessPanel.add(typing1);
 
         paradigm1.setBackground(new java.awt.Color(51, 51, 51));
         paradigm1.setForeground(new java.awt.Color(255, 255, 255));
         paradigm1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        paradigm1.setText("paradigm1");
         paradigm1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         paradigm1.setOpaque(true);
-        testPanel.add(paradigm1);
+        guessPanel.add(paradigm1);
 
         level1.setBackground(new java.awt.Color(51, 51, 51));
         level1.setForeground(new java.awt.Color(255, 255, 255));
         level1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        level1.setText("level1");
         level1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         level1.setOpaque(true);
-        testPanel.add(level1);
+        guessPanel.add(level1);
 
         test1.setBackground(new java.awt.Color(51, 51, 51));
         test1.setForeground(new java.awt.Color(255, 255, 255));
         test1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        test1.setText("test1");
         test1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         test1.setOpaque(true);
-        testPanel.add(test1);
+        guessPanel.add(test1);
 
         year1.setBackground(new java.awt.Color(51, 51, 51));
         year1.setForeground(new java.awt.Color(255, 255, 255));
         year1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        year1.setText("year1");
         year1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         year1.setOpaque(true);
-        testPanel.add(year1);
+        guessPanel.add(year1);
 
         guess2.setBackground(new java.awt.Color(51, 51, 51));
         guess2.setForeground(new java.awt.Color(255, 255, 255));
         guess2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        guess2.setText("guess2");
         guess2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         guess2.setOpaque(true);
-        testPanel.add(guess2);
+        guessPanel.add(guess2);
 
         typing2.setBackground(new java.awt.Color(51, 51, 51));
         typing2.setForeground(new java.awt.Color(255, 255, 255));
         typing2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        typing2.setText("typing2");
         typing2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         typing2.setOpaque(true);
-        testPanel.add(typing2);
+        guessPanel.add(typing2);
 
         paradigm2.setBackground(new java.awt.Color(51, 51, 51));
         paradigm2.setForeground(new java.awt.Color(255, 255, 255));
         paradigm2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        paradigm2.setText("paradigm2");
         paradigm2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         paradigm2.setOpaque(true);
-        testPanel.add(paradigm2);
+        guessPanel.add(paradigm2);
 
         level2.setBackground(new java.awt.Color(51, 51, 51));
         level2.setForeground(new java.awt.Color(255, 255, 255));
         level2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        level2.setText("level2");
         level2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         level2.setOpaque(true);
-        testPanel.add(level2);
+        guessPanel.add(level2);
 
         test2.setBackground(new java.awt.Color(51, 51, 51));
         test2.setForeground(new java.awt.Color(255, 255, 255));
         test2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        test2.setText("test2");
         test2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         test2.setOpaque(true);
-        testPanel.add(test2);
+        guessPanel.add(test2);
 
         year2.setBackground(new java.awt.Color(51, 51, 51));
         year2.setForeground(new java.awt.Color(255, 255, 255));
         year2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        year2.setText("year2");
         year2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         year2.setOpaque(true);
-        testPanel.add(year2);
+        guessPanel.add(year2);
 
         guess3.setBackground(new java.awt.Color(51, 51, 51));
         guess3.setForeground(new java.awt.Color(255, 255, 255));
         guess3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        guess3.setText("guess3");
         guess3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         guess3.setOpaque(true);
-        testPanel.add(guess3);
+        guessPanel.add(guess3);
 
         typing3.setBackground(new java.awt.Color(51, 51, 51));
         typing3.setForeground(new java.awt.Color(255, 255, 255));
         typing3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        typing3.setText("typing3");
         typing3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         typing3.setOpaque(true);
-        testPanel.add(typing3);
+        guessPanel.add(typing3);
 
         paradigm3.setBackground(new java.awt.Color(51, 51, 51));
         paradigm3.setForeground(new java.awt.Color(255, 255, 255));
         paradigm3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        paradigm3.setText("paradigm3");
         paradigm3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         paradigm3.setOpaque(true);
-        testPanel.add(paradigm3);
+        guessPanel.add(paradigm3);
 
         level3.setBackground(new java.awt.Color(51, 51, 51));
         level3.setForeground(new java.awt.Color(255, 255, 255));
         level3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        level3.setText("level3");
         level3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         level3.setOpaque(true);
-        testPanel.add(level3);
+        guessPanel.add(level3);
 
         test3.setBackground(new java.awt.Color(51, 51, 51));
         test3.setForeground(new java.awt.Color(255, 255, 255));
         test3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        test3.setText("test3");
         test3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         test3.setOpaque(true);
-        testPanel.add(test3);
+        guessPanel.add(test3);
 
         year3.setBackground(new java.awt.Color(51, 51, 51));
         year3.setForeground(new java.awt.Color(255, 255, 255));
         year3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        year3.setText("year3");
         year3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         year3.setOpaque(true);
-        testPanel.add(year3);
+        guessPanel.add(year3);
 
         guess4.setBackground(new java.awt.Color(51, 51, 51));
         guess4.setForeground(new java.awt.Color(255, 255, 255));
         guess4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        guess4.setText("guess4");
         guess4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         guess4.setOpaque(true);
-        testPanel.add(guess4);
+        guessPanel.add(guess4);
 
         typing4.setBackground(new java.awt.Color(51, 51, 51));
         typing4.setForeground(new java.awt.Color(255, 255, 255));
         typing4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        typing4.setText("typing4");
         typing4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         typing4.setOpaque(true);
-        testPanel.add(typing4);
+        guessPanel.add(typing4);
 
         paradigm4.setBackground(new java.awt.Color(51, 51, 51));
         paradigm4.setForeground(new java.awt.Color(255, 255, 255));
         paradigm4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        paradigm4.setText("paradigm4");
         paradigm4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         paradigm4.setOpaque(true);
-        testPanel.add(paradigm4);
+        guessPanel.add(paradigm4);
 
         level4.setBackground(new java.awt.Color(51, 51, 51));
         level4.setForeground(new java.awt.Color(255, 255, 255));
         level4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        level4.setText("level4");
         level4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         level4.setOpaque(true);
-        testPanel.add(level4);
+        guessPanel.add(level4);
 
         test4.setBackground(new java.awt.Color(51, 51, 51));
         test4.setForeground(new java.awt.Color(255, 255, 255));
         test4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        test4.setText("test4");
         test4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         test4.setOpaque(true);
-        testPanel.add(test4);
+        guessPanel.add(test4);
 
         year4.setBackground(new java.awt.Color(51, 51, 51));
         year4.setForeground(new java.awt.Color(255, 255, 255));
         year4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        year4.setText("year4");
         year4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         year4.setOpaque(true);
-        testPanel.add(year4);
+        guessPanel.add(year4);
 
         guess5.setBackground(new java.awt.Color(51, 51, 51));
         guess5.setForeground(new java.awt.Color(255, 255, 255));
         guess5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        guess5.setText("guess5");
         guess5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         guess5.setOpaque(true);
-        testPanel.add(guess5);
+        guessPanel.add(guess5);
 
         typing5.setBackground(new java.awt.Color(51, 51, 51));
         typing5.setForeground(new java.awt.Color(255, 255, 255));
         typing5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        typing5.setText("typing5");
         typing5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         typing5.setOpaque(true);
-        testPanel.add(typing5);
+        guessPanel.add(typing5);
 
         paradigm5.setBackground(new java.awt.Color(51, 51, 51));
         paradigm5.setForeground(new java.awt.Color(255, 255, 255));
         paradigm5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        paradigm5.setText("paradigm5");
         paradigm5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         paradigm5.setOpaque(true);
-        testPanel.add(paradigm5);
+        guessPanel.add(paradigm5);
 
         level5.setBackground(new java.awt.Color(51, 51, 51));
         level5.setForeground(new java.awt.Color(255, 255, 255));
         level5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        level5.setText("level5");
         level5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         level5.setOpaque(true);
-        testPanel.add(level5);
+        guessPanel.add(level5);
 
         test5.setBackground(new java.awt.Color(51, 51, 51));
         test5.setForeground(new java.awt.Color(255, 255, 255));
         test5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        test5.setText("test5");
         test5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         test5.setOpaque(true);
-        testPanel.add(test5);
+        guessPanel.add(test5);
 
         year5.setBackground(new java.awt.Color(51, 51, 51));
         year5.setForeground(new java.awt.Color(255, 255, 255));
         year5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        year5.setText("year5");
         year5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         year5.setOpaque(true);
-        testPanel.add(year5);
+        guessPanel.add(year5);
 
         javax.swing.GroupLayout gamePanelLayout = new javax.swing.GroupLayout(gamePanel);
         gamePanel.setLayout(gamePanelLayout);
@@ -647,7 +652,7 @@ public class GameFrame extends javax.swing.JFrame {
                 .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(gamePanelLayout.createSequentialGroup()
                         .addGap(89, 89, 89)
-                        .addComponent(testPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 915, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(guessPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 915, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(gamePanelLayout.createSequentialGroup()
                         .addGap(413, 413, 413)
                         .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -668,7 +673,7 @@ public class GameFrame extends javax.swing.JFrame {
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(guessButton))
                 .addGap(18, 18, 18)
-                .addComponent(testPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(guessPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(winButton)
                 .addContainerGap(14, Short.MAX_VALUE))
@@ -772,6 +777,9 @@ public class GameFrame extends javax.swing.JFrame {
     private void mainMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainMenuButtonActionPerformed
 //        Select the main menu
         selectMainView();
+        
+//        Reset the game for another play
+        resetGame();
     }//GEN-LAST:event_mainMenuButtonActionPerformed
 
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
@@ -792,9 +800,18 @@ public class GameFrame extends javax.swing.JFrame {
         String guess = (String) jComboBox1.getSelectedItem();
         
 //        Gets the full Guess data from GuessHandler
+
 //        NOTE: CURRENTLY ONLY RETURNS DATA FOR JAVA, fix soon :)
 //        Fixed it only returning for java, but html will return null for now
+
         Guess userGuess = GuessHandler.getGuess(guess);
+        
+//        Add the user's guess to the game state 
+        gameState.guesses_list.add(userGuess);
+        
+//        Then sync the view with the game model
+        syncGame();
+
 
         
 //        Checks for winning guess, sends user to win screen if true
@@ -816,9 +833,9 @@ public class GameFrame extends javax.swing.JFrame {
 
         //        If there have been 6 guesses, then make the guess button unclickable.
         if(guessCount > 5) {
+
             guessButton.setEnabled(false);
         }
-
     }//GEN-LAST:event_guessButtonActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
@@ -871,6 +888,7 @@ public class GameFrame extends javax.swing.JFrame {
     private javax.swing.JLabel guess4;
     private javax.swing.JLabel guess5;
     private javax.swing.JButton guessButton;
+    private javax.swing.JPanel guessPanel;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel level;
     private javax.swing.JLabel level0;
@@ -899,7 +917,6 @@ public class GameFrame extends javax.swing.JFrame {
     private javax.swing.JLabel test3;
     private javax.swing.JLabel test4;
     private javax.swing.JLabel test5;
-    private javax.swing.JPanel testPanel;
     private javax.swing.JLabel typing;
     private javax.swing.JLabel typing0;
     private javax.swing.JLabel typing1;

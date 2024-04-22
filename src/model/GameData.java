@@ -11,30 +11,34 @@ import java.util.ArrayList;
  * @author nathan
  */
 public class GameData {
-    public long num_guesses;
-    
-    public ArrayList<String> guesses_list;
+    public Guess correct_guess;
+    public ArrayList<Guess> guesses_list;
 
     /**
      * Unparameterized Constructor
      */
     public GameData() {
-        num_guesses = 0;
-        guesses_list = new ArrayList<String>();
+        correct_guess = new Guess();
+        guesses_list = new ArrayList<Guess>();
+    }
+    
+    /**
+     * Parameterized constructor
+     * @param previous_state any previous game state we're loading in
+     * @param previous_correct The correct guess for the previous session
+     */
+    public GameData(Guess previous_correct, ArrayList<Guess> previous_state) {
+        correct_guess = previous_correct;
+        guesses_list = previous_state;
     }
     
     /**
      * Method to print all of the game state cleanly
      */
     public void print_data() {
-        
-        System.out.println("Number of guesses: " + num_guesses);
-        
-        int current_guess = 1;
-        for(String guess : guesses_list) {
-            
-            System.out.println("Guess #" + current_guess + ": " + guess);
-            current_guess++;
+        System.out.println("Correct guess: " + correct_guess.print_guess() + "\n");
+        for(Guess guess : guesses_list) {
+            System.out.println(guess.print_guess() + "\n");
         }
         
         return;

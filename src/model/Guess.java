@@ -19,6 +19,17 @@ public class Guess {
     private int year; 
     
     /**
+     * Default constructor if you want to assemble the Guess object later
+     */
+    public Guess() {
+        name = "";
+        typing = "";
+        paradigm = "";
+        level = "";
+        year = 1970;
+    }
+    
+    /**
      * Parameterized constructor for setting all the values at once
      * @param nameIn
      * @param typingIn
@@ -83,5 +94,20 @@ public class Guess {
         }
         
         return false;
+    }
+    
+    /**
+     * Returns a string for pretty printing the data in a guess object. Used mostly for testing JSON persistence
+     */
+    public String print_guess() {
+        String return_string = "";
+        
+        return_string += "Name: " + name + "\n";
+        return_string += "Typing: " + typing + "\n";
+        return_string += "Paradigm: " + paradigm + "\n";
+        return_string += "Level: " + level + "\n";
+        return_string += "Year: " + year;
+        
+        return return_string;
     }
 }
