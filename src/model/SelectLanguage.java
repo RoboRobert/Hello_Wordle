@@ -25,6 +25,7 @@ public class SelectLanguage
         this.correctAnswer = languages[arrayIndex];
     }
     
+    
     /* Was used for testing, but leaving it in for reference in the Win Detection section @Patrick
     public void print_data() 
     {
@@ -32,6 +33,8 @@ public class SelectLanguage
         System.out.println("Selected languge: " + test);
     }
     */
+    
+    
 }
 
 
