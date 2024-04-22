@@ -105,7 +105,7 @@ public class GameFrame extends javax.swing.JFrame {
     private void setColors(JLabel[] guessRow, Guess guess) {
         guessRow[0].setBackground(GuessHandler.matchName(correctGuess.getName(), guess.getName()));
         guessRow[1].setBackground(GuessHandler.matchTyping(correctGuess.getTyping(), guess.getTyping()));
-        guessRow[2].setBackground(GuessHandler.matchParadigm(correctGuess.getParadigm(), guess.getParadigm()));
+        guessRow[2].setBackground(GuessHandler.matchParadigm(correctGuess.getParadigmID(), guess.getParadigmID()));
         guessRow[3].setBackground(GuessHandler.matchLevel(correctGuess.getLevel(), guess.getLevel()));
 //      Skip 4 for now because I don't know what to do with it
         guessRow[5].setBackground(GuessHandler.matchYear(correctGuess.getYear(), guess.getYear()));
