@@ -37,7 +37,7 @@ public class GameFrame extends javax.swing.JFrame {
         initComponents();
         
         //        Set the correct guess to C++ as a default for now
-        correctGuess = new Guess("C++", "STATIC", 3, "HIGH", 1985);
+        correctGuess = new Guess("C++", "STATIC", "OBJECT ORIENTED", "HIGH", 1985);
 
         
         guessCount = 0;
