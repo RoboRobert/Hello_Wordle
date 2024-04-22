@@ -39,9 +39,9 @@ public class LanguageArray
     private static final Guess TypeScript = new Guess("TYPESCRIPT", "STATIC", 4, "HIGH", 2012);
     private static final Guess VisualBasic = new Guess("VISUAL BASIC", "STATIC", 2, "HIGH", 1991);
 
-    private ChoiceData[] languageArray = {Assembly, C, CSharp, CPlusPlus, Fortran, Go, Java, JavaScript, Matlab, Pascal, Perl, Prolog, Ruby, Rust, Scala, SQL, Swift, TypeScript, VisualBasic};
+    private Guess[] languageArray = {Assembly, C, CSharp, CPlusPlus, Fortran, Go, Java, JavaScript, Matlab, Pascal, Perl, Prolog, Ruby, Rust, Scala, SQL, Swift, TypeScript, VisualBasic};
 
-    public ChoiceData[] getLanguages()
+    public Guess[] getLanguages()
     {
         return languageArray;
     }
