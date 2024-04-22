@@ -92,8 +92,7 @@ public class GameFrame extends javax.swing.JFrame {
     private void setGuess(JLabel[] guessRow, Guess guess) {
         guessRow[0].setText(guess.getName()); 
         guessRow[1].setText(guess.getTyping());
-        String paradigmString = Integer.toString(guess.getParadigm());
-        guessRow[2].setText(paradigmString);
+        guessRow[2].setText(guess.getParadigmName());
         guessRow[3].setText(guess.getLevel());
         guessRow[4].setText("test");
         String yearString = Integer.toString(guess.getYear());
