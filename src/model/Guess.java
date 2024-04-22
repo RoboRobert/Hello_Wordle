@@ -22,14 +22,14 @@ public class Guess {
      * Parameterized constructor for setting all the values at once
      * @param nameIn
      * @param typingIn
-     * @param paradigmIDIn
+     * @param paradigmNameIn
      * @param levelIn
      * @param yearIn 
      */
-    public Guess(String nameIn, String typingIn, int paradigmIDIn, String levelIn, int yearIn) {
+    public Guess(String nameIn, String typingIn, String paradigmNameIn, String levelIn, int yearIn) {
         name = nameIn;
         typing = typingIn;
-        paradigmID = paradigmIDIn;
+        paradigmName = paradigmNameIn;
         level = levelIn;
         year = yearIn;
     }
@@ -39,7 +39,6 @@ public class Guess {
      * @param other the guess to compare the current guess to
      * @return a boolean representing equality
      */
-
     public String getName()
     {
         return name;
@@ -52,19 +51,19 @@ public class Guess {
     
     public int getParadigmID()
     {
+        switch(paradigmName)
+        {
+            case "PROCEDURAL" -> paradigmID = 1;
+            case "STRUCTURED" -> paradigmID = 2;
+            case "OBJECT ORIENTED" -> paradigmID = 3;
+            case "FUNCTIONAL" -> paradigmID = 4;
+            case "LOGIC" -> paradigmID = 5;
+        }
         return paradigmID;
     }
     
     public String getParadigmName()
     {
-        switch(paradigmID)
-        {
-            case 1 -> paradigmName = "PROCEDURAL";
-            case 2 -> paradigmName = "STRUCTURED";
-            case 3 -> paradigmName = "OBJECT ORIENTED";
-            case 4 -> paradigmName = "FUNCTIONAL";
-            case 5 -> paradigmName = "LOGIC";
-        }
         return paradigmName;
     }
     
