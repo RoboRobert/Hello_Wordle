@@ -13,22 +13,22 @@ import java.util.ArrayList;
 public class Guess {
     private String name;
     private String typing;
-    private int paradigm; // 1 = procedural, 2 = structured, 3 = object-oriented, 4 = functional, 5 = logic
-    private String level;
+    private int paradigmID; // 1 = procedural, 2 = structured, 3 = object oriented, 4 = functional, 5 = logic
+    private String paradigmName;
     private int year; 
     
     /**
      * Parameterized constructor for setting all the values at once
      * @param nameIn
      * @param typingIn
-     * @param paradigmIn
+     * @param paradigmIDIn
      * @param levelIn
      * @param yearIn 
      */
-    public Guess(String nameIn, String typingIn, int paradigmIn, String levelIn, int yearIn) {
+    public Guess(String nameIn, String typingIn, int paradigmIDIn, String levelIn, int yearIn) {
         name = nameIn;
         typing = typingIn;
-        paradigm = paradigmIn;
+        paradigmID = paradigmIDIn;
         level = levelIn;
         year = yearIn;
     }
@@ -49,9 +49,22 @@ public class Guess {
         return typing;
     }
     
-    public int getParadigm()
+    public int getParadigmID()
     {
-        return paradigm;
+        return paradigmID;
+    }
+    
+    public String getParadigmName()
+    {
+        switch(paradigmID)
+        {
+            case 1 -> paradigmName = "PROCEDURAL";
+            case 2 -> paradigmName = "STRUCTURED";
+            case 3 -> paradigmName = "OBJECT ORIENTED";
+            case 4 -> paradigmName = "FUNCTIONAL";
+            case 5 -> paradigmName = "LOGIC";
+        }
+        return paradigmName;
     }
     
     public String getLevel()
