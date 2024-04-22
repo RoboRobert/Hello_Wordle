@@ -11,9 +11,9 @@ import java.util.Random;
  */
 public class SelectLanguage 
 {
-    private ChoiceData[] languages;
+    private Guess[] languages;
     private Random random;
-    private ChoiceData correctAnswer;
+    private Guess correctAnswer;
     
     public SelectLanguage()
     {
