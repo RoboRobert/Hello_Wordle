@@ -35,9 +35,15 @@ public class GuessHandler {
      */
     public static Guess getGuess(String name) {
 //        TODO Add implementation
-        Guess returnGuess = new Guess("Java", "STATIC", "OO", "HIGH", 1995);
+//      Grabs a matching guess object from the language array
+        Guess returnGuess = LanguageArray.fetchLanguage(name);
 
         return returnGuess;
+    }    
+    
+    public static boolean matchGuess(Guess guess1, Guess guess2){
+        // returns whether two guess objects match
+        return guess1.getName().equals(guess2.getName());
     }
     
     /**
@@ -45,6 +51,7 @@ public class GuessHandler {
      * @return Returns a Color used to change the color of the name guess slot
      */
     public static Color matchName(String name1, String name2) {
+       
         if(name1 == name2)
             return MY_GREEN;
         
@@ -66,11 +73,24 @@ public class GuessHandler {
      * 
      * @return Returns a Color used to change the color of the paradigm guess slot
      */
-    public static Color matchParadigm(String paradigm1, String paradigm2) {
+    public static Color matchParadigm(int paradigm1, int paradigm2) 
+    {
         if(paradigm1 == paradigm2)
+        {
             return MY_GREEN;
-        
-        return MY_GRAY;
+        }
+        else if(paradigm1 <= 3 && paradigm2 <=3)
+        {
+            return MY_YELLOW;
+        }
+        else if(paradigm1 >= 4 && paradigm2 >= 4)
+        {
+            return MY_YELLOW;
+        }
+        else
+        {
+            return MY_GRAY;
+        }
     }
     
     /**
@@ -87,11 +107,12 @@ public class GuessHandler {
     /**
      * 
      * @return Returns a Color used to change the color of the year guess slot
+     * Updated 4/20/24 to have it show yellow instead of default gray when incorrect year
      */
     public static Color matchYear(int year1, int year2) {
         if(year1 == year2)
             return MY_GREEN;
         
-        return MY_GRAY;
+        return MY_YELLOW;
     }
 }
