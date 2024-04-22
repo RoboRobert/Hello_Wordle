@@ -11,11 +11,11 @@ import java.util.ArrayList;
  * @author nathan
  */
 public class Guess {
-    private String name;
-    private String typing;
-    private int paradigm; // 1 = procedural, 2 = structured, 3 = object-oriented, 4 = functional, 5 = logic
-    private String level;
-    private int year; 
+    public String name;
+    public String typing;
+    public String paradigm;
+    public String level;
+    public int year;
     
     /**
      * Parameterized constructor for setting all the values at once
@@ -25,7 +25,7 @@ public class Guess {
      * @param levelIn
      * @param yearIn 
      */
-    public Guess(String nameIn, String typingIn, int paradigmIn, String levelIn, int yearIn) {
+    public Guess(String nameIn, String typingIn, String paradigmIn, String levelIn, int yearIn) {
         name = nameIn;
         typing = typingIn;
         paradigm = paradigmIn;
@@ -38,32 +38,6 @@ public class Guess {
      * @param other the guess to compare the current guess to
      * @return a boolean representing equality
      */
-
-    public String getName()
-    {
-        return name;
-    }
-    
-    public String getTyping()
-    {
-        return typing;
-    }
-    
-    public int getParadigm()
-    {
-        return paradigm;
-    }
-    
-    public String getLevel()
-    {
-        return level;
-    }
-    
-    public int getYear()
-    {
-        return year;
-    }
-    
     public boolean equals(Guess other) {
         if(name == other.name) {
             return true;
