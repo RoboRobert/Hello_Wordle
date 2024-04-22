@@ -35,7 +35,7 @@ public class GuessHandler {
      */
     public static Guess getGuess(String name) {
 //        TODO Add implementation
-        Guess returnGuess = new Guess("Java", "STATIC", 3, "HIGH", 1995);
+        Guess returnGuess = new Guess("Java", "STATIC", "OBJECT ORIENTED", "HIGH", 1995);
 
         return returnGuess;
     }
