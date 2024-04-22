@@ -28,7 +28,7 @@ public class GameFrame extends javax.swing.JFrame {
     ArrayList<JLabel[]> guesses_arr;
     int guessCount;
     
-    Guess correctGuess;
+    static Guess correctGuess;
     
     /**
      * Creates new GameFrame 
@@ -37,7 +37,7 @@ public class GameFrame extends javax.swing.JFrame {
         initComponents();
         
         //        Set the correct guess to C++ as a default for now
-        correctGuess = new Guess("C++", "STATIC", "OBJECT ORIENTED", "HIGH", 1985);
+        correctGuess = GuessHandler.getGuess("C++");
 
         
         guessCount = 0;
@@ -793,8 +793,15 @@ public class GameFrame extends javax.swing.JFrame {
         
 //        Gets the full Guess data from GuessHandler
 //        NOTE: CURRENTLY ONLY RETURNS DATA FOR JAVA, fix soon :)
+//        Fixed it only returning for java, but html will return null for now
         Guess userGuess = GuessHandler.getGuess(guess);
 
+        
+//        Checks for winning guess, sends user to win screen if true
+       Boolean correctMatch = GuessHandler.matchGuess(userGuess, correctGuess);
+       if (correctMatch == true)
+           selectWinView();
+       
 //        Sets the guess strings appropriately based on the user's input
         setGuess(guesses_arr.get(guessCount), userGuess);
 
