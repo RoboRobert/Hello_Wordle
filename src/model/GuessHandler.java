@@ -18,8 +18,8 @@ public class GuessHandler {
 //    These are the colors for incorrect, correct and close guesses
 //    Feel free to play with these colors if you think they can be improved
     private static final Color MY_GRAY = new Color(51,51,51);
-    private static final Color MY_GREEN = new Color(0, 153, 0);
-    private static final Color MY_YELLOW = new Color(218, 205, 56);
+    private static final Color MY_GREEN = new Color(83, 141, 78);
+    private static final Color MY_YELLOW = new Color(181,159,59);
     
     /**
      * Returns the Guess object that corresponds to the name queried
