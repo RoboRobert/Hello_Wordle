@@ -41,11 +41,9 @@ public class GameFrame extends javax.swing.JFrame {
      */
     public GameFrame() {
         initComponents();
-        
 
 //        Create a default game state.
         gameState = new GameData(new Guess("Java", "STATIC", "OO", "HIGH", 1995), new ArrayList<Guess>());
-
         
          /**
           * initializes arrays containing rows of guess labels 
@@ -98,7 +96,9 @@ public class GameFrame extends javax.swing.JFrame {
         }
     }
     
-//    Resets the game state, then calls syncGame()
+    /**
+     * Resets the game state to default, then calls syncGame() to sync the view with the model
+     */
     private void resetGame() {
 //        Create a default game state.
         gameState = new GameData(new Guess("Java", "STATIC", "OO", "HIGH", 1995), new ArrayList<Guess>());
@@ -797,8 +797,6 @@ public class GameFrame extends javax.swing.JFrame {
         String guess = (String) jComboBox1.getSelectedItem();
         
 //        Gets the full Guess data from GuessHandler
-
-
 //        Fixed it only returning for java, but html will return null for now
         Guess userGuess = GuessHandler.getGuess(guess);
         
@@ -807,7 +805,6 @@ public class GameFrame extends javax.swing.JFrame {
         
 //        Then sync the view with the game model
         syncGame();
-
         
 //        Checks for winning guess, sends user to win screen if true
        Boolean correctMatch = GuessHandler.matchGuess(userGuess, gameState.correct_guess);
