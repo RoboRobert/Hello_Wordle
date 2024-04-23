@@ -8,7 +8,6 @@ import java.io.File;
 import model.GameData;
 import java.io.FileReader;
 import java.io.FileWriter;
-import jdk.jfr.DataAmount;
 import model.Guess;
 import org.json.simple.*;
 import org.json.simple.parser.JSONParser;
@@ -90,6 +89,7 @@ public class JSONHandler {
 //                Takes the JSON and converts it into a Guess object
                 Guess current_guess = convertToGuess(guess_obj);
                 
+//                Add the guess to the returned GameData object
                 return_data.guesses_list.add(current_guess);
             }
             
@@ -126,7 +126,7 @@ public class JSONHandler {
     }
     
     /**
-     * Converts a JSONobject to a Guess object
+     * Converts a Guess object to a JSONObject for output into a JSON file
      */
     private static JSONObject convertToJSON(Guess guessObject) {
 //            The JSONObject to return

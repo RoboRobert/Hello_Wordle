@@ -31,8 +31,10 @@ public class GuessHandler {
         return returnGuess;
     }    
     
+    /**
+     * Returns true if two guesses match, false if not
+     */
     public static boolean matchGuess(Guess guess1, Guess guess2){
-        // returns whether two guess objects match
         return guess1.getName().equals(guess2.getName());
     }
     

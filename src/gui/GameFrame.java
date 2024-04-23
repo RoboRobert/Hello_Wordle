@@ -31,20 +31,39 @@ public class GameFrame extends javax.swing.JFrame {
     javax.swing.JLabel[] guessRow5;
     
     ArrayList<JLabel[]> guesses_arr;
-    
 
+//    Variable used to store the current game state.
     GameData gameState;
 
-    
     /**
-     * Creates new GameFrame 
+     * Creates new GameFrame with no prior data
      */
     public GameFrame() {
+        gameState = new GameData(new Guess("JAVA", "STATIC", "OBJECT ORIENTED", "HIGH", 1995), new ArrayList<Guess>());
+        initializeGameFrame();
+        
+//        Syncs the view with the game state
+        syncGame();
+    }
+    
+    /**
+     * Creates new GameFrame using persistent data
+     */
+    public GameFrame(GameData previousState) {
+        gameState = previousState;
+        initializeGameFrame();
+        
+//        Syncs the view with the game state
+        syncGame();
+    }
+    
+    /**
+     * This function is shared between the parameterized and unparameterized constructors for a GameFrame object.
+     * Its use is to initialize several parts of the GameFrame to work properly
+     */
+    private void initializeGameFrame() {
         initComponents();
 
-//        Create a default game state.
-        gameState = new GameData(new Guess("Java", "STATIC", "OO", "HIGH", 1995), new ArrayList<Guess>());
-        
          /**
           * initializes arrays containing rows of guess labels 
           * sets visibility of these rows to false
@@ -101,7 +120,7 @@ public class GameFrame extends javax.swing.JFrame {
      */
     private void resetGame() {
 //        Create a default game state.
-        gameState = new GameData(new Guess("Java", "STATIC", "OO", "HIGH", 1995), new ArrayList<Guess>());
+        gameState = new GameData(new Guess("JAVA", "STATIC", "OBJECT ORIENTED", "HIGH", 1995), new ArrayList<Guess>());
         
 //        Set the guessButton to be enabled
         guessButton.setEnabled(true);
@@ -147,7 +166,6 @@ public class GameFrame extends javax.swing.JFrame {
 //      Skip 4 for now because I don't know what to do with it
         guessRow[5].setBackground(GuessHandler.matchYear(gameState.correct_guess.getYear(), guess.getYear()));
     }
-    
     
     /**
      * Sets the gamePanel view to visible

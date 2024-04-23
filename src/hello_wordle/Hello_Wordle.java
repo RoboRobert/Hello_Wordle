@@ -5,7 +5,6 @@
 package hello_wordle;
 
 import gui.GameFrame;
-import java.awt.Color;
 import persistence.JSONHandler;
 import model.GameData;
 
@@ -26,9 +25,8 @@ public class Hello_Wordle {
 //            Load the stored data.
             data = JSONHandler.load_game();
             
-//            Initialize the frame
-//            main_menu = new GameFrame(data);
-            main_menu = new GameFrame();
+//            Initialize the frame with some previous data
+            main_menu = new GameFrame(data);
             
 //            Then set the frame to be visible
             main_menu.setVisible(true);
