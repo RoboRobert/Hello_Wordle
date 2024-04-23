@@ -359,6 +359,7 @@ public class GameFrame extends javax.swing.JFrame {
                 .addContainerGap(71, Short.MAX_VALUE))
         );
 
+        winDialog.setTitle("A winner is you!");
         winDialog.setAlwaysOnTop(true);
         winDialog.setModal(true);
 
@@ -555,7 +556,7 @@ public class GameFrame extends javax.swing.JFrame {
         level.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         level.setForeground(new java.awt.Color(255, 255, 255));
         level.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        level.setText("High/Low Level");
+        level.setText("Level");
         level.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         level.setOpaque(true);
         guessPanel.add(level);
@@ -579,6 +580,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessPanel.add(direction);
 
         guess0.setBackground(new java.awt.Color(51, 51, 51));
+        guess0.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         guess0.setForeground(new java.awt.Color(255, 255, 255));
         guess0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         guess0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
@@ -586,6 +588,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessPanel.add(guess0);
 
         typing0.setBackground(new java.awt.Color(51, 51, 51));
+        typing0.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         typing0.setForeground(new java.awt.Color(255, 255, 255));
         typing0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         typing0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
@@ -593,6 +596,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessPanel.add(typing0);
 
         paradigm0.setBackground(new java.awt.Color(51, 51, 51));
+        paradigm0.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         paradigm0.setForeground(new java.awt.Color(255, 255, 255));
         paradigm0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         paradigm0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
@@ -600,6 +604,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessPanel.add(paradigm0);
 
         level0.setBackground(new java.awt.Color(51, 51, 51));
+        level0.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         level0.setForeground(new java.awt.Color(255, 255, 255));
         level0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         level0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
@@ -607,6 +612,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessPanel.add(level0);
 
         year0.setBackground(new java.awt.Color(51, 51, 51));
+        year0.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         year0.setForeground(new java.awt.Color(255, 255, 255));
         year0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         year0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
@@ -614,6 +620,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessPanel.add(year0);
 
         direction0.setBackground(new java.awt.Color(51, 51, 51));
+        direction0.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         direction0.setForeground(new java.awt.Color(255, 255, 255));
         direction0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         direction0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
@@ -621,6 +628,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessPanel.add(direction0);
 
         guess1.setBackground(new java.awt.Color(51, 51, 51));
+        guess1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         guess1.setForeground(new java.awt.Color(255, 255, 255));
         guess1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         guess1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
@@ -628,6 +636,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessPanel.add(guess1);
 
         typing1.setBackground(new java.awt.Color(51, 51, 51));
+        typing1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         typing1.setForeground(new java.awt.Color(255, 255, 255));
         typing1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         typing1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
@@ -635,6 +644,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessPanel.add(typing1);
 
         paradigm1.setBackground(new java.awt.Color(51, 51, 51));
+        paradigm1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         paradigm1.setForeground(new java.awt.Color(255, 255, 255));
         paradigm1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         paradigm1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
@@ -642,6 +652,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessPanel.add(paradigm1);
 
         level1.setBackground(new java.awt.Color(51, 51, 51));
+        level1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         level1.setForeground(new java.awt.Color(255, 255, 255));
         level1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         level1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
@@ -649,6 +660,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessPanel.add(level1);
 
         year1.setBackground(new java.awt.Color(51, 51, 51));
+        year1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         year1.setForeground(new java.awt.Color(255, 255, 255));
         year1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         year1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
@@ -656,6 +668,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessPanel.add(year1);
 
         direction1.setBackground(new java.awt.Color(51, 51, 51));
+        direction1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         direction1.setForeground(new java.awt.Color(255, 255, 255));
         direction1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         direction1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
@@ -663,6 +676,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessPanel.add(direction1);
 
         guess2.setBackground(new java.awt.Color(51, 51, 51));
+        guess2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         guess2.setForeground(new java.awt.Color(255, 255, 255));
         guess2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         guess2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
@@ -670,6 +684,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessPanel.add(guess2);
 
         typing2.setBackground(new java.awt.Color(51, 51, 51));
+        typing2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         typing2.setForeground(new java.awt.Color(255, 255, 255));
         typing2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         typing2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
@@ -677,6 +692,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessPanel.add(typing2);
 
         paradigm2.setBackground(new java.awt.Color(51, 51, 51));
+        paradigm2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         paradigm2.setForeground(new java.awt.Color(255, 255, 255));
         paradigm2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         paradigm2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
@@ -684,6 +700,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessPanel.add(paradigm2);
 
         level2.setBackground(new java.awt.Color(51, 51, 51));
+        level2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         level2.setForeground(new java.awt.Color(255, 255, 255));
         level2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         level2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
@@ -691,6 +708,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessPanel.add(level2);
 
         year2.setBackground(new java.awt.Color(51, 51, 51));
+        year2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         year2.setForeground(new java.awt.Color(255, 255, 255));
         year2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         year2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
@@ -698,6 +716,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessPanel.add(year2);
 
         direction2.setBackground(new java.awt.Color(51, 51, 51));
+        direction2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         direction2.setForeground(new java.awt.Color(255, 255, 255));
         direction2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         direction2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
@@ -705,6 +724,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessPanel.add(direction2);
 
         guess3.setBackground(new java.awt.Color(51, 51, 51));
+        guess3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         guess3.setForeground(new java.awt.Color(255, 255, 255));
         guess3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         guess3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
@@ -712,6 +732,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessPanel.add(guess3);
 
         typing3.setBackground(new java.awt.Color(51, 51, 51));
+        typing3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         typing3.setForeground(new java.awt.Color(255, 255, 255));
         typing3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         typing3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
@@ -719,6 +740,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessPanel.add(typing3);
 
         paradigm3.setBackground(new java.awt.Color(51, 51, 51));
+        paradigm3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         paradigm3.setForeground(new java.awt.Color(255, 255, 255));
         paradigm3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         paradigm3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
@@ -726,6 +748,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessPanel.add(paradigm3);
 
         level3.setBackground(new java.awt.Color(51, 51, 51));
+        level3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         level3.setForeground(new java.awt.Color(255, 255, 255));
         level3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         level3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
@@ -733,6 +756,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessPanel.add(level3);
 
         year3.setBackground(new java.awt.Color(51, 51, 51));
+        year3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         year3.setForeground(new java.awt.Color(255, 255, 255));
         year3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         year3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
@@ -740,6 +764,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessPanel.add(year3);
 
         direction3.setBackground(new java.awt.Color(51, 51, 51));
+        direction3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         direction3.setForeground(new java.awt.Color(255, 255, 255));
         direction3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         direction3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
@@ -747,6 +772,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessPanel.add(direction3);
 
         guess4.setBackground(new java.awt.Color(51, 51, 51));
+        guess4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         guess4.setForeground(new java.awt.Color(255, 255, 255));
         guess4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         guess4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
@@ -754,6 +780,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessPanel.add(guess4);
 
         typing4.setBackground(new java.awt.Color(51, 51, 51));
+        typing4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         typing4.setForeground(new java.awt.Color(255, 255, 255));
         typing4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         typing4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
@@ -761,6 +788,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessPanel.add(typing4);
 
         paradigm4.setBackground(new java.awt.Color(51, 51, 51));
+        paradigm4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         paradigm4.setForeground(new java.awt.Color(255, 255, 255));
         paradigm4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         paradigm4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
@@ -768,6 +796,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessPanel.add(paradigm4);
 
         level4.setBackground(new java.awt.Color(51, 51, 51));
+        level4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         level4.setForeground(new java.awt.Color(255, 255, 255));
         level4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         level4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
@@ -775,6 +804,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessPanel.add(level4);
 
         year4.setBackground(new java.awt.Color(51, 51, 51));
+        year4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         year4.setForeground(new java.awt.Color(255, 255, 255));
         year4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         year4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
@@ -782,6 +812,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessPanel.add(year4);
 
         direction4.setBackground(new java.awt.Color(51, 51, 51));
+        direction4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         direction4.setForeground(new java.awt.Color(255, 255, 255));
         direction4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         direction4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
@@ -789,6 +820,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessPanel.add(direction4);
 
         guess5.setBackground(new java.awt.Color(51, 51, 51));
+        guess5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         guess5.setForeground(new java.awt.Color(255, 255, 255));
         guess5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         guess5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
@@ -796,6 +828,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessPanel.add(guess5);
 
         typing5.setBackground(new java.awt.Color(51, 51, 51));
+        typing5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         typing5.setForeground(new java.awt.Color(255, 255, 255));
         typing5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         typing5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
@@ -803,6 +836,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessPanel.add(typing5);
 
         paradigm5.setBackground(new java.awt.Color(51, 51, 51));
+        paradigm5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         paradigm5.setForeground(new java.awt.Color(255, 255, 255));
         paradigm5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         paradigm5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
@@ -810,6 +844,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessPanel.add(paradigm5);
 
         level5.setBackground(new java.awt.Color(51, 51, 51));
+        level5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         level5.setForeground(new java.awt.Color(255, 255, 255));
         level5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         level5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
@@ -817,6 +852,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessPanel.add(level5);
 
         year5.setBackground(new java.awt.Color(51, 51, 51));
+        year5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         year5.setForeground(new java.awt.Color(255, 255, 255));
         year5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         year5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
@@ -824,6 +860,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessPanel.add(year5);
 
         direction5.setBackground(new java.awt.Color(51, 51, 51));
+        direction5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         direction5.setForeground(new java.awt.Color(255, 255, 255));
         direction5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         direction5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
@@ -944,6 +981,7 @@ public class GameFrame extends javax.swing.JFrame {
 //        Check if the game is over. If so, disable the guess button.
        if(gameState.gameOver())
            guessButton.setEnabled(false);
+       else guessButton.setEnabled(true);
         
         // Checks for winning guess, disables guess button and creates win popup if true
        if (userGuess.equals(gameState.correct_guess)) {
