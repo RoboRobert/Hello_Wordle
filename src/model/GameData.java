@@ -18,7 +18,6 @@ public class GameData {
      * Unparameterized Constructor
      */
     public GameData() {
-        correct_guess = new Guess();
         guesses_list = new ArrayList<Guess>();
     }
     

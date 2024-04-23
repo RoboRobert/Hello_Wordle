@@ -43,7 +43,5 @@ public class Hello_Wordle {
 //            Then set the frame to be visible
             main_menu.setVisible(true);
         }
-
-
     }
 }

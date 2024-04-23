@@ -18,23 +18,13 @@ public class GuessHandler {
     private static final Color MY_GRAY = new Color(51,51,51);
     private static final Color MY_GREEN = new Color(0, 153, 0);
     private static final Color MY_YELLOW = new Color(218, 205, 56);
-    /**
-     * Randomly picks a possible programming language from the database
-     * @return Returns a String representing the name of the guess generated
-     */
-    public static Guess generateGuess() {
-//        TODO Add implementation
-        return new Guess();
-    }
-    
     
     /**
-     * Returns the Guess object that corresponds to the name queried (currently only returns java)
+     * Returns the Guess object that corresponds to the name queried
      * @param name
-     * @return 
+     * @return a Guess object from LanguageArray
      */
     public static Guess getGuess(String name) {
-//        TODO Add implementation
 //      Grabs a matching guess object from the language array
         Guess returnGuess = LanguageArray.fetchLanguage(name);
 

@@ -31,16 +31,11 @@ public class JSONHandler {
         JSONArray guesses_array = new JSONArray();
         
 //        Puts the previous correct guess into the data object
-        data_object.put("correct_guess", data.correct_guess.name);
+        data_object.put("correct_guess", convertToJSON(data.correct_guess));
         
 //        Loops through each guesse in guesses_list and adds it to an object to store in the guesses_array
         for(Guess guess : data.guesses_list) {
-            JSONObject guess_object = new JSONObject();
-            guess_object.put("name", guess.name);
-            guess_object.put("typing", guess.typing);
-            guess_object.put("paradigm", guess.paradigm);
-            guess_object.put("level", guess.level);
-            guess_object.put("year", Integer.toString(guess.year));
+            JSONObject guess_object = convertToJSON(guess);
             
             guesses_array.add(guess_object);
         }
@@ -92,21 +87,14 @@ public class JSONHandler {
 //                Casts each Object in the JSONArray to a JSONObject
                 JSONObject guess_obj = (JSONObject)obj;
                 
-//                New guess object to store data in
-                Guess current_guess = new Guess();
-                
-//                Puts data from corresponding keys in the JSON into the guess object
-                current_guess.name = guess_obj.get("name").toString();
-                current_guess.typing = guess_obj.get("typing").toString();
-                current_guess.paradigm = guess_obj.get("paradigm").toString();
-                current_guess.level = guess_obj.get("level").toString();
-                current_guess.year = Integer.parseInt(guess_obj.get("year").toString());
+//                Takes the JSON and converts it into a Guess object
+                Guess current_guess = convertToGuess(guess_obj);
                 
                 return_data.guesses_list.add(current_guess);
             }
             
 //            Read the previous correct guess from the stored data
-            return_data.correct_guess.name = jsonObject.get("correct_guess").toString();
+            return_data.correct_guess = convertToGuess((JSONObject)jsonObject.get("correct_guess"));
             
 //            Close the input file
             input_file.close();
@@ -117,6 +105,40 @@ public class JSONHandler {
         
 //        Return the retrieved gameData information
         return return_data;
+    }
+    
+    
+    /**
+     * Converts a JSONobject to a Guess object
+     */
+    private static Guess convertToGuess(JSONObject object) {
+//                Puts data from corresponding keys in the JSON into the guess object
+                String temp_name = object.get("name").toString();
+                String temp_typing = object.get("typing").toString();
+                String temp_paradigm = object.get("paradigm").toString();
+                String temp_level = object.get("level").toString();
+                int temp_year = Integer.parseInt(object.get("year").toString());
+                
+//                New guess object to store data in
+                Guess return_guess = new Guess(temp_name, temp_typing, temp_paradigm, temp_level, temp_year);
+                
+                return return_guess;
+    }
+    
+    /**
+     * Converts a JSONobject to a Guess object
+     */
+    private static JSONObject convertToJSON(Guess guessObject) {
+//            The JSONObject to return
+            JSONObject return_object = new JSONObject();
+            
+            return_object.put("name", guessObject.getName());
+            return_object.put("typing", guessObject.getTyping());
+            return_object.put("paradigm", guessObject.getParadigmName());
+            return_object.put("level", guessObject.getLevel());
+            return_object.put("year", Integer.toString(guessObject.getYear()));
+            
+            return return_object;
     }
     
     /**

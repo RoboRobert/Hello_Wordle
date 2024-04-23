@@ -126,13 +126,11 @@ public class GameFrame extends javax.swing.JFrame {
     /**
      * Handles setting name, typing, paradigm, level, test and year of a guess row
      */
-
-    private void setGuess(JLabel[] guessRow, Guess guess) {
+    private void setRowText(JLabel[] guessRow, Guess guess) {
         guessRow[0].setText(guess.getName()); 
         guessRow[1].setText(guess.getTyping());
         guessRow[2].setText(guess.getParadigmName());
         guessRow[3].setText(guess.getLevel());
-
         guessRow[4].setText("test");
         String yearString = Integer.toString(guess.getYear());
         guessRow[5].setText(yearString);
@@ -141,15 +139,13 @@ public class GameFrame extends javax.swing.JFrame {
     /**
      * Handles setting the colors of rows based on the input guess and the correct guess.
      */
-
-    private void setColors(JLabel[] guessRow, Guess guess) {
-        guessRow[0].setBackground(GuessHandler.matchName(correctGuess.getName(), guess.getName()));
-        guessRow[1].setBackground(GuessHandler.matchTyping(correctGuess.getTyping(), guess.getTyping()));
-        guessRow[2].setBackground(GuessHandler.matchParadigm(correctGuess.getParadigmID(), guess.getParadigmID()));
-        guessRow[3].setBackground(GuessHandler.matchLevel(correctGuess.getLevel(), guess.getLevel()));
+    private void setRowColors(JLabel[] guessRow, Guess guess) {
+        guessRow[0].setBackground(GuessHandler.matchName(gameState.correct_guess.getName(), guess.getName()));
+        guessRow[1].setBackground(GuessHandler.matchTyping(gameState.correct_guess.getTyping(), guess.getTyping()));
+        guessRow[2].setBackground(GuessHandler.matchParadigm(gameState.correct_guess.getParadigmID(), guess.getParadigmID()));
+        guessRow[3].setBackground(GuessHandler.matchLevel(gameState.correct_guess.getLevel(), guess.getLevel()));
 //      Skip 4 for now because I don't know what to do with it
-        guessRow[5].setBackground(GuessHandler.matchYear(correctGuess.getYear(), guess.getYear()));
-
+        guessRow[5].setBackground(GuessHandler.matchYear(gameState.correct_guess.getYear(), guess.getYear()));
     }
     
     
@@ -796,14 +792,14 @@ public class GameFrame extends javax.swing.JFrame {
      * This function activates when the user inputs a guess. It  will update the model with the data, then update the view with the model's output
      */
     private void guessButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessButtonActionPerformed
-        //this part should call the guessing method
+
+//        Gets the guess from the combo box
         String guess = (String) jComboBox1.getSelectedItem();
         
 //        Gets the full Guess data from GuessHandler
 
-//        NOTE: CURRENTLY ONLY RETURNS DATA FOR JAVA, fix soon :)
-//        Fixed it only returning for java, but html will return null for now
 
+//        Fixed it only returning for java, but html will return null for now
         Guess userGuess = GuessHandler.getGuess(guess);
         
 //        Add the user's guess to the game state 
@@ -812,24 +808,14 @@ public class GameFrame extends javax.swing.JFrame {
 //        Then sync the view with the game model
         syncGame();
 
-
         
 //        Checks for winning guess, sends user to win screen if true
-       Boolean correctMatch = GuessHandler.matchGuess(userGuess, correctGuess);
+       Boolean correctMatch = GuessHandler.matchGuess(userGuess, gameState.correct_guess);
        if (correctMatch == true)
            selectWinView();
        
-//        Sets the guess strings appropriately based on the user's input
-        setGuess(guesses_arr.get(guessCount), userGuess);
-
-//        Sets the colors appropriately based on correct guesses
-        setColors(guesses_arr.get(guessCount), userGuess);
-
-        //        Makes the next guess row visible.
-        guessVisibility(true, guesses_arr.get(guessCount));
-
-        //        Adds 1 to the guesscount
-        guessCount+=1;
+//       The number of guesses made is the size of the list of guesses made.
+       int guessCount = gameState.guesses_list.size();
 
         //        If there have been 6 guesses, then make the guess button unclickable.
         if(guessCount > 5) {

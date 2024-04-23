@@ -19,14 +19,15 @@ public class Guess {
     private int year; 
     
     /**
-     * Default constructor if you want to assemble the Guess object later
+     * Unparameterized constructor for setting all the values at once
      */
     public Guess() {
         name = "";
         typing = "";
-        paradigm = "";
+        paradigmID = 0;
+        paradigmName = "";
         level = "";
-        year = 1970;
+        year = 0;
     }
     
     /**
@@ -41,15 +42,11 @@ public class Guess {
         name = nameIn;
         typing = typingIn;
         paradigmName = paradigmNameIn;
+        paradigmID = findParadigmID();
         level = levelIn;
         year = yearIn;
     }
     
-    /**
-     * Returns whether two guesses are equal
-     * @param other the guess to compare the current guess to
-     * @return a boolean representing equality
-     */
     public String getName()
     {
         return name;
@@ -60,16 +57,37 @@ public class Guess {
         return typing;
     }
     
-    public int getParadigmID()
-    {
+    private int findParadigmID() {
+        int return_id = 0;
+        
         switch(paradigmName)
         {
-            case "PROCEDURAL" -> paradigmID = 1;
-            case "STRUCTURED" -> paradigmID = 2;
-            case "OBJECT ORIENTED" -> paradigmID = 3;
-            case "FUNCTIONAL" -> paradigmID = 4;
-            case "LOGIC" -> paradigmID = 5;
+            case "PROCEDURAL": 
+                return_id = 1;
+                break;
+                
+            case "STRUCTURED": 
+                return_id = 2;
+                break;
+                
+            case "OBJECT ORIENTED": 
+                return_id = 3;
+                break;
+                
+            case "FUNCTIONAL":
+                return_id = 4;
+                break;
+                
+            case "LOGIC":
+                return_id = 5;
+                break;
         }
+        
+        return return_id;
+    }
+    
+    public int getParadigmID()
+    {
         return paradigmID;
     }
     
@@ -88,6 +106,12 @@ public class Guess {
         return year;
     }
     
+    
+    /**
+     * Returns whether two guesses are equal
+     * @param other the guess to compare the current guess to
+     * @return a boolean representing equality
+     */
     public boolean equals(Guess other) {
         if(name == other.name) {
             return true;
@@ -104,7 +128,7 @@ public class Guess {
         
         return_string += "Name: " + name + "\n";
         return_string += "Typing: " + typing + "\n";
-        return_string += "Paradigm: " + paradigm + "\n";
+        return_string += "Paradigm: " + paradigmName + "\n";
         return_string += "Level: " + level + "\n";
         return_string += "Year: " + year;
         
