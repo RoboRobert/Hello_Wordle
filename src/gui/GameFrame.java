@@ -296,14 +296,17 @@ public class GameFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         repeatGuessWindow = new javax.swing.JDialog();
         guessErrorText = new javax.swing.JTextField();
         winDialog = new javax.swing.JDialog();
+        winDialogCenteredPanel = new javax.swing.JPanel();
         winText = new javax.swing.JTextField();
         winToMainMenu = new javax.swing.JButton();
         playAgainButton = new javax.swing.JButton();
         loseDialog = new javax.swing.JDialog();
+        loseDialogCenteredPanel = new javax.swing.JPanel();
         loseText = new javax.swing.JTextField();
         loseToMainMenu = new javax.swing.JButton();
         playAgainButton1 = new javax.swing.JButton();
@@ -404,6 +407,9 @@ public class GameFrame extends javax.swing.JFrame {
         winDialog.setTitle("A winner is you!");
         winDialog.setAlwaysOnTop(true);
         winDialog.setModal(true);
+        winDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        winDialogCenteredPanel.setBackground(new java.awt.Color(51, 51, 51));
 
         winText.setEditable(false);
         winText.setBackground(new java.awt.Color(51, 51, 51));
@@ -440,36 +446,45 @@ public class GameFrame extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout winDialogLayout = new javax.swing.GroupLayout(winDialog.getContentPane());
-        winDialog.getContentPane().setLayout(winDialogLayout);
-        winDialogLayout.setHorizontalGroup(
-            winDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(winDialogLayout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addGroup(winDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, winDialogLayout.createSequentialGroup()
-                        .addGroup(winDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(winToMainMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(playAgainButton, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(42, 42, 42))
-                    .addComponent(winText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(80, 80, 80))
+        javax.swing.GroupLayout winDialogCenteredPanelLayout = new javax.swing.GroupLayout(winDialogCenteredPanel);
+        winDialogCenteredPanel.setLayout(winDialogCenteredPanelLayout);
+        winDialogCenteredPanelLayout.setHorizontalGroup(
+            winDialogCenteredPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 238, Short.MAX_VALUE)
+            .addGroup(winDialogCenteredPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(winDialogCenteredPanelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(winDialogCenteredPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(winText, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(winDialogCenteredPanelLayout.createSequentialGroup()
+                            .addGroup(winDialogCenteredPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(winToMainMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(playAgainButton, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(42, 42, 42)))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
-        winDialogLayout.setVerticalGroup(
-            winDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(winDialogLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(winText, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(playAgainButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(winToMainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+        winDialogCenteredPanelLayout.setVerticalGroup(
+            winDialogCenteredPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 209, Short.MAX_VALUE)
+            .addGroup(winDialogCenteredPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(winDialogCenteredPanelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(winText, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(playAgainButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(winToMainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
+
+        winDialog.getContentPane().add(winDialogCenteredPanel, new java.awt.GridBagConstraints());
 
         loseDialog.setTitle("A loser is you!");
         loseDialog.setAlwaysOnTop(true);
         loseDialog.setModal(true);
+        loseDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        loseDialogCenteredPanel.setBackground(new java.awt.Color(51, 51, 51));
 
         loseText.setEditable(false);
         loseText.setBackground(new java.awt.Color(51, 51, 51));
@@ -544,48 +559,58 @@ public class GameFrame extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout loseDialogLayout = new javax.swing.GroupLayout(loseDialog.getContentPane());
-        loseDialog.getContentPane().setLayout(loseDialogLayout);
-        loseDialogLayout.setHorizontalGroup(
-            loseDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(loseDialogLayout.createSequentialGroup()
-                .addGroup(loseDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(loseDialogLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(loseText, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE))
-                    .addGroup(loseDialogLayout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addGroup(loseDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(loseText2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(loseDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(correctLanguageText)
-                                .addComponent(loseText1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(loseDialogLayout.createSequentialGroup()
-                .addGap(115, 115, 115)
-                .addGroup(loseDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(loseToMainMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(playAgainButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        javax.swing.GroupLayout loseDialogCenteredPanelLayout = new javax.swing.GroupLayout(loseDialogCenteredPanel);
+        loseDialogCenteredPanel.setLayout(loseDialogCenteredPanelLayout);
+        loseDialogCenteredPanelLayout.setHorizontalGroup(
+            loseDialogCenteredPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 380, Short.MAX_VALUE)
+            .addGroup(loseDialogCenteredPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(loseDialogCenteredPanelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(loseDialogCenteredPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(loseText)
+                        .addGroup(loseDialogCenteredPanelLayout.createSequentialGroup()
+                            .addGap(38, 38, 38)
+                            .addGroup(loseDialogCenteredPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(loseText2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(loseDialogCenteredPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(correctLanguageText)
+                                    .addComponent(loseText1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(loseDialogCenteredPanelLayout.createSequentialGroup()
+                            .addGap(109, 109, 109)
+                            .addGroup(loseDialogCenteredPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(loseToMainMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(playAgainButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(118, 118, 118)))
+                    .addContainerGap()))
         );
-        loseDialogLayout.setVerticalGroup(
-            loseDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(loseDialogLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(loseText, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(loseText2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(correctLanguageText, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(loseText1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(playAgainButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(loseToMainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+        loseDialogCenteredPanelLayout.setVerticalGroup(
+            loseDialogCenteredPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 356, Short.MAX_VALUE)
+            .addGroup(loseDialogCenteredPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(loseDialogCenteredPanelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(loseText, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(loseText2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(correctLanguageText, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(loseText1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(playAgainButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(loseToMainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(14, 6, 17, 6);
+        loseDialog.getContentPane().add(loseDialogCenteredPanel, gridBagConstraints);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hello Wordle");
@@ -1065,36 +1090,35 @@ public class GameFrame extends javax.swing.JFrame {
             .addGroup(gameCenteredPanelLayout.createSequentialGroup()
                 .addGroup(gameCenteredPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(gameCenteredPanelLayout.createSequentialGroup()
-                        .addGap(390, 390, 390)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(guessButton, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(gameCenteredPanelLayout.createSequentialGroup()
-                        .addGap(86, 86, 86)
+                        .addGap(43, 43, 43)
                         .addComponent(guessPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 915, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(gameCenteredPanelLayout.createSequentialGroup()
-                        .addGap(433, 433, 433)
-                        .addComponent(promptLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gameCenteredPanelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(gameToMainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(390, 390, 390))
+                        .addGap(420, 420, 420)
+                        .addComponent(gameToMainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(gameCenteredPanelLayout.createSequentialGroup()
+                        .addGap(389, 389, 389)
+                        .addComponent(promptLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(gameCenteredPanelLayout.createSequentialGroup()
+                        .addGap(345, 345, 345)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(guessButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         gameCenteredPanelLayout.setVerticalGroup(
             gameCenteredPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(gameCenteredPanelLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addContainerGap()
                 .addComponent(promptLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(gameCenteredPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addGroup(gameCenteredPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                     .addComponent(guessButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(guessPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(gameToMainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(12, 12, 12))
         );
 
         jComboBox1.getAccessibleContext().setAccessibleDescription("");
@@ -1309,6 +1333,7 @@ public class GameFrame extends javax.swing.JFrame {
     private javax.swing.JLabel level4;
     private javax.swing.JLabel level5;
     private javax.swing.JDialog loseDialog;
+    private javax.swing.JPanel loseDialogCenteredPanel;
     private javax.swing.JTextField loseText;
     private javax.swing.JTextField loseText1;
     private javax.swing.JTextField loseText2;
@@ -1336,6 +1361,7 @@ public class GameFrame extends javax.swing.JFrame {
     private javax.swing.JLabel typing4;
     private javax.swing.JLabel typing5;
     private javax.swing.JDialog winDialog;
+    private javax.swing.JPanel winDialogCenteredPanel;
     private javax.swing.JTextField winText;
     private javax.swing.JButton winToMainMenu;
     private javax.swing.JLabel year0;
