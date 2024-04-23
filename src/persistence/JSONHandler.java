@@ -155,6 +155,34 @@ public class JSONHandler {
             return false;
         }
         
+//        If the file has no entered guesses, then return false.
+        try {
+//            Creates a JSON parser object
+            JSONParser parser = new JSONParser();
+
+//            Reads in the file            
+            FileReader input_file = new FileReader(path);
+            
+//            Parses it into an object using the JSON parser
+            Object parsedObject = parser.parse(input_file);
+
+//            Casts the parsed data into a JSON Object
+            JSONObject jsonObject = (JSONObject) parsedObject;
+            
+//            Retrieves the list of JSON guesses from the main object
+            JSONArray json_guesses = (JSONArray) jsonObject.get("guesses_list");
+            
+            if(json_guesses.isEmpty()) {
+                return false;
+            }
+            
+//            Close the input file
+            input_file.close();
+            
+        } catch (Exception e) {
+            System.out.println("Error loading data: \n" + e);
+        }
+        
 //        If all checks pass, then return true.
         return true;
     }

@@ -49,6 +49,23 @@ public class GameData {
     }
     
     /**
+     * Checks if the game is over
+     */
+    public boolean gameOver() {
+        boolean return_value = false;
+        
+//        If there are 6 guesses, return true.
+        if(guesses_list.size() > 5)
+           return true;
+        
+//        If the most recent guess was correct, return true.
+        if(guesses_list.getLast().equals(correct_guess))
+            return true;
+        
+        return return_value;
+    }
+    
+    /**
      * Method to print all of the game state cleanly
      */
     public void print_data() {

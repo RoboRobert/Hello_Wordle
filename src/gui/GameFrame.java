@@ -82,8 +82,9 @@ public class GameFrame extends javax.swing.JFrame {
             }
         });
         
-//        Sets the background color of the repeat guess error because the form editor doesn't let me
+//        Sets the background color of JDialog boxes because the form editor doesn't let me
         repeatGuessWindow.getContentPane().setBackground(MY_GRAY);
+        winDialog.getContentPane().setBackground(MY_GRAY);
     }
     
     /**
@@ -102,22 +103,21 @@ public class GameFrame extends javax.swing.JFrame {
 //          Then adds each array to an ArrayList of arrays
         guesses_arr = new ArrayList<JLabel[]>();
         
-        guessRow0 = new javax.swing.JLabel[]{guess0, typing0, paradigm0, level0, test0, year0};
+        guessRow0 = new javax.swing.JLabel[]{guess0, typing0, paradigm0, level0, year0, direction0,};
         guesses_arr.add(guessRow0);
-        guessRow1 = new javax.swing.JLabel[]{guess1, typing1, paradigm1, level1, test1, year1};
+        guessRow1 = new javax.swing.JLabel[]{guess1, typing1, paradigm1, level1, year1, direction1};
         guesses_arr.add(guessRow1);
-        guessRow2 = new javax.swing.JLabel[]{guess2, typing2, paradigm2, level2, test2, year2};
+        guessRow2 = new javax.swing.JLabel[]{guess2, typing2, paradigm2, level2, year2, direction2};
         guesses_arr.add(guessRow2);
-        guessRow3 = new javax.swing.JLabel[]{guess3, typing3, paradigm3, level3, test3, year3};
+        guessRow3 = new javax.swing.JLabel[]{guess3, typing3, paradigm3, level3, year3, direction3};
         guesses_arr.add(guessRow3);
-        guessRow4 = new javax.swing.JLabel[]{guess4, typing4, paradigm4, level4, test4, year4};
+        guessRow4 = new javax.swing.JLabel[]{guess4, typing4, paradigm4, level4, year4, direction4};
         guesses_arr.add(guessRow4);
-        guessRow5 = new javax.swing.JLabel[]{guess5, typing5, paradigm5, level5, test5, year5};
+        guessRow5 = new javax.swing.JLabel[]{guess5, typing5, paradigm5, level5, year5, direction5};
         guesses_arr.add(guessRow5);
         
 //        Makes the main menu the only visible panel at the start
         gamePanel.setVisible(false);
-        winPanel.setVisible(false);
         menuPanel.setVisible(true);
         
         //        Make sure the size takes from the preferred size, then move to the middle of the screen
@@ -150,9 +150,12 @@ public class GameFrame extends javax.swing.JFrame {
      * Resets the game state to default, then calls syncGame() to sync the view with the model
      */
     private void resetGame() {
+//        Used for getting a random language from the list
         SelectLanguage randomLanguage = new SelectLanguage();
+        
 //        Create a default game state.
-        gameState = new GameData(randomLanguage.getCorrectAnswer(), new ArrayList<Guess>());
+//        gameState = new GameData(randomLanguage.getCorrectAnswer(), new ArrayList<Guess>());
+          gameState = new GameData(new Guess("JAVA", "STATIC", "OBJECT ORIENTED", "HIGH", 1995), new ArrayList<Guess>());
         
 //        Set the guessButton to be enabled
         guessButton.setEnabled(true);
@@ -180,9 +183,9 @@ public class GameFrame extends javax.swing.JFrame {
         guessRow[1].setText(guess.getTyping());
         guessRow[2].setText(guess.getParadigmName());
         guessRow[3].setText(guess.getLevel());
-        guessRow[4].setText("test");
         String yearString = Integer.toString(guess.getYear());
-        guessRow[5].setText(yearString);
+        guessRow[4].setText(yearString);
+        guessRow[5].setText("test");
     }
     
     /**
@@ -193,8 +196,9 @@ public class GameFrame extends javax.swing.JFrame {
         guessRow[1].setBackground(GuessHandler.matchTyping(gameState.correct_guess.getTyping(), guess.getTyping()));
         guessRow[2].setBackground(GuessHandler.matchParadigm(gameState.correct_guess.getParadigmID(), guess.getParadigmID()));
         guessRow[3].setBackground(GuessHandler.matchLevel(gameState.correct_guess.getLevel(), guess.getLevel()));
-//      Skip 4 for now because I don't know what to do with it
-        guessRow[5].setBackground(GuessHandler.matchYear(gameState.correct_guess.getYear(), guess.getYear()));
+        guessRow[4].setBackground(GuessHandler.matchYear(gameState.correct_guess.getYear(), guess.getYear()));
+//      Skip 5 for now because I don't know what to do with it
+        
     }
     
     /**
@@ -212,19 +216,33 @@ public class GameFrame extends javax.swing.JFrame {
      */
     private void selectMainView() {
         //Switch to the main menu
-        winPanel.setVisible(false);
+        gamePanel.setVisible(false);
         menuPanel.setVisible(true);
         this.pack();
     }
     
     /**
-     * Sets the win menu view to visible
+     * Shows the repeated guess error dialog
      */
-    private void selectWinView() {
-        //Change to the win menu
-        winPanel.setVisible(true);
-        gamePanel.setVisible(false);
-        this.pack();
+    private void showGuessError() {
+//        Sets the repeat guess window to default to the center of the screen.
+            repeatGuessWindow.pack();
+            repeatGuessWindow.setLocationRelativeTo(null);
+            
+//            Makes it visible
+            repeatGuessWindow.setVisible(true);
+    }
+    
+    /**
+     * Shows the win dialog
+     */
+    private void showWinDialog() {
+//        Sets the repeat guess window to default to the center of the screen.
+            winDialog.pack();
+            winDialog.setLocationRelativeTo(null);
+            
+//            Makes it visible
+            winDialog.setVisible(true);
     }
     
     /**
@@ -246,6 +264,10 @@ public class GameFrame extends javax.swing.JFrame {
 
         repeatGuessWindow = new javax.swing.JDialog();
         guessErrorText = new javax.swing.JTextField();
+        winDialog = new javax.swing.JDialog();
+        winText = new javax.swing.JTextField();
+        winToMainMenu = new javax.swing.JButton();
+        playAgainButton = new javax.swing.JButton();
         menuPanel = new javax.swing.JPanel();
         newGameButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
@@ -260,50 +282,46 @@ public class GameFrame extends javax.swing.JFrame {
         typing = new javax.swing.JLabel();
         paradigm = new javax.swing.JLabel();
         level = new javax.swing.JLabel();
-        test = new javax.swing.JLabel();
         yearCreated = new javax.swing.JLabel();
+        direction = new javax.swing.JLabel();
         guess0 = new javax.swing.JLabel();
         typing0 = new javax.swing.JLabel();
         paradigm0 = new javax.swing.JLabel();
         level0 = new javax.swing.JLabel();
-        test0 = new javax.swing.JLabel();
         year0 = new javax.swing.JLabel();
+        direction0 = new javax.swing.JLabel();
         guess1 = new javax.swing.JLabel();
         typing1 = new javax.swing.JLabel();
         paradigm1 = new javax.swing.JLabel();
         level1 = new javax.swing.JLabel();
-        test1 = new javax.swing.JLabel();
         year1 = new javax.swing.JLabel();
+        direction1 = new javax.swing.JLabel();
         guess2 = new javax.swing.JLabel();
         typing2 = new javax.swing.JLabel();
         paradigm2 = new javax.swing.JLabel();
         level2 = new javax.swing.JLabel();
-        test2 = new javax.swing.JLabel();
         year2 = new javax.swing.JLabel();
+        direction2 = new javax.swing.JLabel();
         guess3 = new javax.swing.JLabel();
         typing3 = new javax.swing.JLabel();
         paradigm3 = new javax.swing.JLabel();
         level3 = new javax.swing.JLabel();
-        test3 = new javax.swing.JLabel();
         year3 = new javax.swing.JLabel();
+        direction3 = new javax.swing.JLabel();
         guess4 = new javax.swing.JLabel();
         typing4 = new javax.swing.JLabel();
         paradigm4 = new javax.swing.JLabel();
         level4 = new javax.swing.JLabel();
-        test4 = new javax.swing.JLabel();
         year4 = new javax.swing.JLabel();
+        direction4 = new javax.swing.JLabel();
         guess5 = new javax.swing.JLabel();
         typing5 = new javax.swing.JLabel();
         paradigm5 = new javax.swing.JLabel();
         level5 = new javax.swing.JLabel();
-        test5 = new javax.swing.JLabel();
         year5 = new javax.swing.JLabel();
-        winPanel = new javax.swing.JPanel();
-        winLabel = new javax.swing.JLabel();
-        mainMenuButton = new javax.swing.JButton();
-        quitButton = new javax.swing.JButton();
+        direction5 = new javax.swing.JLabel();
+        gameToMainMenu = new javax.swing.JButton();
 
-        repeatGuessWindow.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         repeatGuessWindow.setTitle("No repeat guesses!");
         repeatGuessWindow.setAlwaysOnTop(true);
         repeatGuessWindow.setBackground(new java.awt.Color(51, 51, 51));
@@ -341,12 +359,77 @@ public class GameFrame extends javax.swing.JFrame {
                 .addContainerGap(71, Short.MAX_VALUE))
         );
 
+        winDialog.setAlwaysOnTop(true);
+        winDialog.setModal(true);
+
+        winText.setBackground(new java.awt.Color(51, 51, 51));
+        winText.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        winText.setForeground(new java.awt.Color(255, 255, 255));
+        winText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        winText.setText("You Won!");
+        winText.setBorder(null);
+        winText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                winTextActionPerformed(evt);
+            }
+        });
+
+        winToMainMenu.setBackground(new java.awt.Color(102, 102, 102));
+        winToMainMenu.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        winToMainMenu.setForeground(new java.awt.Color(255, 255, 255));
+        winToMainMenu.setText("Main Menu");
+        winToMainMenu.setRolloverEnabled(false);
+        winToMainMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                winToMainMenuActionPerformed(evt);
+            }
+        });
+
+        playAgainButton.setBackground(new java.awt.Color(102, 102, 102));
+        playAgainButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        playAgainButton.setForeground(new java.awt.Color(255, 255, 255));
+        playAgainButton.setText("Play Again");
+        playAgainButton.setRolloverEnabled(false);
+        playAgainButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                playAgainButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout winDialogLayout = new javax.swing.GroupLayout(winDialog.getContentPane());
+        winDialog.getContentPane().setLayout(winDialogLayout);
+        winDialogLayout.setHorizontalGroup(
+            winDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(winDialogLayout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addGroup(winDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, winDialogLayout.createSequentialGroup()
+                        .addGroup(winDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(winToMainMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(playAgainButton, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(42, 42, 42))
+                    .addComponent(winText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(80, 80, 80))
+        );
+        winDialogLayout.setVerticalGroup(
+            winDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(winDialogLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(winText, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(playAgainButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(winToMainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hello Wordle");
 
         menuPanel.setBackground(new java.awt.Color(51, 51, 51));
 
         newGameButton.setBackground(new java.awt.Color(102, 102, 102));
+        newGameButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         newGameButton.setForeground(java.awt.Color.white);
         newGameButton.setText("New Game");
         newGameButton.setDefaultCapable(false);
@@ -358,6 +441,7 @@ public class GameFrame extends javax.swing.JFrame {
         });
 
         exitButton.setBackground(new java.awt.Color(102, 102, 102));
+        exitButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         exitButton.setForeground(java.awt.Color.white);
         exitButton.setText("Exit");
         exitButton.setRolloverEnabled(false);
@@ -367,11 +451,12 @@ public class GameFrame extends javax.swing.JFrame {
             }
         });
 
-        promptLabel1.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
+        promptLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         promptLabel1.setForeground(new java.awt.Color(255, 255, 255));
         promptLabel1.setText("Hello Wordle");
 
         continueButton.setBackground(new java.awt.Color(102, 102, 102));
+        continueButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         continueButton.setForeground(java.awt.Color.white);
         continueButton.setText("Continue");
         continueButton.setRolloverEnabled(false);
@@ -385,19 +470,19 @@ public class GameFrame extends javax.swing.JFrame {
         menuPanel.setLayout(menuPanelLayout);
         menuPanelLayout.setHorizontalGroup(
             menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuPanelLayout.createSequentialGroup()
-                .addContainerGap(455, Short.MAX_VALUE)
+            .addGroup(menuPanelLayout.createSequentialGroup()
+                .addGap(390, 390, 390)
                 .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(newGameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(promptLabel1)
                     .addComponent(continueButton, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(447, 447, 447))
+                .addContainerGap(408, Short.MAX_VALUE))
         );
         menuPanelLayout.setVerticalGroup(
             menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuPanelLayout.createSequentialGroup()
-                .addGap(273, 273, 273)
+                .addGap(228, 228, 228)
                 .addComponent(promptLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(newGameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -405,12 +490,13 @@ public class GameFrame extends javax.swing.JFrame {
                 .addComponent(continueButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(310, Short.MAX_VALUE))
+                .addContainerGap(295, Short.MAX_VALUE))
         );
 
         gamePanel.setBackground(new java.awt.Color(51, 51, 51));
 
         jComboBox1.setBackground(new java.awt.Color(102, 102, 102));
+        jComboBox1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Python", "C++", "Java" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -420,6 +506,7 @@ public class GameFrame extends javax.swing.JFrame {
         });
 
         guessButton.setBackground(new java.awt.Color(102, 102, 102));
+        guessButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         guessButton.setForeground(new java.awt.Color(255, 255, 255));
         guessButton.setText("Guess");
         guessButton.setRolloverEnabled(false);
@@ -429,14 +516,16 @@ public class GameFrame extends javax.swing.JFrame {
             }
         });
 
-        promptLabel.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
+        promptLabel.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         promptLabel.setForeground(new java.awt.Color(255, 255, 255));
+        promptLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         promptLabel.setText("Hello Wordle");
 
         guessPanel.setBackground(new java.awt.Color(51, 51, 51));
-        guessPanel.setLayout(new java.awt.GridLayout(8, 6, 4, 4));
+        guessPanel.setLayout(new java.awt.GridLayout(7, 6, 4, 4));
 
         guess.setBackground(new java.awt.Color(153, 153, 153));
+        guess.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         guess.setForeground(new java.awt.Color(255, 255, 255));
         guess.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         guess.setText("Guess");
@@ -445,6 +534,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessPanel.add(guess);
 
         typing.setBackground(new java.awt.Color(153, 153, 153));
+        typing.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         typing.setForeground(new java.awt.Color(255, 255, 255));
         typing.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         typing.setText("Typing");
@@ -453,6 +543,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessPanel.add(typing);
 
         paradigm.setBackground(new java.awt.Color(153, 153, 153));
+        paradigm.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         paradigm.setForeground(new java.awt.Color(255, 255, 255));
         paradigm.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         paradigm.setText("Paradigm");
@@ -461,6 +552,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessPanel.add(paradigm);
 
         level.setBackground(new java.awt.Color(153, 153, 153));
+        level.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         level.setForeground(new java.awt.Color(255, 255, 255));
         level.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         level.setText("High/Low Level");
@@ -468,21 +560,23 @@ public class GameFrame extends javax.swing.JFrame {
         level.setOpaque(true);
         guessPanel.add(level);
 
-        test.setBackground(new java.awt.Color(153, 153, 153));
-        test.setForeground(new java.awt.Color(255, 255, 255));
-        test.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        test.setText("test");
-        test.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
-        test.setOpaque(true);
-        guessPanel.add(test);
-
         yearCreated.setBackground(new java.awt.Color(153, 153, 153));
+        yearCreated.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         yearCreated.setForeground(new java.awt.Color(255, 255, 255));
         yearCreated.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         yearCreated.setText("Year Created");
         yearCreated.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         yearCreated.setOpaque(true);
         guessPanel.add(yearCreated);
+
+        direction.setBackground(new java.awt.Color(153, 153, 153));
+        direction.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        direction.setForeground(new java.awt.Color(255, 255, 255));
+        direction.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        direction.setText("Year Direction");
+        direction.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
+        direction.setOpaque(true);
+        guessPanel.add(direction);
 
         guess0.setBackground(new java.awt.Color(51, 51, 51));
         guess0.setForeground(new java.awt.Color(255, 255, 255));
@@ -512,19 +606,19 @@ public class GameFrame extends javax.swing.JFrame {
         level0.setOpaque(true);
         guessPanel.add(level0);
 
-        test0.setBackground(new java.awt.Color(51, 51, 51));
-        test0.setForeground(new java.awt.Color(255, 255, 255));
-        test0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        test0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
-        test0.setOpaque(true);
-        guessPanel.add(test0);
-
         year0.setBackground(new java.awt.Color(51, 51, 51));
         year0.setForeground(new java.awt.Color(255, 255, 255));
         year0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         year0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         year0.setOpaque(true);
         guessPanel.add(year0);
+
+        direction0.setBackground(new java.awt.Color(51, 51, 51));
+        direction0.setForeground(new java.awt.Color(255, 255, 255));
+        direction0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        direction0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
+        direction0.setOpaque(true);
+        guessPanel.add(direction0);
 
         guess1.setBackground(new java.awt.Color(51, 51, 51));
         guess1.setForeground(new java.awt.Color(255, 255, 255));
@@ -554,19 +648,19 @@ public class GameFrame extends javax.swing.JFrame {
         level1.setOpaque(true);
         guessPanel.add(level1);
 
-        test1.setBackground(new java.awt.Color(51, 51, 51));
-        test1.setForeground(new java.awt.Color(255, 255, 255));
-        test1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        test1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
-        test1.setOpaque(true);
-        guessPanel.add(test1);
-
         year1.setBackground(new java.awt.Color(51, 51, 51));
         year1.setForeground(new java.awt.Color(255, 255, 255));
         year1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         year1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         year1.setOpaque(true);
         guessPanel.add(year1);
+
+        direction1.setBackground(new java.awt.Color(51, 51, 51));
+        direction1.setForeground(new java.awt.Color(255, 255, 255));
+        direction1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        direction1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
+        direction1.setOpaque(true);
+        guessPanel.add(direction1);
 
         guess2.setBackground(new java.awt.Color(51, 51, 51));
         guess2.setForeground(new java.awt.Color(255, 255, 255));
@@ -596,19 +690,19 @@ public class GameFrame extends javax.swing.JFrame {
         level2.setOpaque(true);
         guessPanel.add(level2);
 
-        test2.setBackground(new java.awt.Color(51, 51, 51));
-        test2.setForeground(new java.awt.Color(255, 255, 255));
-        test2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        test2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
-        test2.setOpaque(true);
-        guessPanel.add(test2);
-
         year2.setBackground(new java.awt.Color(51, 51, 51));
         year2.setForeground(new java.awt.Color(255, 255, 255));
         year2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         year2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         year2.setOpaque(true);
         guessPanel.add(year2);
+
+        direction2.setBackground(new java.awt.Color(51, 51, 51));
+        direction2.setForeground(new java.awt.Color(255, 255, 255));
+        direction2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        direction2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
+        direction2.setOpaque(true);
+        guessPanel.add(direction2);
 
         guess3.setBackground(new java.awt.Color(51, 51, 51));
         guess3.setForeground(new java.awt.Color(255, 255, 255));
@@ -638,19 +732,19 @@ public class GameFrame extends javax.swing.JFrame {
         level3.setOpaque(true);
         guessPanel.add(level3);
 
-        test3.setBackground(new java.awt.Color(51, 51, 51));
-        test3.setForeground(new java.awt.Color(255, 255, 255));
-        test3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        test3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
-        test3.setOpaque(true);
-        guessPanel.add(test3);
-
         year3.setBackground(new java.awt.Color(51, 51, 51));
         year3.setForeground(new java.awt.Color(255, 255, 255));
         year3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         year3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         year3.setOpaque(true);
         guessPanel.add(year3);
+
+        direction3.setBackground(new java.awt.Color(51, 51, 51));
+        direction3.setForeground(new java.awt.Color(255, 255, 255));
+        direction3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        direction3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
+        direction3.setOpaque(true);
+        guessPanel.add(direction3);
 
         guess4.setBackground(new java.awt.Color(51, 51, 51));
         guess4.setForeground(new java.awt.Color(255, 255, 255));
@@ -680,19 +774,19 @@ public class GameFrame extends javax.swing.JFrame {
         level4.setOpaque(true);
         guessPanel.add(level4);
 
-        test4.setBackground(new java.awt.Color(51, 51, 51));
-        test4.setForeground(new java.awt.Color(255, 255, 255));
-        test4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        test4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
-        test4.setOpaque(true);
-        guessPanel.add(test4);
-
         year4.setBackground(new java.awt.Color(51, 51, 51));
         year4.setForeground(new java.awt.Color(255, 255, 255));
         year4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         year4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         year4.setOpaque(true);
         guessPanel.add(year4);
+
+        direction4.setBackground(new java.awt.Color(51, 51, 51));
+        direction4.setForeground(new java.awt.Color(255, 255, 255));
+        direction4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        direction4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
+        direction4.setOpaque(true);
+        guessPanel.add(direction4);
 
         guess5.setBackground(new java.awt.Color(51, 51, 51));
         guess5.setForeground(new java.awt.Color(255, 255, 255));
@@ -722,19 +816,30 @@ public class GameFrame extends javax.swing.JFrame {
         level5.setOpaque(true);
         guessPanel.add(level5);
 
-        test5.setBackground(new java.awt.Color(51, 51, 51));
-        test5.setForeground(new java.awt.Color(255, 255, 255));
-        test5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        test5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
-        test5.setOpaque(true);
-        guessPanel.add(test5);
-
         year5.setBackground(new java.awt.Color(51, 51, 51));
         year5.setForeground(new java.awt.Color(255, 255, 255));
         year5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         year5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
         year5.setOpaque(true);
         guessPanel.add(year5);
+
+        direction5.setBackground(new java.awt.Color(51, 51, 51));
+        direction5.setForeground(new java.awt.Color(255, 255, 255));
+        direction5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        direction5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 4));
+        direction5.setOpaque(true);
+        guessPanel.add(direction5);
+
+        gameToMainMenu.setBackground(new java.awt.Color(102, 102, 102));
+        gameToMainMenu.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        gameToMainMenu.setForeground(new java.awt.Color(255, 255, 255));
+        gameToMainMenu.setText("Main Menu");
+        gameToMainMenu.setRolloverEnabled(false);
+        gameToMainMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gameToMainMenuActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout gamePanelLayout = new javax.swing.GroupLayout(gamePanel);
         gamePanel.setLayout(gamePanelLayout);
@@ -743,86 +848,38 @@ public class GameFrame extends javax.swing.JFrame {
             .addGroup(gamePanelLayout.createSequentialGroup()
                 .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(gamePanelLayout.createSequentialGroup()
-                        .addGap(89, 89, 89)
+                        .addGap(80, 80, 80)
                         .addComponent(guessPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 915, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(gamePanelLayout.createSequentialGroup()
-                        .addGap(413, 413, 413)
-                        .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(promptLabel)
-                            .addGroup(gamePanelLayout.createSequentialGroup()
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(guessButton)))))
-                .addContainerGap(71, Short.MAX_VALUE))
+                        .addGap(459, 459, 459)
+                        .addComponent(gameToMainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(gamePanelLayout.createSequentialGroup()
+                        .addGap(386, 386, 386)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(guessButton, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(gamePanelLayout.createSequentialGroup()
+                        .addGap(425, 425, 425)
+                        .addComponent(promptLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
         gamePanelLayout.setVerticalGroup(
             gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gamePanelLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(promptLabel)
+                .addGap(12, 12, 12)
+                .addComponent(promptLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBox1)
+                    .addComponent(guessButton, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addComponent(guessPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(guessButton))
-                .addGap(18, 18, 18)
-                .addComponent(guessPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(gameToMainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
         );
 
         jComboBox1.getAccessibleContext().setAccessibleDescription("");
-
-        winPanel.setBackground(new java.awt.Color(51, 51, 51));
-
-        winLabel.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
-        winLabel.setForeground(new java.awt.Color(255, 255, 255));
-        winLabel.setText("You Win!");
-        winLabel.setAlignmentX(0.5F);
-
-        mainMenuButton.setBackground(new java.awt.Color(102, 102, 102));
-        mainMenuButton.setForeground(new java.awt.Color(255, 255, 255));
-        mainMenuButton.setText("Main Menu");
-        mainMenuButton.setAlignmentX(0.5F);
-        mainMenuButton.setRolloverEnabled(false);
-        mainMenuButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mainMenuButtonActionPerformed(evt);
-            }
-        });
-
-        quitButton.setBackground(new java.awt.Color(102, 102, 102));
-        quitButton.setForeground(new java.awt.Color(255, 255, 255));
-        quitButton.setText("Quit");
-        quitButton.setAlignmentX(0.5F);
-        quitButton.setRolloverEnabled(false);
-        quitButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                quitButtonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout winPanelLayout = new javax.swing.GroupLayout(winPanel);
-        winPanel.setLayout(winPanelLayout);
-        winPanelLayout.setHorizontalGroup(
-            winPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, winPanelLayout.createSequentialGroup()
-                .addContainerGap(475, Short.MAX_VALUE)
-                .addGroup(winPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(quitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mainMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(winLabel))
-                .addGap(473, 473, 473))
-        );
-        winPanelLayout.setVerticalGroup(
-            winPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(winPanelLayout.createSequentialGroup()
-                .addGap(254, 254, 254)
-                .addComponent(winLabel)
-                .addGap(29, 29, 29)
-                .addComponent(mainMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(quitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(318, Short.MAX_VALUE))
-        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -831,10 +888,6 @@ public class GameFrame extends javax.swing.JFrame {
             .addComponent(menuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(gamePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(winPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -843,10 +896,6 @@ public class GameFrame extends javax.swing.JFrame {
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addComponent(gamePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGap(12, 12, 12)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(winPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         getAccessibleContext().setAccessibleDescription("Hi Mr. Rochowiak o7");
@@ -867,16 +916,6 @@ public class GameFrame extends javax.swing.JFrame {
         handleExit();
     }//GEN-LAST:event_exitButtonActionPerformed
 
-    private void mainMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainMenuButtonActionPerformed
-//        Select the main menu
-        selectMainView();
-    }//GEN-LAST:event_mainMenuButtonActionPerformed
-
-    private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
-//        Quit the program
-        handleExit();
-    }//GEN-LAST:event_quitButtonActionPerformed
-
     /**
      * This function activates when the user inputs a guess. It  will update the model with the data, then update the view with the model's output
      */
@@ -890,12 +929,7 @@ public class GameFrame extends javax.swing.JFrame {
         
 //        If the guess has already been entered, then output an error window and stop the user from entering it
         if(gameState.alreadyGuessed(userGuess)) {
-//        Sets the repeat guess window to default to the center of the screen.
-            repeatGuessWindow.pack();
-            repeatGuessWindow.setLocationRelativeTo(null);
-            
-//            Makes it visible
-            repeatGuessWindow.setVisible(true);
+            showGuessError();
             
 //            Stop here, since nothing else needs to be done
             return;
@@ -907,17 +941,15 @@ public class GameFrame extends javax.swing.JFrame {
 //        Then sync the view with the game model
         syncGame();
         
-//        Checks for winning guess, sends user to win screen if true
-       if (userGuess.equals(gameState.correct_guess))
-           selectWinView();
-       
-//       The number of guesses made is the size of the list of guesses made.
-       int guessCount = gameState.guesses_list.size();
-
-//        If there have been 6 guesses, then make the guess button unclickable.
-        if(guessCount > 5) {
-            guessButton.setEnabled(false);
-        }
+//        Check if the game is over. If so, disable the guess button.
+       if(gameState.gameOver())
+           guessButton.setEnabled(false);
+        
+        // Checks for winning guess, disables guess button and creates win popup if true
+       if (userGuess.equals(gameState.correct_guess)) {
+           guessButton.setEnabled(false);
+           showWinDialog();
+       }
     }//GEN-LAST:event_guessButtonActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
@@ -934,6 +966,36 @@ public class GameFrame extends javax.swing.JFrame {
     private void continueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueButtonActionPerformed
         selectGameView();
     }//GEN-LAST:event_continueButtonActionPerformed
+    
+    /**
+     * This button takes the user from the game menu to the main menu
+     */
+    private void gameToMainMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gameToMainMenuActionPerformed
+        selectMainView();
+        continueButton.setEnabled(true);
+    }//GEN-LAST:event_gameToMainMenuActionPerformed
+
+    private void winTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_winTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_winTextActionPerformed
+
+    /**
+     * Hides the win menu and sends the user to the main menu
+     */
+    private void winToMainMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_winToMainMenuActionPerformed
+        selectMainView();
+        
+        winDialog.setVisible(false);
+    }//GEN-LAST:event_winToMainMenuActionPerformed
+
+    /**
+     * Resets the game and hides the win menu
+     */
+    private void playAgainButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playAgainButtonActionPerformed
+        resetGame();
+        
+        winDialog.setVisible(false);
+    }//GEN-LAST:event_playAgainButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -972,8 +1034,16 @@ public class GameFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton continueButton;
+    private javax.swing.JLabel direction;
+    private javax.swing.JLabel direction0;
+    private javax.swing.JLabel direction1;
+    private javax.swing.JLabel direction2;
+    private javax.swing.JLabel direction3;
+    private javax.swing.JLabel direction4;
+    private javax.swing.JLabel direction5;
     private javax.swing.JButton exitButton;
     private javax.swing.JPanel gamePanel;
+    private javax.swing.JButton gameToMainMenu;
     private javax.swing.JLabel guess;
     private javax.swing.JLabel guess0;
     private javax.swing.JLabel guess1;
@@ -992,7 +1062,6 @@ public class GameFrame extends javax.swing.JFrame {
     private javax.swing.JLabel level3;
     private javax.swing.JLabel level4;
     private javax.swing.JLabel level5;
-    private javax.swing.JButton mainMenuButton;
     private javax.swing.JPanel menuPanel;
     private javax.swing.JButton newGameButton;
     private javax.swing.JLabel paradigm;
@@ -1002,17 +1071,10 @@ public class GameFrame extends javax.swing.JFrame {
     private javax.swing.JLabel paradigm3;
     private javax.swing.JLabel paradigm4;
     private javax.swing.JLabel paradigm5;
+    private javax.swing.JButton playAgainButton;
     private javax.swing.JLabel promptLabel;
     private javax.swing.JLabel promptLabel1;
-    private javax.swing.JButton quitButton;
     private javax.swing.JDialog repeatGuessWindow;
-    private javax.swing.JLabel test;
-    private javax.swing.JLabel test0;
-    private javax.swing.JLabel test1;
-    private javax.swing.JLabel test2;
-    private javax.swing.JLabel test3;
-    private javax.swing.JLabel test4;
-    private javax.swing.JLabel test5;
     private javax.swing.JLabel typing;
     private javax.swing.JLabel typing0;
     private javax.swing.JLabel typing1;
@@ -1020,8 +1082,9 @@ public class GameFrame extends javax.swing.JFrame {
     private javax.swing.JLabel typing3;
     private javax.swing.JLabel typing4;
     private javax.swing.JLabel typing5;
-    private javax.swing.JLabel winLabel;
-    private javax.swing.JPanel winPanel;
+    private javax.swing.JDialog winDialog;
+    private javax.swing.JTextField winText;
+    private javax.swing.JButton winToMainMenu;
     private javax.swing.JLabel year0;
     private javax.swing.JLabel year1;
     private javax.swing.JLabel year2;
