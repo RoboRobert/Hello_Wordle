@@ -44,7 +44,7 @@ public class GuessHandler {
      */
     public static Color matchName(String name1, String name2) {
        
-        if(name1 == name2)
+        if(name1.equals(name2))
             return MY_GREEN;
         
         return MY_GRAY;
@@ -55,7 +55,7 @@ public class GuessHandler {
      * @return Returns a Color used to change the color of the typing guess slot
      */
     public static Color matchTyping(String typing1, String typing2) {
-        if(typing1 == typing2)
+        if(typing1.equals(typing2))
             return MY_GREEN;
         
         return MY_GRAY;
@@ -90,7 +90,7 @@ public class GuessHandler {
      * @return Returns a Color used to change the color of the level guess slot
      */
     public static Color matchLevel(String level1, String level2) {
-        if(level1 == level2)
+        if(level1.equals(level2))
             return MY_GREEN;
         
         return MY_GRAY;

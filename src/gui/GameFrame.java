@@ -70,8 +70,7 @@ public class GameFrame extends javax.swing.JFrame {
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent e) {
-                JSONHandler.store_game(gameState);
-                System.exit(0);
+                handleExit();
             }
         });
     }
@@ -237,6 +236,8 @@ public class GameFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        repeatGuessWindow = new javax.swing.JDialog();
+        guessErrorText = new javax.swing.JTextField();
         menuPanel = new javax.swing.JPanel();
         startButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
@@ -293,6 +294,36 @@ public class GameFrame extends javax.swing.JFrame {
         winLabel = new javax.swing.JLabel();
         mainMenuButton = new javax.swing.JButton();
         quitButton = new javax.swing.JButton();
+
+        repeatGuessWindow.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        repeatGuessWindow.setAlwaysOnTop(true);
+        repeatGuessWindow.setBackground(new java.awt.Color(51, 51, 51));
+        repeatGuessWindow.setForeground(new java.awt.Color(255, 255, 255));
+        repeatGuessWindow.setType(java.awt.Window.Type.POPUP);
+
+        guessErrorText.setText("You can't enter the same guess twice!");
+        guessErrorText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guessErrorTextActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout repeatGuessWindowLayout = new javax.swing.GroupLayout(repeatGuessWindow.getContentPane());
+        repeatGuessWindow.getContentPane().setLayout(repeatGuessWindowLayout);
+        repeatGuessWindowLayout.setHorizontalGroup(
+            repeatGuessWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(repeatGuessWindowLayout.createSequentialGroup()
+                .addGap(91, 91, 91)
+                .addComponent(guessErrorText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(95, Short.MAX_VALUE))
+        );
+        repeatGuessWindowLayout.setVerticalGroup(
+            repeatGuessWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(repeatGuessWindowLayout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(guessErrorText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(117, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hello Wordle");
@@ -846,8 +877,13 @@ public class GameFrame extends javax.swing.JFrame {
         String guess = (String) jComboBox1.getSelectedItem();
         
 //        Gets the full Guess data from GuessHandler
-//        Fixed it only returning for java, but html will return null for now
         Guess userGuess = GuessHandler.getGuess(guess);
+        
+//        If the guess has already been entered, then output an error window and stop the user from entering it
+        if(gameState.alreadyGuessed(userGuess)) {
+            repeatGuessWindow.setVisible(true);
+            return;
+        }
         
 //        Add the user's guess to the game state 
         gameState.guesses_list.add(userGuess);
@@ -872,6 +908,10 @@ public class GameFrame extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void guessErrorTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessErrorTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_guessErrorTextActionPerformed
 
     /**
      * @param args the command line arguments
@@ -919,6 +959,7 @@ public class GameFrame extends javax.swing.JFrame {
     private javax.swing.JLabel guess4;
     private javax.swing.JLabel guess5;
     private javax.swing.JButton guessButton;
+    private javax.swing.JTextField guessErrorText;
     private javax.swing.JPanel guessPanel;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel level;
@@ -940,6 +981,7 @@ public class GameFrame extends javax.swing.JFrame {
     private javax.swing.JLabel promptLabel;
     private javax.swing.JLabel promptLabel1;
     private javax.swing.JButton quitButton;
+    private javax.swing.JDialog repeatGuessWindow;
     private javax.swing.JButton startButton;
     private javax.swing.JLabel test;
     private javax.swing.JLabel test0;

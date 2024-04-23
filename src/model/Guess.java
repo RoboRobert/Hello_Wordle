@@ -135,7 +135,7 @@ public class Guess {
      * @return a boolean representing equality
      */
     public boolean equals(Guess other) {
-        if(name == other.name) {
+        if(name.equals(other.name)) {
             return true;
         }
         

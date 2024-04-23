@@ -32,6 +32,23 @@ public class GameData {
     }
     
     /**
+     * Checks if a Guess has already been guessed in the game state
+     * @param input The guess being checked
+     * @return true or false if the guess has already been guessed
+     */
+    public boolean alreadyGuessed(Guess input) {
+        boolean return_value = false;
+        
+        for(Guess current : guesses_list) {
+            if(current.equals(input)) {
+                return_value = true;
+            }
+        }
+        
+        return return_value;
+    }
+    
+    /**
      * Method to print all of the game state cleanly
      */
     public void print_data() {
