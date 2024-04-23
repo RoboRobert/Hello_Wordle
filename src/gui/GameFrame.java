@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import model.GameData;
 import model.Guess;
 import model.GuessHandler;
+import persistence.JSONHandler;
 
 /**
  * This class will serve as both the view and controller of the game in one. It will use the model to process its inputs, then it will display the model to the screen
@@ -41,6 +42,14 @@ public class GameFrame extends javax.swing.JFrame {
      */
     public GameFrame() {
         gameState = new GameData(new Guess("JAVA", "STATIC", "OBJECT ORIENTED", "HIGH", 1995), new ArrayList<Guess>());
+        
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                JSONHandler.store_game(gameState);
+                System.exit(0);
+            }
+        });
+        
         initializeGameFrame();
         
 //        Syncs the view with the game state
@@ -53,6 +62,13 @@ public class GameFrame extends javax.swing.JFrame {
      */
     public GameFrame(GameData previousState) {
         gameState = previousState;
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                JSONHandler.store_game(gameState);
+                System.exit(0);
+            }
+        });
+        
         initializeGameFrame();
         
 //        Syncs the view with the game state
@@ -836,7 +852,6 @@ public class GameFrame extends javax.swing.JFrame {
 
         //        If there have been 6 guesses, then make the guess button unclickable.
         if(guessCount > 5) {
-
             guessButton.setEnabled(false);
         }
     }//GEN-LAST:event_guessButtonActionPerformed
