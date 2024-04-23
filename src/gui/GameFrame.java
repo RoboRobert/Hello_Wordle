@@ -55,12 +55,6 @@ public class GameFrame extends javax.swing.JFrame {
      */
     public GameFrame(GameData previousState) {
         gameState = previousState;
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent e) {
-                JSONHandler.store_game(gameState);
-                System.exit(0);
-            }
-        });
         
         initializeGameFrame();
         
