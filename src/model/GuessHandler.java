@@ -10,13 +10,12 @@ import javax.swing.ImageIcon;
 import persistence.ResourceHandler;
 
 /**
- * This class will handle guess generation and matching
+ * This class handles guess color matching.
  * @author nathan
  */
 public class GuessHandler {
-    /**
-     * These are the colors for incorrect, correct and close guesses
-     */
+
+//    These are the colors for incorrect, correct and close guesses
 //    Feel free to play with these colors if you think they can be improved
     private static final Color MY_GRAY = new Color(51,51,51);
     private static final Color MY_GREEN = new Color(0, 153, 0);
@@ -103,7 +102,7 @@ public class GuessHandler {
         return MY_YELLOW;
     }
     
-        /**
+    /**
      *  Takes in 2 years and returns an up arrow or down arrow depending on which one is higher.
      *  Returns null if the years are equal.
      */

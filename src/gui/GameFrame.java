@@ -311,14 +311,14 @@ public class GameFrame extends javax.swing.JFrame {
         loseText1 = new javax.swing.JTextField();
         loseText2 = new javax.swing.JTextField();
         menuPanel = new javax.swing.JPanel();
+        menuCenteredPanel = new javax.swing.JPanel();
         newGameButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
-        promptLabel1 = new javax.swing.JLabel();
         continueButton = new javax.swing.JButton();
+        promptLabel1 = new javax.swing.JLabel();
         gamePanel = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        guessButton = new javax.swing.JButton();
-        promptLabel = new javax.swing.JLabel();
+        gameCenteredPanel = new javax.swing.JPanel();
+        gameToMainMenu = new javax.swing.JButton();
         guessPanel = new javax.swing.JPanel();
         guess = new javax.swing.JLabel();
         typing = new javax.swing.JLabel();
@@ -362,7 +362,9 @@ public class GameFrame extends javax.swing.JFrame {
         level5 = new javax.swing.JLabel();
         year5 = new javax.swing.JLabel();
         direction5 = new javax.swing.JLabel();
-        gameToMainMenu = new javax.swing.JButton();
+        promptLabel = new javax.swing.JLabel();
+        guessButton = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         repeatGuessWindow.setTitle("No repeat guesses!");
         repeatGuessWindow.setAlwaysOnTop(true);
@@ -587,13 +589,18 @@ public class GameFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hello Wordle");
+        getContentPane().setLayout(new java.awt.CardLayout());
 
         menuPanel.setBackground(new java.awt.Color(51, 51, 51));
+        menuPanel.setLayout(new java.awt.GridBagLayout());
+
+        menuCenteredPanel.setBackground(new java.awt.Color(51, 51, 51));
 
         newGameButton.setBackground(new java.awt.Color(102, 102, 102));
         newGameButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         newGameButton.setForeground(java.awt.Color.white);
         newGameButton.setText("New Game");
+        newGameButton.setAlignmentX(0.5F);
         newGameButton.setDefaultCapable(false);
         newGameButton.setRolloverEnabled(false);
         newGameButton.addActionListener(new java.awt.event.ActionListener() {
@@ -606,6 +613,7 @@ public class GameFrame extends javax.swing.JFrame {
         exitButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         exitButton.setForeground(java.awt.Color.white);
         exitButton.setText("Exit");
+        exitButton.setAlignmentX(0.5F);
         exitButton.setRolloverEnabled(false);
         exitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -613,14 +621,11 @@ public class GameFrame extends javax.swing.JFrame {
             }
         });
 
-        promptLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
-        promptLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        promptLabel1.setText("Hello Wordle");
-
         continueButton.setBackground(new java.awt.Color(102, 102, 102));
         continueButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         continueButton.setForeground(java.awt.Color.white);
         continueButton.setText("Continue");
+        continueButton.setAlignmentX(0.5F);
         continueButton.setRolloverEnabled(false);
         continueButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -628,66 +633,59 @@ public class GameFrame extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout menuPanelLayout = new javax.swing.GroupLayout(menuPanel);
-        menuPanel.setLayout(menuPanelLayout);
-        menuPanelLayout.setHorizontalGroup(
-            menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menuPanelLayout.createSequentialGroup()
-                .addGap(412, 412, 412)
-                .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(promptLabel1)
-                    .addGroup(menuPanelLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(newGameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(menuPanelLayout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(continueButton, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(menuPanelLayout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(434, Short.MAX_VALUE))
+        promptLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        promptLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        promptLabel1.setText("Hello Wordle");
+
+        javax.swing.GroupLayout menuCenteredPanelLayout = new javax.swing.GroupLayout(menuCenteredPanel);
+        menuCenteredPanel.setLayout(menuCenteredPanelLayout);
+        menuCenteredPanelLayout.setHorizontalGroup(
+            menuCenteredPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(menuCenteredPanelLayout.createSequentialGroup()
+                .addGap(186, 186, 186)
+                .addGroup(menuCenteredPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(continueButton, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(newGameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(186, 186, 186))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuCenteredPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(promptLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(130, 130, 130))
         );
-        menuPanelLayout.setVerticalGroup(
-            menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menuPanelLayout.createSequentialGroup()
-                .addGap(237, 237, 237)
+        menuCenteredPanelLayout.setVerticalGroup(
+            menuCenteredPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(menuCenteredPanelLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(promptLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addComponent(newGameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(continueButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(299, Short.MAX_VALUE))
+                .addGap(31, 31, 31))
         );
 
+        menuPanel.add(menuCenteredPanel, new java.awt.GridBagConstraints());
+
+        getContentPane().add(menuPanel, "card2");
+
         gamePanel.setBackground(new java.awt.Color(51, 51, 51));
+        gamePanel.setLayout(new java.awt.GridBagLayout());
 
-        jComboBox1.setBackground(new java.awt.Color(102, 102, 102));
-        jComboBox1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Python", "C++", "Java" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        gameCenteredPanel.setBackground(new java.awt.Color(51, 51, 51));
+
+        gameToMainMenu.setBackground(new java.awt.Color(102, 102, 102));
+        gameToMainMenu.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        gameToMainMenu.setForeground(new java.awt.Color(255, 255, 255));
+        gameToMainMenu.setText("Main Menu");
+        gameToMainMenu.setRolloverEnabled(false);
+        gameToMainMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                gameToMainMenuActionPerformed(evt);
             }
         });
-
-        guessButton.setBackground(new java.awt.Color(102, 102, 102));
-        guessButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        guessButton.setForeground(new java.awt.Color(255, 255, 255));
-        guessButton.setText("Guess");
-        guessButton.setRolloverEnabled(false);
-        guessButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                guessButtonActionPerformed(evt);
-            }
-        });
-
-        promptLabel.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
-        promptLabel.setForeground(new java.awt.Color(255, 255, 255));
-        promptLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        promptLabel.setText("Hello Wordle");
 
         guessPanel.setBackground(new java.awt.Color(51, 51, 51));
         guessPanel.setLayout(new java.awt.GridLayout(7, 6, 4, 4));
@@ -1034,73 +1032,76 @@ public class GameFrame extends javax.swing.JFrame {
         direction5.setOpaque(true);
         guessPanel.add(direction5);
 
-        gameToMainMenu.setBackground(new java.awt.Color(102, 102, 102));
-        gameToMainMenu.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        gameToMainMenu.setForeground(new java.awt.Color(255, 255, 255));
-        gameToMainMenu.setText("Main Menu");
-        gameToMainMenu.setRolloverEnabled(false);
-        gameToMainMenu.addActionListener(new java.awt.event.ActionListener() {
+        promptLabel.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        promptLabel.setForeground(new java.awt.Color(255, 255, 255));
+        promptLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        promptLabel.setText("Hello Wordle");
+
+        guessButton.setBackground(new java.awt.Color(102, 102, 102));
+        guessButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        guessButton.setForeground(new java.awt.Color(255, 255, 255));
+        guessButton.setText("Guess");
+        guessButton.setRolloverEnabled(false);
+        guessButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gameToMainMenuActionPerformed(evt);
+                guessButtonActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout gamePanelLayout = new javax.swing.GroupLayout(gamePanel);
-        gamePanel.setLayout(gamePanelLayout);
-        gamePanelLayout.setHorizontalGroup(
-            gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(gamePanelLayout.createSequentialGroup()
-                .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(gamePanelLayout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(guessPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 915, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(gamePanelLayout.createSequentialGroup()
-                        .addGap(459, 459, 459)
-                        .addComponent(gameToMainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(gamePanelLayout.createSequentialGroup()
-                        .addGap(386, 386, 386)
+        jComboBox1.setBackground(new java.awt.Color(102, 102, 102));
+        jComboBox1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Python", "C++", "Java" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout gameCenteredPanelLayout = new javax.swing.GroupLayout(gameCenteredPanel);
+        gameCenteredPanel.setLayout(gameCenteredPanelLayout);
+        gameCenteredPanelLayout.setHorizontalGroup(
+            gameCenteredPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gameCenteredPanelLayout.createSequentialGroup()
+                .addGroup(gameCenteredPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(gameCenteredPanelLayout.createSequentialGroup()
+                        .addGap(390, 390, 390)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(guessButton, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(gamePanelLayout.createSequentialGroup()
-                        .addGap(425, 425, 425)
+                    .addGroup(gameCenteredPanelLayout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(guessPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 915, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(gameCenteredPanelLayout.createSequentialGroup()
+                        .addGap(433, 433, 433)
                         .addComponent(promptLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gameCenteredPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(gameToMainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(390, 390, 390))
         );
-        gamePanelLayout.setVerticalGroup(
-            gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gamePanelLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
+        gameCenteredPanelLayout.setVerticalGroup(
+            gameCenteredPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gameCenteredPanelLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
                 .addComponent(promptLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBox1)
-                    .addComponent(guessButton, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                .addComponent(guessPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addGroup(gameCenteredPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(guessButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(guessPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(gameToMainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
+                .addContainerGap())
         );
 
         jComboBox1.getAccessibleContext().setAccessibleDescription("");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(gamePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addComponent(gamePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGap(12, 12, 12)))
-        );
+        gamePanel.add(gameCenteredPanel, new java.awt.GridBagConstraints());
+
+        getContentPane().add(gamePanel, "card3");
 
         getAccessibleContext().setAccessibleDescription("Hi Mr. Rochowiak o7");
 
@@ -1286,6 +1287,7 @@ public class GameFrame extends javax.swing.JFrame {
     private javax.swing.JLabel direction4;
     private javax.swing.JLabel direction5;
     private javax.swing.JButton exitButton;
+    private javax.swing.JPanel gameCenteredPanel;
     private javax.swing.JPanel gamePanel;
     private javax.swing.JButton gameToMainMenu;
     private javax.swing.JLabel guess;
@@ -1311,6 +1313,7 @@ public class GameFrame extends javax.swing.JFrame {
     private javax.swing.JTextField loseText1;
     private javax.swing.JTextField loseText2;
     private javax.swing.JButton loseToMainMenu;
+    private javax.swing.JPanel menuCenteredPanel;
     private javax.swing.JPanel menuPanel;
     private javax.swing.JButton newGameButton;
     private javax.swing.JLabel paradigm;
