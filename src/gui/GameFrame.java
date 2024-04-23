@@ -6,10 +6,13 @@ package gui;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLabel;
 import model.GameData;
 import model.Guess;
 import model.GuessHandler;
+import model.LanguageArray;
 import model.SelectLanguage;
 import persistence.JSONHandler;
 
@@ -85,6 +88,10 @@ public class GameFrame extends javax.swing.JFrame {
 //        Sets the background color of JDialog boxes because the form editor doesn't let me
         repeatGuessWindow.getContentPane().setBackground(MY_GRAY);
         winDialog.getContentPane().setBackground(MY_GRAY);
+        
+        
+//        Sets the options in the combo box from the LanguageArray's list of names
+        jComboBox1.setModel(new DefaultComboBoxModel(LanguageArray.getNames()));
     }
     
     /**

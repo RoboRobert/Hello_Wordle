@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package model;
+
+import java.util.ArrayList;
+
 /**
  *
  * @author tessm
@@ -44,6 +47,17 @@ public class LanguageArray
     public static Guess[] getLanguages()
     {
         return languageArray;
+    }
+    
+    public static String[] getNames()
+    {
+        String[] return_array = new String[languageArray.length];
+        
+        for(int i = 0; i < languageArray.length; i++) {
+            return_array[i] = languageArray[i].getName();
+        }
+        
+        return return_array;
     }
     
     public static Guess fetchLanguage(String searchName) {
