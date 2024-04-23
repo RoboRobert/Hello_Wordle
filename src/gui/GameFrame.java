@@ -36,6 +36,7 @@ public class GameFrame extends javax.swing.JFrame {
     GameData gameState;
 
     /**
+     * Unparameterized constructor.
      * Creates new GameFrame with no prior data
      */
     public GameFrame() {
@@ -47,6 +48,7 @@ public class GameFrame extends javax.swing.JFrame {
     }
     
     /**
+     * Parameterized constructor.
      * Creates new GameFrame using persistent data
      */
     public GameFrame(GameData previousState) {

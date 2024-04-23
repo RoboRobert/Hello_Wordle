@@ -47,16 +47,26 @@ public class Guess {
         year = yearIn;
     }
     
-    public String getName()
-    {
+    /**
+     * This function returns the language name of a Guess
+     * @return A string representing the language name of a Guess
+     */
+    public String getName() {
         return name;
     }
     
-    public String getTyping()
-    {
+    /**
+     * This function returns the language typing of a Guess
+     * @return A string representing the language typing of a Guess
+     */
+    public String getTyping() {
         return typing;
     }
     
+    /**
+     * This function matches a paradigm name to an integer ID
+     * @return an integer representing a paradigm
+     */
     private int findParadigmID() {
         int return_id = 0;
         
@@ -86,23 +96,35 @@ public class Guess {
         return return_id;
     }
     
-    public int getParadigmID()
-    {
+    /**
+     * This function returns the paradigm ID of a Guess
+     * @return An int representing the paradigm's ID
+     */
+    public int getParadigmID() {
         return paradigmID;
     }
     
-    public String getParadigmName()
-    {
+    /**
+     * This function returns the language paradigm name of a Guess
+    * @return A string representing the language paradigm name of a Guess
+     */
+    public String getParadigmName() {
         return paradigmName;
     }
     
-    public String getLevel()
-    {
+    /**
+     * This function returns the language name of a Guess
+     * @return A string representing the language level of a Guess
+     */
+    public String getLevel() {
         return level;
     }
     
-    public int getYear()
-    {
+    /**
+     * This function returns the language year of a Guess
+     * @return The language year of the guess as an int
+     */
+    public int getYear() {
         return year;
     }
     
@@ -121,7 +143,7 @@ public class Guess {
     }
     
     /**
-     * Returns a string for pretty printing the data in a guess object. Used mostly for testing JSON persistence
+     * Returns a string for pretty printing the data in a guess object. Used mostly for testing JSON persistence testing
      */
     public String print_guess() {
         String return_string = "";
