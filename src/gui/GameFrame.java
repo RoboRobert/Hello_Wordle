@@ -5,10 +5,8 @@
 package gui;
 
 import java.awt.Color;
-import java.net.URL;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import model.GameData;
 import model.Guess;
@@ -82,6 +80,7 @@ public class GameFrame extends javax.swing.JFrame {
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent e) {
+//                If the window is closing, run some handler code
                 handleExit();
             }
         });
@@ -132,8 +131,6 @@ public class GameFrame extends javax.swing.JFrame {
         //        Make sure the size takes from the preferred size, then move to the middle of the screen
         this.pack();
         this.setLocationRelativeTo(null);
-        
-        showLoseDialog();
     }
     
     
@@ -376,6 +373,7 @@ public class GameFrame extends javax.swing.JFrame {
 
         guessErrorText.setEditable(false);
         guessErrorText.setBackground(new java.awt.Color(51, 51, 51));
+        guessErrorText.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         guessErrorText.setForeground(new java.awt.Color(255, 255, 255));
         guessErrorText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         guessErrorText.setText("You can't enter the same guess twice!");
@@ -391,17 +389,14 @@ public class GameFrame extends javax.swing.JFrame {
         repeatGuessWindow.getContentPane().setLayout(repeatGuessWindowLayout);
         repeatGuessWindowLayout.setHorizontalGroup(
             repeatGuessWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(repeatGuessWindowLayout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(guessErrorText, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(79, Short.MAX_VALUE))
+            .addComponent(guessErrorText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
         );
         repeatGuessWindowLayout.setVerticalGroup(
             repeatGuessWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(repeatGuessWindowLayout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addComponent(guessErrorText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addGap(48, 48, 48)
+                .addComponent(guessErrorText, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         winDialog.setTitle("A winner is you!");
@@ -638,18 +633,24 @@ public class GameFrame extends javax.swing.JFrame {
         menuPanelLayout.setHorizontalGroup(
             menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuPanelLayout.createSequentialGroup()
-                .addGap(423, 423, 423)
-                .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(newGameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(412, 412, 412)
+                .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(promptLabel1)
-                    .addComponent(continueButton, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(423, Short.MAX_VALUE))
+                    .addGroup(menuPanelLayout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(newGameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(menuPanelLayout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(continueButton, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(menuPanelLayout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(434, Short.MAX_VALUE))
         );
         menuPanelLayout.setVerticalGroup(
             menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuPanelLayout.createSequentialGroup()
-                .addGap(234, 234, 234)
+                .addGap(237, 237, 237)
                 .addComponent(promptLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(newGameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -657,7 +658,7 @@ public class GameFrame extends javax.swing.JFrame {
                 .addComponent(continueButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(302, Short.MAX_VALUE))
+                .addContainerGap(299, Short.MAX_VALUE))
         );
 
         gamePanel.setBackground(new java.awt.Color(51, 51, 51));
