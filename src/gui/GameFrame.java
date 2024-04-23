@@ -154,6 +154,15 @@ public class GameFrame extends javax.swing.JFrame {
             }
         }
         
+//        If the game is over, disable the guess button.
+        if(gameState.gameOver()) {
+            guessButton.setEnabled(false);
+        }
+//        If the game is not over, then make sure it's enabled.
+        else {
+            guessButton.setEnabled(true);
+        }
+        
 //        Sets the text for the lose menu based on the correct guess.
         correctLanguageText.setText(gameState.correct_guess.getName());
     }
@@ -299,8 +308,8 @@ public class GameFrame extends javax.swing.JFrame {
         loseText = new javax.swing.JTextField();
         loseToMainMenu = new javax.swing.JButton();
         playAgainButton1 = new javax.swing.JButton();
-        loseText1 = new javax.swing.JTextField();
         correctLanguageText = new javax.swing.JTextField();
+        loseText1 = new javax.swing.JTextField();
         menuPanel = new javax.swing.JPanel();
         newGameButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
@@ -458,13 +467,13 @@ public class GameFrame extends javax.swing.JFrame {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        loseDialog.setTitle("A winner is you!");
+        loseDialog.setTitle("A loser is you!");
         loseDialog.setAlwaysOnTop(true);
         loseDialog.setModal(true);
 
         loseText.setEditable(false);
         loseText.setBackground(new java.awt.Color(51, 51, 51));
-        loseText.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        loseText.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         loseText.setForeground(new java.awt.Color(255, 255, 255));
         loseText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         loseText.setText("You failed to guess the programming language.");
@@ -497,28 +506,28 @@ public class GameFrame extends javax.swing.JFrame {
             }
         });
 
-        loseText1.setEditable(false);
-        loseText1.setBackground(new java.awt.Color(51, 51, 51));
-        loseText1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        loseText1.setForeground(new java.awt.Color(255, 255, 255));
-        loseText1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        loseText1.setBorder(null);
-        loseText1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loseText1ActionPerformed(evt);
-            }
-        });
-
         correctLanguageText.setEditable(false);
         correctLanguageText.setBackground(new java.awt.Color(51, 51, 51));
-        correctLanguageText.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        correctLanguageText.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         correctLanguageText.setForeground(new java.awt.Color(255, 255, 255));
         correctLanguageText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        correctLanguageText.setText("The correct language was");
         correctLanguageText.setBorder(null);
         correctLanguageText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 correctLanguageTextActionPerformed(evt);
+            }
+        });
+
+        loseText1.setEditable(false);
+        loseText1.setBackground(new java.awt.Color(51, 51, 51));
+        loseText1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        loseText1.setForeground(new java.awt.Color(255, 255, 255));
+        loseText1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        loseText1.setText("The correct language was");
+        loseText1.setBorder(null);
+        loseText1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loseText1ActionPerformed(evt);
             }
         });
 
@@ -530,29 +539,29 @@ public class GameFrame extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(loseDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(loseToMainMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(playAgainButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(playAgainButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE))
                 .addGap(121, 121, 121))
             .addGroup(loseDialogLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(loseText, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loseDialogLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(loseDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(correctLanguageText, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(loseText1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(76, 76, 76))
+            .addGroup(loseDialogLayout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addGroup(loseDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(correctLanguageText)
+                    .addComponent(loseText1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         loseDialogLayout.setVerticalGroup(
             loseDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(loseDialogLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(loseText, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(correctLanguageText, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(loseText1, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
-                .addGap(33, 33, 33)
+                .addComponent(loseText1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(correctLanguageText, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(138, 138, 138)
                 .addComponent(playAgainButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(loseToMainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1116,10 +1125,8 @@ public class GameFrame extends javax.swing.JFrame {
 //        Then sync the view with the game model
         syncGame();
         
-//        Check if the game is over. If so, disable the guess button.
+//        Check if the game is over. If so, check if the user won or lost
        if(gameState.gameOver()) {
-           guessButton.setEnabled(false);
-       
 //           If the game is over, check if the user has won and display win menu if so.
            if(gameWon) {
                showWinDialog();
@@ -1129,8 +1136,6 @@ public class GameFrame extends javax.swing.JFrame {
                showLoseDialog();
            }
        }
-//       If the game is not over, then the guessButton must be enabled.
-       else guessButton.setEnabled(true);
     }//GEN-LAST:event_guessButtonActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
@@ -1200,13 +1205,13 @@ public class GameFrame extends javax.swing.JFrame {
         loseDialog.setVisible(false);
     }//GEN-LAST:event_playAgainButton1ActionPerformed
 
-    private void loseText1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loseText1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_loseText1ActionPerformed
-
     private void correctLanguageTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_correctLanguageTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_correctLanguageTextActionPerformed
+
+    private void loseText1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loseText1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_loseText1ActionPerformed
 
     /**
      * @param args the command line arguments

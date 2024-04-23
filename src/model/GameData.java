@@ -52,7 +52,9 @@ public class GameData {
      * Checks if the game is over
      */
     public boolean gameOver() {
-        boolean return_value = false;
+//        If the guesses_list has no elements, the game is not over.
+        if(guesses_list.size() == 0)
+            return false;
         
 //        If there are 6 guesses, return true.
         if(guesses_list.size() > 5)
@@ -62,7 +64,8 @@ public class GameData {
         if(guesses_list.getLast().equals(correct_guess))
             return true;
         
-        return return_value;
+//        Otherwise return false
+        return false;
     }
     
     /**
