@@ -29,17 +29,17 @@ public class GameFrame extends javax.swing.JFrame {
     private static final Color MY_GRAY = new Color(51,51,51);
     
     //    Global variables used for guesses
-    javax.swing.JLabel[] guessRow0;
-    javax.swing.JLabel[] guessRow1;
-    javax.swing.JLabel[] guessRow2;
-    javax.swing.JLabel[] guessRow3;
-    javax.swing.JLabel[] guessRow4;
-    javax.swing.JLabel[] guessRow5;
+    private static javax.swing.JLabel[] guessRow0;
+    private static javax.swing.JLabel[] guessRow1;
+    private static javax.swing.JLabel[] guessRow2;
+    private static javax.swing.JLabel[] guessRow3;
+    private static javax.swing.JLabel[] guessRow4;
+    private static javax.swing.JLabel[] guessRow5;
     
-    ArrayList<JLabel[]> guesses_arr;
+    private static ArrayList<JLabel[]> guesses_arr;
 
 //    Variable used to store the current game state.
-    GameData gameState;
+    private GameData gameState;
 
     /**
      * Unparameterized constructor.
@@ -77,7 +77,7 @@ public class GameFrame extends javax.swing.JFrame {
     /**
      * Used for any custom component initializations I do
      */
-    private void customInit() {
+    private void customInitComponents() {
 //        Adds a window listener that checks if the window is closing, then stores the game state out to a file if so
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
@@ -105,7 +105,7 @@ public class GameFrame extends javax.swing.JFrame {
         initComponents();
         
 //        Call custom component initializer
-        customInit();
+        customInitComponents();
 
 //          initializes arrays containing rows of guess labels 
 //          sets visibility of these rows to false
@@ -132,6 +132,8 @@ public class GameFrame extends javax.swing.JFrame {
         //        Make sure the size takes from the preferred size, then move to the middle of the screen
         this.pack();
         this.setLocationRelativeTo(null);
+        
+        showLoseDialog();
     }
     
     
@@ -310,6 +312,7 @@ public class GameFrame extends javax.swing.JFrame {
         playAgainButton1 = new javax.swing.JButton();
         correctLanguageText = new javax.swing.JTextField();
         loseText1 = new javax.swing.JTextField();
+        loseText2 = new javax.swing.JTextField();
         menuPanel = new javax.swing.JPanel();
         newGameButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
@@ -523,7 +526,7 @@ public class GameFrame extends javax.swing.JFrame {
         loseText1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         loseText1.setForeground(new java.awt.Color(255, 255, 255));
         loseText1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        loseText1.setText("The correct language was");
+        loseText1.setText("Better luck next time!");
         loseText1.setBorder(null);
         loseText1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -531,25 +534,42 @@ public class GameFrame extends javax.swing.JFrame {
             }
         });
 
+        loseText2.setEditable(false);
+        loseText2.setBackground(new java.awt.Color(51, 51, 51));
+        loseText2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        loseText2.setForeground(new java.awt.Color(255, 255, 255));
+        loseText2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        loseText2.setText("The correct language was");
+        loseText2.setBorder(null);
+        loseText2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loseText2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout loseDialogLayout = new javax.swing.GroupLayout(loseDialog.getContentPane());
         loseDialog.getContentPane().setLayout(loseDialogLayout);
         loseDialogLayout.setHorizontalGroup(
             loseDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loseDialogLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(loseDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(loseToMainMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(playAgainButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE))
-                .addGap(121, 121, 121))
             .addGroup(loseDialogLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(loseText, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
+                .addGroup(loseDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(loseDialogLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(loseText, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE))
+                    .addGroup(loseDialogLayout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addGroup(loseDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(loseText2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(loseDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(correctLanguageText)
+                                .addComponent(loseText1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(loseDialogLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
+                .addGap(115, 115, 115)
                 .addGroup(loseDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(correctLanguageText)
-                    .addComponent(loseText1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(loseToMainMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(playAgainButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         loseDialogLayout.setVerticalGroup(
@@ -557,15 +577,17 @@ public class GameFrame extends javax.swing.JFrame {
             .addGroup(loseDialogLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(loseText, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(loseText1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(loseText2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(correctLanguageText, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(138, 138, 138)
+                .addGap(18, 18, 18)
+                .addComponent(loseText1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(playAgainButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(loseToMainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1213,6 +1235,10 @@ public class GameFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_loseText1ActionPerformed
 
+    private void loseText2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loseText2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_loseText2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1282,6 +1308,7 @@ public class GameFrame extends javax.swing.JFrame {
     private javax.swing.JDialog loseDialog;
     private javax.swing.JTextField loseText;
     private javax.swing.JTextField loseText1;
+    private javax.swing.JTextField loseText2;
     private javax.swing.JButton loseToMainMenu;
     private javax.swing.JPanel menuPanel;
     private javax.swing.JButton newGameButton;
