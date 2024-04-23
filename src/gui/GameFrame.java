@@ -5,9 +5,10 @@
 package gui;
 
 import java.awt.Color;
+import java.net.URL;
 import java.util.ArrayList;
-import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import model.GameData;
 import model.Guess;
@@ -161,8 +162,7 @@ public class GameFrame extends javax.swing.JFrame {
         SelectLanguage randomLanguage = new SelectLanguage();
         
 //        Create a default game state.
-//        gameState = new GameData(randomLanguage.getCorrectAnswer(), new ArrayList<Guess>());
-          gameState = new GameData(new Guess("JAVA", "STATIC", "OBJECT ORIENTED", "HIGH", 1995), new ArrayList<Guess>());
+        gameState = new GameData(randomLanguage.getCorrectAnswer(), new ArrayList<Guess>());
         
 //        Set the guessButton to be enabled
         guessButton.setEnabled(true);
@@ -180,6 +180,8 @@ public class GameFrame extends javax.swing.JFrame {
 //            Reset the color
             label.setBackground(MY_GRAY);
         }
+        
+        guess_row[5].setIcon(null);
     }
     
     /**
@@ -192,7 +194,9 @@ public class GameFrame extends javax.swing.JFrame {
         guessRow[3].setText(guess.getLevel());
         String yearString = Integer.toString(guess.getYear());
         guessRow[4].setText(yearString);
-        guessRow[5].setText("test");
+        
+//        Compares the current guess's year with the correct year, puts an arrow based on that.
+        guessRow[5].setIcon(GuessHandler.getArrow(guess.getYear(), gameState.correct_guess.getYear()));
     }
     
     /**
@@ -204,7 +208,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessRow[2].setBackground(GuessHandler.matchParadigm(gameState.correct_guess.getParadigmID(), guess.getParadigmID()));
         guessRow[3].setBackground(GuessHandler.matchLevel(gameState.correct_guess.getLevel(), guess.getLevel()));
         guessRow[4].setBackground(GuessHandler.matchYear(gameState.correct_guess.getYear(), guess.getYear()));
-//      Skip 5 for now because I don't know what to do with it
+        guessRow[5].setBackground(GuessHandler.matchYear(gameState.correct_guess.getYear(), guess.getYear()));
         
     }
     
@@ -479,18 +483,18 @@ public class GameFrame extends javax.swing.JFrame {
         menuPanelLayout.setHorizontalGroup(
             menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuPanelLayout.createSequentialGroup()
-                .addGap(390, 390, 390)
+                .addGap(423, 423, 423)
                 .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(newGameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(promptLabel1)
                     .addComponent(continueButton, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(408, Short.MAX_VALUE))
+                .addContainerGap(423, Short.MAX_VALUE))
         );
         menuPanelLayout.setVerticalGroup(
             menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuPanelLayout.createSequentialGroup()
-                .addGap(228, 228, 228)
+                .addGap(234, 234, 234)
                 .addComponent(promptLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(newGameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -498,7 +502,7 @@ public class GameFrame extends javax.swing.JFrame {
                 .addComponent(continueButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(295, Short.MAX_VALUE))
+                .addContainerGap(302, Short.MAX_VALUE))
         );
 
         gamePanel.setBackground(new java.awt.Color(51, 51, 51));

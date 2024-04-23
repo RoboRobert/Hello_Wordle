@@ -218,21 +218,21 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="390" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="423" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="2" attributes="0">
                       <Component id="exitButton" alignment="2" min="-2" pref="170" max="-2" attributes="0"/>
                       <Component id="newGameButton" alignment="2" min="-2" pref="173" max="-2" attributes="0"/>
                       <Component id="promptLabel1" alignment="2" min="-2" max="-2" attributes="0"/>
                       <Component id="continueButton" alignment="2" min="-2" pref="170" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="487" max="32767" attributes="0"/>
+                  <EmptySpace pref="423" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="228" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="234" max="-2" attributes="0"/>
                   <Component id="promptLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="newGameButton" min="-2" pref="50" max="-2" attributes="0"/>
@@ -240,7 +240,7 @@
                   <Component id="continueButton" min="-2" pref="50" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="exitButton" min="-2" pref="50" max="-2" attributes="0"/>
-                  <EmptySpace pref="308" max="32767" attributes="0"/>
+                  <EmptySpace pref="302" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

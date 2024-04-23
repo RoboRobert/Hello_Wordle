@@ -5,6 +5,9 @@
 package model;
 
 import java.awt.Color;
+import java.net.URL;
+import javax.swing.ImageIcon;
+import resources.resourceHandler;
 
 /**
  * This class will handle guess generation and matching
@@ -92,12 +95,33 @@ public class GuessHandler {
     /**
      * 
      * @return Returns a Color used to change the color of the year guess slot
-     * Updated 4/20/24 to have it show yellow instead of default gray when incorrect year
      */
     public static Color matchYear(int year1, int year2) {
         if(year1 == year2)
             return MY_GREEN;
         
         return MY_YELLOW;
+    }
+    
+        /**
+     *  Takes in 2 years and returns an up arrow or down arrow depending on which one is higher.
+     *  Returns null if the years are equal.
+     */
+    public static ImageIcon getArrow(int year1, int year2) {
+        URL iconURL;
+        ImageIcon arrowIcon;
+        
+        resourceHandler handler = new resourceHandler();
+//        If the second year is greater, return an up arrow
+        if(year1 < year2) {
+            return handler.retrieveIcon("/resources/upArrow.png");
+        }
+        
+//        If the second year is lower, return a down arrow
+        else if (year1 > year2) {
+            return handler.retrieveIcon("/resources/downArrow.png");
+        }
+        
+        else return null;
     }
 }
