@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package resources;
+package persistence;
 
 import java.net.URL;
 import javax.swing.ImageIcon;
@@ -11,7 +11,7 @@ import javax.swing.ImageIcon;
  * The purpose of this class is to standardize resource retrieval. This class can be instantiated and used to keep class paths consistent.
  * @author nathan
  */
-public class resourceHandler {
+public class ResourceHandler {
     /**
      * This function takes in a path and returns an ImageIcon from it.
      */

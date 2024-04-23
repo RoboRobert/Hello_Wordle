@@ -7,7 +7,7 @@ package model;
 import java.awt.Color;
 import java.net.URL;
 import javax.swing.ImageIcon;
-import resources.resourceHandler;
+import persistence.ResourceHandler;
 
 /**
  * This class will handle guess generation and matching
@@ -111,7 +111,7 @@ public class GuessHandler {
         URL iconURL;
         ImageIcon arrowIcon;
         
-        resourceHandler handler = new resourceHandler();
+        ResourceHandler handler = new ResourceHandler();
 //        If the second year is greater, return an up arrow
         if(year1 < year2) {
             return handler.retrieveIcon("/resources/upArrow.png");
