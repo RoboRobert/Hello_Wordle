@@ -5,6 +5,7 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.Dialog;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 import model.GameData;
@@ -73,6 +74,9 @@ public class GameFrame extends javax.swing.JFrame {
                 handleExit();
             }
         });
+        
+//        Sets the background color of the repeat guess error because the form editor doesn't let me
+        repeatGuessWindow.getContentPane().setBackground(MY_GRAY);
     }
     
     /**
@@ -245,7 +249,6 @@ public class GameFrame extends javax.swing.JFrame {
         gamePanel = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
         guessButton = new javax.swing.JButton();
-        winButton = new javax.swing.JButton();
         promptLabel = new javax.swing.JLabel();
         guessPanel = new javax.swing.JPanel();
         guess = new javax.swing.JLabel();
@@ -296,12 +299,19 @@ public class GameFrame extends javax.swing.JFrame {
         quitButton = new javax.swing.JButton();
 
         repeatGuessWindow.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        repeatGuessWindow.setTitle("No repeat guesses!");
         repeatGuessWindow.setAlwaysOnTop(true);
         repeatGuessWindow.setBackground(new java.awt.Color(51, 51, 51));
         repeatGuessWindow.setForeground(new java.awt.Color(255, 255, 255));
+        repeatGuessWindow.setModal(true);
         repeatGuessWindow.setType(java.awt.Window.Type.POPUP);
 
+        guessErrorText.setEditable(false);
+        guessErrorText.setBackground(new java.awt.Color(51, 51, 51));
+        guessErrorText.setForeground(new java.awt.Color(255, 255, 255));
+        guessErrorText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         guessErrorText.setText("You can't enter the same guess twice!");
+        guessErrorText.setBorder(null);
         guessErrorText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 guessErrorTextActionPerformed(evt);
@@ -313,16 +323,16 @@ public class GameFrame extends javax.swing.JFrame {
         repeatGuessWindowLayout.setHorizontalGroup(
             repeatGuessWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(repeatGuessWindowLayout.createSequentialGroup()
-                .addGap(91, 91, 91)
-                .addComponent(guessErrorText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addGap(60, 60, 60)
+                .addComponent(guessErrorText, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(79, Short.MAX_VALUE))
         );
         repeatGuessWindowLayout.setVerticalGroup(
             repeatGuessWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(repeatGuessWindowLayout.createSequentialGroup()
-                .addGap(100, 100, 100)
+                .addGap(71, 71, 71)
                 .addComponent(guessErrorText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -396,16 +406,6 @@ public class GameFrame extends javax.swing.JFrame {
         guessButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 guessButtonActionPerformed(evt);
-            }
-        });
-
-        winButton.setBackground(new java.awt.Color(102, 102, 102));
-        winButton.setForeground(new java.awt.Color(255, 255, 255));
-        winButton.setText("To Win");
-        winButton.setRolloverEnabled(false);
-        winButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                winButtonActionPerformed(evt);
             }
         });
 
@@ -720,10 +720,6 @@ public class GameFrame extends javax.swing.JFrame {
         gamePanel.setLayout(gamePanelLayout);
         gamePanelLayout.setHorizontalGroup(
             gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gamePanelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(winButton)
-                .addGap(497, 497, 497))
             .addGroup(gamePanelLayout.createSequentialGroup()
                 .addGroup(gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(gamePanelLayout.createSequentialGroup()
@@ -750,9 +746,7 @@ public class GameFrame extends javax.swing.JFrame {
                     .addComponent(guessButton))
                 .addGap(18, 18, 18)
                 .addComponent(guessPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(winButton)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jComboBox1.getAccessibleContext().setAccessibleDescription("");
@@ -863,11 +857,6 @@ public class GameFrame extends javax.swing.JFrame {
         handleExit();
     }//GEN-LAST:event_quitButtonActionPerformed
 
-    private void winButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_winButtonActionPerformed
-//        Select the win menu
-        selectWinView();
-    }//GEN-LAST:event_winButtonActionPerformed
-
     /**
      * This function activates when the user inputs a guess. It  will update the model with the data, then update the view with the model's output
      */
@@ -881,7 +870,14 @@ public class GameFrame extends javax.swing.JFrame {
         
 //        If the guess has already been entered, then output an error window and stop the user from entering it
         if(gameState.alreadyGuessed(userGuess)) {
+//        Sets the repeat guess window to default to the center of the screen.
+            repeatGuessWindow.pack();
+            repeatGuessWindow.setLocationRelativeTo(null);
+            
+//            Makes it visible
             repeatGuessWindow.setVisible(true);
+            
+//            Stop here, since nothing else needs to be done
             return;
         }
         
@@ -997,7 +993,6 @@ public class GameFrame extends javax.swing.JFrame {
     private javax.swing.JLabel typing3;
     private javax.swing.JLabel typing4;
     private javax.swing.JLabel typing5;
-    private javax.swing.JButton winButton;
     private javax.swing.JLabel winLabel;
     private javax.swing.JPanel winPanel;
     private javax.swing.JLabel year0;
