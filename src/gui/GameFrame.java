@@ -43,13 +43,6 @@ public class GameFrame extends javax.swing.JFrame {
     public GameFrame() {
         gameState = new GameData(new Guess("JAVA", "STATIC", "OBJECT ORIENTED", "HIGH", 1995), new ArrayList<Guess>());
         
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent e) {
-                JSONHandler.store_game(gameState);
-                System.exit(0);
-            }
-        });
-        
         initializeGameFrame();
         
 //        Syncs the view with the game state
@@ -76,11 +69,29 @@ public class GameFrame extends javax.swing.JFrame {
     }
     
     /**
+     * Used for any custom component initializations I do
+     */
+    private void customInit() {
+//        Adds a window listener that checks if the window is closing, then stores the game state out to a file if so
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                JSONHandler.store_game(gameState);
+                System.exit(0);
+            }
+        });
+    }
+    
+    /**
      * This function is shared between the parameterized and unparameterized constructors for a GameFrame object.
      * Its use is to initialize several parts of the GameFrame to work properly
      */
     private void initializeGameFrame() {
+//        Call default initComponents
         initComponents();
+        
+//        Call custom component initializer
+        customInit();
 
          /**
           * initializes arrays containing rows of guess labels 
@@ -213,6 +224,14 @@ public class GameFrame extends javax.swing.JFrame {
         winPanel.setVisible(true);
         gamePanel.setVisible(false);
         this.pack();
+    }
+    
+    /**
+     * Code to gracefully exit the program, and store out any persistent data.
+     */
+    private void handleExit() {
+        JSONHandler.store_game(gameState);
+        System.exit(0);
     }
     
     /**
@@ -803,7 +822,7 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
 //        This button also exits the program
-        System.exit(0);
+        handleExit();
     }//GEN-LAST:event_exitButtonActionPerformed
 
     private void mainMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainMenuButtonActionPerformed
@@ -816,7 +835,7 @@ public class GameFrame extends javax.swing.JFrame {
 
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
 //        Quit the program
-        System.exit(0);
+        handleExit();
     }//GEN-LAST:event_quitButtonActionPerformed
 
     private void winButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_winButtonActionPerformed
