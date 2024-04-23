@@ -32,13 +32,6 @@ public class GuessHandler {
     }    
     
     /**
-     * Returns true if two guesses match, false if not
-     */
-    public static boolean matchGuess(Guess guess1, Guess guess2){
-        return guess1.getName().equals(guess2.getName());
-    }
-    
-    /**
      * 
      * @return Returns a Color used to change the color of the name guess slot
      */

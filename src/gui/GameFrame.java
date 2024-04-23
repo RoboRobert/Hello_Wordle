@@ -5,12 +5,12 @@
 package gui;
 
 import java.awt.Color;
-import java.awt.Dialog;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 import model.GameData;
 import model.Guess;
 import model.GuessHandler;
+import model.SelectLanguage;
 import persistence.JSONHandler;
 
 /**
@@ -42,9 +42,14 @@ public class GameFrame extends javax.swing.JFrame {
      * Creates new GameFrame with no prior data
      */
     public GameFrame() {
-        gameState = new GameData(new Guess("JAVA", "STATIC", "OBJECT ORIENTED", "HIGH", 1995), new ArrayList<Guess>());
-        
+//        Initialize everything properly
         initializeGameFrame();
+        
+//        Since we have no previous state, disable the continue button
+        continueButton.setEnabled(false);
+        
+//        Resets the game to generate a random guess
+        resetGame();
         
 //        Syncs the view with the game state
         syncGame();
@@ -55,8 +60,10 @@ public class GameFrame extends javax.swing.JFrame {
      * Creates new GameFrame using persistent data
      */
     public GameFrame(GameData previousState) {
+//        Sets the game state based on the persistent data
         gameState = previousState;
         
+//        Initialize everything properly
         initializeGameFrame();
         
 //        Syncs the view with the game state
@@ -90,11 +97,9 @@ public class GameFrame extends javax.swing.JFrame {
 //        Call custom component initializer
         customInit();
 
-         /**
-          * initializes arrays containing rows of guess labels 
-          * sets visibility of these rows to false
-          * Then adds each array to an ArrayList of arrays
-          */
+//          initializes arrays containing rows of guess labels 
+//          sets visibility of these rows to false
+//          Then adds each array to an ArrayList of arrays
         guesses_arr = new ArrayList<JLabel[]>();
         
         guessRow0 = new javax.swing.JLabel[]{guess0, typing0, paradigm0, level0, test0, year0};
@@ -145,8 +150,9 @@ public class GameFrame extends javax.swing.JFrame {
      * Resets the game state to default, then calls syncGame() to sync the view with the model
      */
     private void resetGame() {
+        SelectLanguage randomLanguage = new SelectLanguage();
 //        Create a default game state.
-        gameState = new GameData(new Guess("JAVA", "STATIC", "OBJECT ORIENTED", "HIGH", 1995), new ArrayList<Guess>());
+        gameState = new GameData(randomLanguage.getCorrectAnswer(), new ArrayList<Guess>());
         
 //        Set the guessButton to be enabled
         guessButton.setEnabled(true);
@@ -155,9 +161,7 @@ public class GameFrame extends javax.swing.JFrame {
         syncGame();
     }
     
-     /** 
-      * This resets a row to default state
-      */
+//    This resets a row to default state
     private void resetRow(javax.swing.JLabel[] guess_row) {
         for(JLabel label : guess_row) {
 //            Reset the text
@@ -243,9 +247,10 @@ public class GameFrame extends javax.swing.JFrame {
         repeatGuessWindow = new javax.swing.JDialog();
         guessErrorText = new javax.swing.JTextField();
         menuPanel = new javax.swing.JPanel();
-        startButton = new javax.swing.JButton();
+        newGameButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
         promptLabel1 = new javax.swing.JLabel();
+        continueButton = new javax.swing.JButton();
         gamePanel = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
         guessButton = new javax.swing.JButton();
@@ -311,6 +316,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessErrorText.setForeground(new java.awt.Color(255, 255, 255));
         guessErrorText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         guessErrorText.setText("You can't enter the same guess twice!");
+        guessErrorText.setActionCommand("<Not Set>");
         guessErrorText.setBorder(null);
         guessErrorText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -340,13 +346,14 @@ public class GameFrame extends javax.swing.JFrame {
 
         menuPanel.setBackground(new java.awt.Color(51, 51, 51));
 
-        startButton.setBackground(new java.awt.Color(102, 102, 102));
-        startButton.setForeground(java.awt.Color.white);
-        startButton.setText("Classic");
-        startButton.setRolloverEnabled(false);
-        startButton.addActionListener(new java.awt.event.ActionListener() {
+        newGameButton.setBackground(new java.awt.Color(102, 102, 102));
+        newGameButton.setForeground(java.awt.Color.white);
+        newGameButton.setText("New Game");
+        newGameButton.setDefaultCapable(false);
+        newGameButton.setRolloverEnabled(false);
+        newGameButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                startButtonActionPerformed(evt);
+                newGameButtonActionPerformed(evt);
             }
         });
 
@@ -364,16 +371,27 @@ public class GameFrame extends javax.swing.JFrame {
         promptLabel1.setForeground(new java.awt.Color(255, 255, 255));
         promptLabel1.setText("Hello Wordle");
 
+        continueButton.setBackground(new java.awt.Color(102, 102, 102));
+        continueButton.setForeground(java.awt.Color.white);
+        continueButton.setText("Continue");
+        continueButton.setRolloverEnabled(false);
+        continueButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                continueButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout menuPanelLayout = new javax.swing.GroupLayout(menuPanel);
         menuPanel.setLayout(menuPanelLayout);
         menuPanelLayout.setHorizontalGroup(
             menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuPanelLayout.createSequentialGroup()
-                .addContainerGap(452, Short.MAX_VALUE)
+                .addContainerGap(455, Short.MAX_VALUE)
                 .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(exitButton)
-                    .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(promptLabel1))
+                    .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(newGameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(promptLabel1)
+                    .addComponent(continueButton, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(447, 447, 447))
         );
         menuPanelLayout.setVerticalGroup(
@@ -382,10 +400,12 @@ public class GameFrame extends javax.swing.JFrame {
                 .addGap(273, 273, 273)
                 .addComponent(promptLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(newGameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(318, Short.MAX_VALUE))
+                .addComponent(continueButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(310, Short.MAX_VALUE))
         );
 
         gamePanel.setBackground(new java.awt.Color(51, 51, 51));
@@ -834,10 +854,13 @@ public class GameFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
+    private void newGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameButtonActionPerformed
+//        Reset the game
+        resetGame();
+
 //        Select the game view
         selectGameView();
-    }//GEN-LAST:event_startButtonActionPerformed
+    }//GEN-LAST:event_newGameButtonActionPerformed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
 //        This button also exits the program
@@ -847,9 +870,6 @@ public class GameFrame extends javax.swing.JFrame {
     private void mainMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainMenuButtonActionPerformed
 //        Select the main menu
         selectMainView();
-        
-//        Reset the game for another play
-        resetGame();
     }//GEN-LAST:event_mainMenuButtonActionPerformed
 
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
@@ -888,14 +908,13 @@ public class GameFrame extends javax.swing.JFrame {
         syncGame();
         
 //        Checks for winning guess, sends user to win screen if true
-       Boolean correctMatch = GuessHandler.matchGuess(userGuess, gameState.correct_guess);
-       if (correctMatch == true)
+       if (userGuess.equals(gameState.correct_guess))
            selectWinView();
        
 //       The number of guesses made is the size of the list of guesses made.
        int guessCount = gameState.guesses_list.size();
 
-        //        If there have been 6 guesses, then make the guess button unclickable.
+//        If there have been 6 guesses, then make the guess button unclickable.
         if(guessCount > 5) {
             guessButton.setEnabled(false);
         }
@@ -908,6 +927,13 @@ public class GameFrame extends javax.swing.JFrame {
     private void guessErrorTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessErrorTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_guessErrorTextActionPerformed
+
+    /**
+     * The continue button will simply put the user in the game menu to continue their previous session
+     */
+    private void continueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueButtonActionPerformed
+        selectGameView();
+    }//GEN-LAST:event_continueButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -945,6 +971,7 @@ public class GameFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton continueButton;
     private javax.swing.JButton exitButton;
     private javax.swing.JPanel gamePanel;
     private javax.swing.JLabel guess;
@@ -967,6 +994,7 @@ public class GameFrame extends javax.swing.JFrame {
     private javax.swing.JLabel level5;
     private javax.swing.JButton mainMenuButton;
     private javax.swing.JPanel menuPanel;
+    private javax.swing.JButton newGameButton;
     private javax.swing.JLabel paradigm;
     private javax.swing.JLabel paradigm0;
     private javax.swing.JLabel paradigm1;
@@ -978,7 +1006,6 @@ public class GameFrame extends javax.swing.JFrame {
     private javax.swing.JLabel promptLabel1;
     private javax.swing.JButton quitButton;
     private javax.swing.JDialog repeatGuessWindow;
-    private javax.swing.JButton startButton;
     private javax.swing.JLabel test;
     private javax.swing.JLabel test0;
     private javax.swing.JLabel test1;

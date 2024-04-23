@@ -25,6 +25,10 @@ public class SelectLanguage
         this.correctAnswer = languages[arrayIndex];
     }
     
+    public Guess getCorrectAnswer() {
+        return correctAnswer;
+    }
+    
     
     /* Was used for testing, but leaving it in for reference in the Win Detection section @Patrick
     public void print_data() 
