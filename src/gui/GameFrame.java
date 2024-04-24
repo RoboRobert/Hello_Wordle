@@ -175,8 +175,9 @@ public class GameFrame extends javax.swing.JFrame {
                 if (height <= 0) {
                     direction = -6;
                 //whenever syncGame() is called here, the full size of the labels briefly flash
-                // I've tried setting the label visibility to false, then executing syncGame(), then setting label visiblity to true, it still flashes
+                // I've tried setting label visibility to false, then executing syncGame(), then setting label visiblity to true, it still flashes
                 // yet, if visibility is not set to true, it does not flash when syncGame() is executed. How peculiar. How very strange.
+                // I tried setting a delay on setvisibility(true), but that also produced a flash. Marvelous.
                 syncGame();  
             }
                 counter++;
