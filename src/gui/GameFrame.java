@@ -139,7 +139,7 @@ public class GameFrame extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
      /**
-     *  This function animates guess rows with a cardflip
+     *  This function "flips" an array of jlabels
      */
      private void flipRowCards(JLabel[] guessRow) {
        // timer set at 200 for testing
