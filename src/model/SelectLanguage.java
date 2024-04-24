@@ -6,7 +6,7 @@ package model;
 
 import java.util.Random;
 /**
- *
+ * This class is used for getting a random language from the LanguageArray class.
  * @author tessm
  */
 public class SelectLanguage 
@@ -15,6 +15,10 @@ public class SelectLanguage
     private Random random;
     private Guess correctAnswer;
     
+    
+    /**
+     * Unparameterized constructor. Creates a new object which stores a random Guess object inside itself.
+     */
     public SelectLanguage()
     {
         LanguageArray languageArray = new LanguageArray();
@@ -25,6 +29,10 @@ public class SelectLanguage
         this.correctAnswer = languages[arrayIndex];
     }
     
+    /**
+     * Used to get a random Guess object to use in the game.
+     * @return a Guess object that is used for the correct answer in the game
+     */
     public Guess getCorrectAnswer() {
         return correctAnswer;
     }

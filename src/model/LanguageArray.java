@@ -4,10 +4,9 @@
  */
 package model;
 
-import java.util.ArrayList;
-
 /**
- *
+ * Used to store all the data for the langauge guesses we have implemented. 
+ * This class is unfortunately our second choice for storing language data. We wanted to use a database, but ended up having too many difficulties implementing it.
  * @author tessm
  */
 public class LanguageArray
@@ -44,11 +43,19 @@ public class LanguageArray
 
     private static Guess[] languageArray = {Assembly, C, CSharp, CPlusPlus, Fortran, Go, Java, JavaScript, Matlab, Pascal, Perl, Prolog, Python, Ruby, Rust, Scala, SQL, Swift, TypeScript, VisualBasic};
 
+    /**
+     * This function is a getter for the private languageArray variable
+     * @return a Guess[] of languages for use later 
+     */
     public static Guess[] getLanguages()
     {
         return languageArray;
     }
     
+    /**
+     * This function is used to return just the names of the languages in languageArray
+     * @return a String[] used to set a field in the GUI
+     */
     public static String[] getNames()
     {
         String[] return_array = new String[languageArray.length];
@@ -60,6 +67,11 @@ public class LanguageArray
         return return_array;
     }
     
+    /**
+     * Used to return a Guess object with a certain key name from the languageArray
+     * @param searchName is the key used to search in languageArray
+     * @return a Guess object with the corresponding key
+     */
     public static Guess fetchLanguage(String searchName) {
         
         // searches language array for an object with a matching name
