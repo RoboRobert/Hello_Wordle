@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLabel;
+import javax.swing.border.LineBorder;
 import model.GameData;
 import model.Guess;
 import model.GuessHandler;
@@ -24,7 +25,8 @@ import persistence.JSONHandler;
  */
 public class GameFrame extends javax.swing.JFrame {
 //    Variable used for resetting color back to default
-    private static final Color MY_GRAY = new Color(51,51,51);
+    private static final Color DARK_GRAY = new Color(51,51,51);
+    private static final Color BORDER_GRAY = new Color(102,102,102);
     
     //    Global variables used for guesses
     private static javax.swing.JLabel[] guessRow0;
@@ -86,9 +88,9 @@ public class GameFrame extends javax.swing.JFrame {
         });
         
 //        Sets the background color of JDialog boxes because the form editor doesn't let me
-        repeatGuessWindow.getContentPane().setBackground(MY_GRAY);
-        winDialog.getContentPane().setBackground(MY_GRAY);
-        loseDialog.getContentPane().setBackground(MY_GRAY);
+        repeatGuessWindow.getContentPane().setBackground(DARK_GRAY);
+        winDialog.getContentPane().setBackground(DARK_GRAY);
+        loseDialog.getContentPane().setBackground(DARK_GRAY);
         
         
 //        Sets the options in the combo box from the LanguageArray's list of names
@@ -189,8 +191,10 @@ public class GameFrame extends javax.swing.JFrame {
 //            Reset the text
             label.setText("");
             
-//            Reset the color
-            label.setBackground(MY_GRAY);
+//            Reset the background color
+            label.setBackground(DARK_GRAY);
+//            Reset the border color
+            label.setBorder(new LineBorder(BORDER_GRAY, 4));
         }
         
         guess_row[5].setIcon(null);
@@ -215,13 +219,22 @@ public class GameFrame extends javax.swing.JFrame {
      * Handles setting the colors of rows based on the input guess and the correct guess.
      */
     private void setRowColors(JLabel[] guessRow, Guess guess) {
-        guessRow[0].setBackground(GuessHandler.matchName(gameState.correct_guess.getName(), guess.getName()));
-        guessRow[1].setBackground(GuessHandler.matchTyping(gameState.correct_guess.getTyping(), guess.getTyping()));
-        guessRow[2].setBackground(GuessHandler.matchParadigm(gameState.correct_guess.getParadigmID(), guess.getParadigmID()));
-        guessRow[3].setBackground(GuessHandler.matchLevel(gameState.correct_guess.getLevel(), guess.getLevel()));
-        guessRow[4].setBackground(GuessHandler.matchYear(gameState.correct_guess.getYear(), guess.getYear()));
-        guessRow[5].setBackground(GuessHandler.matchYear(gameState.correct_guess.getYear(), guess.getYear()));
-        
+        setBackgroundAndBorder(guessRow[0], GuessHandler.matchName(gameState.correct_guess.getName(), guess.getName()));
+        setBackgroundAndBorder(guessRow[1], GuessHandler.matchTyping(gameState.correct_guess.getTyping(), guess.getTyping()));
+        setBackgroundAndBorder(guessRow[2], GuessHandler.matchParadigm(gameState.correct_guess.getParadigmID(), guess.getParadigmID()));
+        setBackgroundAndBorder(guessRow[3], GuessHandler.matchLevel(gameState.correct_guess.getLevel(), guess.getLevel()));
+        setBackgroundAndBorder(guessRow[4], GuessHandler.matchYear(gameState.correct_guess.getYear(), guess.getYear()));
+        setBackgroundAndBorder(guessRow[5], GuessHandler.matchYear(gameState.correct_guess.getYear(), guess.getYear()));
+    }
+    
+    /**
+     * Used to set the background color and border color of a JLabel
+     * @param inputLabel the JLabel on which the function will be applied
+     * @param inputColor the color to change the border and background to.
+     */
+    private void setBackgroundAndBorder(JLabel inputLabel, Color inputColor) {
+        inputLabel.setBackground(inputColor);
+        inputLabel.setBorder(new LineBorder(inputColor, 4));
     }
     
     /**
