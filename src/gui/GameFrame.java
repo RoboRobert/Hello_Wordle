@@ -150,8 +150,6 @@ public class GameFrame extends javax.swing.JFrame {
         int y = guessRow[0].getY();
         int direction = 6;
 
-        
-        
             @Override
             public void actionPerformed(ActionEvent e) {
                 
@@ -178,7 +176,6 @@ public class GameFrame extends javax.swing.JFrame {
                 // I've tried setting label visibility to false, then executing syncGame(), then setting label visiblity to true, it still flashes
                 // yet, if visibility is not set to true, it does not flash when syncGame() is executed. How peculiar. How very strange.
                 // I tried setting a delay on setvisibility(true), but that also produced a flash. Marvelous.
-                syncGame();  
             }
                 counter++;
             }
@@ -195,6 +192,7 @@ public class GameFrame extends javax.swing.JFrame {
             if(i < gameState.guesses_list.size()) {
                     // Sets the guess text for the current row
                     setRowText(guesses_arr.get(i), gameState.guesses_list.get(i));
+                    
                     // Sets the colors for the current row
                     setRowColors(guesses_arr.get(i), gameState.guesses_list.get(i));
             }
@@ -1223,9 +1221,11 @@ public class GameFrame extends javax.swing.JFrame {
         gameState.guesses_list.add(userGuess);
         
         
-        flipRowCards(guesses_arr.get(gameState.guesses_list.size() - 1));
 //        Then sync the view with the game model
+        syncGame();
         
+//                    Performs a flip animation on all the cards of the row
+        flipRowCards(guesses_arr.get(gameState.guesses_list.size()-1));
         
 //        Check if the game is over. If so, check if the user won or lost
        if(gameState.gameOver()) {
