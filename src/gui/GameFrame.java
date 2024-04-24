@@ -7,6 +7,7 @@ package gui;
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
 import model.GameData;
@@ -15,6 +16,7 @@ import model.GuessHandler;
 import model.LanguageArray;
 import model.SelectLanguage;
 import persistence.JSONHandler;
+import persistence.ResourceHandler;
 
 /**
  * This class will serve as both the view and controller of the game in one. It will use the model to process its inputs, then it will display the model to the screen
@@ -95,6 +97,11 @@ public class GameFrame extends javax.swing.JFrame {
         
 //        Sets the options in the combo box from the LanguageArray's list of names
         guessBox.setModel(new DefaultComboBoxModel(LanguageArray.getNames()));
+        
+//        Set the icon for the JFrame
+//        ResourceHandler resources = new ResourceHandler();
+//        ImageIcon icon = resources.retrieveIcon("/resources/helloWordleIcon.png");
+//        setIconImage(icon.getImage());
     }
     
     /**
@@ -388,6 +395,7 @@ public class GameFrame extends javax.swing.JFrame {
         repeatGuessWindow.setAlwaysOnTop(true);
         repeatGuessWindow.setBackground(new java.awt.Color(51, 51, 51));
         repeatGuessWindow.setForeground(new java.awt.Color(255, 255, 255));
+        repeatGuessWindow.setIconImage(null);
         repeatGuessWindow.setModal(true);
         repeatGuessWindow.setType(java.awt.Window.Type.POPUP);
 
@@ -756,6 +764,7 @@ public class GameFrame extends javax.swing.JFrame {
 
         guessPaneScroller.setBackground(new java.awt.Color(51, 51, 51));
         guessPaneScroller.setBorder(null);
+        guessPaneScroller.setAutoscrolls(true);
         guessPaneScroller.setMinimumSize(new java.awt.Dimension(913, 300));
         guessPaneScroller.setOpaque(false);
         guessPaneScroller.setPreferredSize(new java.awt.Dimension(913, 527));
