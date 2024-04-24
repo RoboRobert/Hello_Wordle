@@ -231,7 +231,6 @@ public class GameFrame extends javax.swing.JFrame {
         //Change to game view
         gamePanel.setVisible(true);
         menuPanel.setVisible(false);
-        this.pack();
     }
     
     /**
@@ -241,7 +240,6 @@ public class GameFrame extends javax.swing.JFrame {
         //Switch to the main menu
         gamePanel.setVisible(false);
         menuPanel.setVisible(true);
-        this.pack();
     }
     
     /**
@@ -368,6 +366,7 @@ public class GameFrame extends javax.swing.JFrame {
         promptLabel = new javax.swing.JLabel();
         guessButton = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
 
         repeatGuessWindow.setTitle("No repeat guesses!");
         repeatGuessWindow.setAlwaysOnTop(true);
@@ -1104,6 +1103,11 @@ public class GameFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(guessButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(43, Short.MAX_VALUE))
+            .addGroup(gameCenteredPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(gameCenteredPanelLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         gameCenteredPanelLayout.setVerticalGroup(
             gameCenteredPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1119,6 +1123,11 @@ public class GameFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(gameToMainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12))
+            .addGroup(gameCenteredPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(gameCenteredPanelLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         jComboBox1.getAccessibleContext().setAccessibleDescription("");
@@ -1325,6 +1334,7 @@ public class GameFrame extends javax.swing.JFrame {
     private javax.swing.JTextField guessErrorText;
     private javax.swing.JPanel guessPanel;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel level;
     private javax.swing.JLabel level0;
     private javax.swing.JLabel level1;
