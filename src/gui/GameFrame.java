@@ -94,7 +94,7 @@ public class GameFrame extends javax.swing.JFrame {
         
         
 //        Sets the options in the combo box from the LanguageArray's list of names
-        jComboBox1.setModel(new DefaultComboBoxModel(LanguageArray.getNames()));
+        guessBox.setModel(new DefaultComboBoxModel(LanguageArray.getNames()));
     }
     
     /**
@@ -253,6 +253,9 @@ public class GameFrame extends javax.swing.JFrame {
         //Switch to the main menu
         gamePanel.setVisible(false);
         menuPanel.setVisible(true);
+        
+//        Whenever the main menu is switched to, allow the user to come back by enabling the continue button
+        continueButton.setEnabled(true);
     }
     
     /**
@@ -333,6 +336,10 @@ public class GameFrame extends javax.swing.JFrame {
         gamePanel = new javax.swing.JPanel();
         gameCenteredPanel = new javax.swing.JPanel();
         gameToMainMenu = new javax.swing.JButton();
+        promptLabel = new javax.swing.JLabel();
+        guessButton = new javax.swing.JButton();
+        guessBox = new javax.swing.JComboBox<>();
+        guessPaneScroller = new javax.swing.JScrollPane();
         guessPanel = new javax.swing.JPanel();
         guess = new javax.swing.JLabel();
         typing = new javax.swing.JLabel();
@@ -376,10 +383,6 @@ public class GameFrame extends javax.swing.JFrame {
         level5 = new javax.swing.JLabel();
         year5 = new javax.swing.JLabel();
         direction5 = new javax.swing.JLabel();
-        promptLabel = new javax.swing.JLabel();
-        guessButton = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jScrollPane2 = new javax.swing.JScrollPane();
 
         repeatGuessWindow.setTitle("No repeat guesses!");
         repeatGuessWindow.setAlwaysOnTop(true);
@@ -396,6 +399,7 @@ public class GameFrame extends javax.swing.JFrame {
         guessErrorText.setText("You can't enter the same guess twice!");
         guessErrorText.setActionCommand("<Not Set>");
         guessErrorText.setBorder(null);
+        guessErrorText.setDragEnabled(true);
         guessErrorText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 guessErrorTextActionPerformed(evt);
@@ -724,7 +728,41 @@ public class GameFrame extends javax.swing.JFrame {
             }
         });
 
+        promptLabel.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        promptLabel.setForeground(new java.awt.Color(255, 255, 255));
+        promptLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        promptLabel.setText("Hello Wordle");
+
+        guessButton.setBackground(new java.awt.Color(102, 102, 102));
+        guessButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        guessButton.setForeground(new java.awt.Color(255, 255, 255));
+        guessButton.setText("Guess");
+        guessButton.setRolloverEnabled(false);
+        guessButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guessButtonActionPerformed(evt);
+            }
+        });
+
+        guessBox.setBackground(new java.awt.Color(102, 102, 102));
+        guessBox.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        guessBox.setForeground(new java.awt.Color(255, 255, 255));
+        guessBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Python", "C++", "Java" }));
+        guessBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guessBoxActionPerformed(evt);
+            }
+        });
+
+        guessPaneScroller.setBackground(new java.awt.Color(51, 51, 51));
+        guessPaneScroller.setBorder(null);
+        guessPaneScroller.setMinimumSize(new java.awt.Dimension(913, 300));
+        guessPaneScroller.setOpaque(false);
+        guessPaneScroller.setPreferredSize(new java.awt.Dimension(913, 527));
+        guessPaneScroller.setViewportView(guessPanel);
+
         guessPanel.setBackground(new java.awt.Color(51, 51, 51));
+        guessPanel.setName(""); // NOI18N
         guessPanel.setLayout(new java.awt.GridLayout(7, 6, 4, 4));
 
         guess.setBackground(new java.awt.Color(153, 153, 153));
@@ -1069,31 +1107,7 @@ public class GameFrame extends javax.swing.JFrame {
         direction5.setOpaque(true);
         guessPanel.add(direction5);
 
-        promptLabel.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
-        promptLabel.setForeground(new java.awt.Color(255, 255, 255));
-        promptLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        promptLabel.setText("Hello Wordle");
-
-        guessButton.setBackground(new java.awt.Color(102, 102, 102));
-        guessButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        guessButton.setForeground(new java.awt.Color(255, 255, 255));
-        guessButton.setText("Guess");
-        guessButton.setRolloverEnabled(false);
-        guessButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                guessButtonActionPerformed(evt);
-            }
-        });
-
-        jComboBox1.setBackground(new java.awt.Color(102, 102, 102));
-        jComboBox1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Python", "C++", "Java" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
+        guessPaneScroller.setViewportView(guessPanel);
 
         javax.swing.GroupLayout gameCenteredPanelLayout = new javax.swing.GroupLayout(gameCenteredPanel);
         gameCenteredPanel.setLayout(gameCenteredPanelLayout);
@@ -1102,9 +1116,6 @@ public class GameFrame extends javax.swing.JFrame {
             .addGroup(gameCenteredPanelLayout.createSequentialGroup()
                 .addGroup(gameCenteredPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(gameCenteredPanelLayout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(guessPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 915, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(gameCenteredPanelLayout.createSequentialGroup()
                         .addGap(420, 420, 420)
                         .addComponent(gameToMainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(gameCenteredPanelLayout.createSequentialGroup()
@@ -1112,15 +1123,13 @@ public class GameFrame extends javax.swing.JFrame {
                         .addComponent(promptLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(gameCenteredPanelLayout.createSequentialGroup()
                         .addGap(345, 345, 345)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(guessBox, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(guessButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(guessButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(gameCenteredPanelLayout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(guessPaneScroller, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(43, Short.MAX_VALUE))
-            .addGroup(gameCenteredPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(gameCenteredPanelLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         gameCenteredPanelLayout.setVerticalGroup(
             gameCenteredPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1129,27 +1138,25 @@ public class GameFrame extends javax.swing.JFrame {
                 .addComponent(promptLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addGroup(gameCenteredPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                    .addComponent(guessBox, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                     .addComponent(guessButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(guessPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(guessPaneScroller, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(gameToMainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12))
-            .addGroup(gameCenteredPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(gameCenteredPanelLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        jComboBox1.getAccessibleContext().setAccessibleDescription("");
+        guessBox.getAccessibleContext().setAccessibleDescription("");
 
-        gamePanel.add(gameCenteredPanel, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.ABOVE_BASELINE;
+        gamePanel.add(gameCenteredPanel, gridBagConstraints);
 
         getContentPane().add(gamePanel, "card3");
 
-        getAccessibleContext().setAccessibleDescription("Hi Mr. Rochowiak o7");
+        getAccessibleContext().setAccessibleDescription("Hi Dr. Rochowiak o7");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -1173,7 +1180,7 @@ public class GameFrame extends javax.swing.JFrame {
     private void guessButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessButtonActionPerformed
 
 //        Gets the guess from the combo box
-        String guess = (String) jComboBox1.getSelectedItem();
+        String guess = (String) guessBox.getSelectedItem();
         
 //        Gets the full Guess data from GuessHandler
         Guess userGuess = GuessHandler.getGuess(guess);
@@ -1208,9 +1215,9 @@ public class GameFrame extends javax.swing.JFrame {
        }
     }//GEN-LAST:event_guessButtonActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void guessBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_guessBoxActionPerformed
 
     private void guessErrorTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessErrorTextActionPerformed
         // TODO add your handling code here:
@@ -1228,7 +1235,6 @@ public class GameFrame extends javax.swing.JFrame {
      */
     private void gameToMainMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gameToMainMenuActionPerformed
         selectMainView();
-        continueButton.setEnabled(true);
     }//GEN-LAST:event_gameToMainMenuActionPerformed
 
     private void winTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_winTextActionPerformed
@@ -1343,11 +1349,11 @@ public class GameFrame extends javax.swing.JFrame {
     private javax.swing.JLabel guess3;
     private javax.swing.JLabel guess4;
     private javax.swing.JLabel guess5;
+    private javax.swing.JComboBox<String> guessBox;
     private javax.swing.JButton guessButton;
     private javax.swing.JTextField guessErrorText;
+    private javax.swing.JScrollPane guessPaneScroller;
     private javax.swing.JPanel guessPanel;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel level;
     private javax.swing.JLabel level0;
     private javax.swing.JLabel level1;
